@@ -1,40 +1,54 @@
 {
   "company": {
-    "name": "",
-    "nameShort": "",
-    "nameEn": "",
+    "name": "三豊機工株式会社",
+    "nameShort": "三豊機工",
+    "nameEn": "MITSUTOYO KIKO",
     "id": "",
-    "ceo": "",
-    "established": "",
-    "capital": "",
-    "revenue": "",
-    "employees": "",
-    "business": "",
+    "ceo": "舟橋 佳孝",
+    "established": "昭和40年6月（1965年）",
+    "capital": "3,840万円",
+    "revenue": "26.5億円",
+    "employees": "182名（本社23名、鹿児島工場159名）",
+    "business": "冷間圧造工具の製造及び販売",
     "license": "",
-    "catchphrase": "",
+    "catchphrase": "「なくてはならない」であり続けたい",
     "mission": ""
   },
   "contact": {
-    "phone": "",
-    "phoneFormatted": "",
-    "phoneTel": "",
+    "phone": "0568-81-4111",
+    "phoneFormatted": "0568-81-4111",
+    "phoneTel": "0568814111",
     "fax": "",
-    "email": "",
-    "hours": "",
+    "email": "office@mitsutoyo.co.jp",
+    "hours": "月〜金 8:00〜17:00",
     "recruitContact": ""
   },
   "locations": {
     "headquarters": {
       "name": "本社",
-      "zipCode": "",
-      "address": "",
+      "zipCode": "486-0816",
+      "address": "愛知県春日井市東野新町一丁目4番地",
       "access": "",
       "mapUrl": ""
     },
-    "branches": []
+    "branches": [
+      {
+        "name": "鹿児島工場",
+        "zipCode": "897-0202",
+        "address": "鹿児島県南九州市川辺町清水1542番1",
+        "access": ""
+      },
+      {
+        "name": "三豊機工春日部（営業所）",
+        "zipCode": "344-0064",
+        "address": "埼玉県春日部市南四丁目2-3",
+        "access": ""
+      }
+    ]
   },
   "social": {
-    "instagram": ""
+    "instagram": "",
+    "tiktok": ""
   },
   "images": {
     "logo": "/images/logo.png",
@@ -42,15 +56,15 @@
     "logoOnly": "/images/logo-only.png"
   },
   "seo": {
-    "siteUrl": "https://example.com",
-    "titleSuffix": "",
-    "defaultTitle": "",
-    "defaultDescription": ""
+    "siteUrl": "https://mitsutoyo.co.jp",
+    "titleSuffix": " | 三豊機工株式会社",
+    "defaultTitle": "三豊機工株式会社 | 冷間圧造工具の製造及び販売",
+    "defaultDescription": "三豊機工株式会社は、冷間圧造工具の製造及び販売を行っています。「なくてはならない」であり続けたいという想いで、お客様のニーズに応えます。"
   },
   "stats": {
-    "yearsInBusiness": "",
+    "yearsInBusiness": "60",
     "projectsCompleted": "",
-    "employees": "",
+    "employees": "182",
     "retentionRate": ""
   },
   "history": [],
@@ -58,7 +72,7 @@
   "works": [],
   "news": [],
   "recruit": {
-    "catchphrase": "",
+    "catchphrase": "成長しあえる職場で、想いの込もったモノづくりを。",
     "subCatchphrase": "",
     "data": [],
     "benefits": {
@@ -74,8 +88,8 @@
     "interviews": []
   },
   "ceo": {
-    "name": "",
-    "title": "",
+    "name": "舟橋 佳孝",
+    "title": "代表取締役",
     "image": "",
     "message": []
   }

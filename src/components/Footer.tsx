@@ -1,17 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { company, contact, locations, images, site } from "@/lib/site";
+import { company, locations, images } from "@/lib/site";
 
-const navLinks1 = [
-  { label: "会社概要", href: "/about" },
-  { label: "事業内容", href: "/service" },
+const navLinks = [
+  { label: "製品情報", href: "/products" },
+  { label: "設備紹介", href: "/equipment" },
+  { label: "会社概要", href: "/company" },
   { label: "採用情報", href: "/recruit" },
 ];
 
 const navLinks2 = [
-  { label: "お知らせ", href: "/news" },
   { label: "お問い合わせ", href: "/contact" },
-  { label: "プライバシーポリシー", href: "/privacy" },
 ];
 
 export default function Footer() {
@@ -20,170 +19,59 @@ export default function Footer() {
 
   return (
     <footer className="bg-navy text-white">
-      <div className="max-w-container mx-auto px-6 lg:px-12 pt-12 lg:pt-20 pb-6 lg:pb-10">
-        {/* PC: 4 columns */}
-        <div className="hidden lg:flex lg:justify-between lg:items-start mb-16">
-          {/* 1. Logo */}
-          <div>
-            <Link href="/">
-              <Image
-                src={images.logoSquare || "/images/logo-square.png"}
-                alt={company.name || "会社ロゴ"}
-                width={100}
-                height={100}
-                className="brightness-0 invert"
-              />
-            </Link>
-          </div>
-
-          {/* 2. Company Info */}
-          <div className="text-sm text-white/80 leading-relaxed pt-4">
-            {hq.zipCode && hq.address && (
-              <p>〒{hq.zipCode} {hq.address}</p>
-            )}
-            {contact.phone && <p>TEL: {contact.phoneFormatted || contact.phone}</p>}
-            {contact.hours && <p>営業時間: {contact.hours}</p>}
-          </div>
-
-          {/* 3. Navigation - 2 columns */}
-          <div className="flex gap-10">
-            <ul className="space-y-2">
-              {navLinks1.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/80 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <ul className="space-y-2">
-              {navLinks2.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/80 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* 4. SNS */}
-          {site.social.instagram && (
-            <div>
-              <a
-                href={site.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/80 hover:text-white transition-colors"
-                aria-label="Instagram"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
-              </a>
-            </div>
-          )}
-        </div>
-
-        {/* SP: Stacked layout */}
-        <div className="lg:hidden text-center mb-8">
-          <Link href="/" className="inline-block mb-6">
+      <div className="max-w-container mx-auto px-6 lg:px-12 pt-12 lg:pt-16 pb-8">
+        {/* Logo and Company Info - Center aligned */}
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 mb-10">
+          {/* Logo */}
+          <Link href="/">
             <Image
-              src={images.logoSquare || "/images/logo-square.png"}
+              src={images.logo || "/images/logo.png"}
               alt={company.name || "会社ロゴ"}
-              width={120}
-              height={120}
+              width={160}
+              height={40}
               className="brightness-0 invert"
             />
           </Link>
-          <div className="text-sm text-white/80 leading-relaxed mb-6">
+
+          {/* Company Info */}
+          <div className="text-sm text-white/80 leading-relaxed text-center lg:text-left">
+            <p className="font-medium text-white mb-1">{company.name}</p>
             {hq.zipCode && hq.address && (
               <p>〒{hq.zipCode} {hq.address}</p>
             )}
-            {contact.phone && <p>TEL: {contact.phoneFormatted || contact.phone}</p>}
-            {contact.hours && <p>営業時間: {contact.hours}</p>}
           </div>
-          <div className="flex justify-center gap-10 mb-6">
-            <ul className="space-y-2 text-left">
-              {navLinks1.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/80 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <ul className="space-y-2 text-left">
-              {navLinks2.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/80 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {site.social.instagram && (
-            <a
-              href={site.social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-white/80 hover:text-white transition-colors"
-              aria-label="Instagram"
+        </div>
+
+        {/* Navigation Links - Horizontal */}
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm text-white/80 hover:text-white transition-colors"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-              </svg>
-            </a>
-          )}
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10">
+          {navLinks2.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm text-white/80 hover:text-white transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-white/10 pt-6 text-center">
+        <div className="text-center">
           <p className="text-xs text-white/50">
-            © {currentYear} {company.nameEn || company.name || "Company Name"}. All Rights Reserved.
+            © {currentYear} {company.name || "Company Name"}. All Rights Reserved.
           </p>
-          {company.license && (
-            <p className="text-[11px] text-white/40 mt-2">
-              {company.license}
-            </p>
-          )}
         </div>
       </div>
     </footer>

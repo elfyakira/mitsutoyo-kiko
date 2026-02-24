@@ -3,10 +3,10 @@
 
 @theme {
   /* Brand Colors */
-  --color-navy: #1a3a5c;
-  --color-navy-dark: #152e4a;
-  --color-accent: #e67635;
-  --color-accent-dark: #d56025;
+  --color-navy: #1A3A5C;
+  --color-navy-dark: #0F2840;
+  --color-accent: #E65525;
+  --color-accent-dark: #CC4A1F;
 
   /* Text Colors */
   --color-text-primary: #333333;
