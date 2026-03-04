@@ -21,10 +21,10 @@ export default function ContactCTA() {
           <h2 className="text-2xl lg:text-3xl font-bold tracking-[0.2em] text-navy mb-4">
             CONTACT
           </h2>
-          <p className="text-sm text-text-secondary mb-2">
+          <p className="text-text-secondary mb-2">
             商品おひとつのみの制作からでも受注可能です。
           </p>
-          <p className="text-sm text-text-secondary mb-8">
+          <p className="text-text-secondary mb-8">
             お気軽にお問い合わせ下さい！
           </p>
 

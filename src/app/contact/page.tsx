@@ -96,7 +96,7 @@ function ContactForm() {
           <h2 className="text-2xl lg:text-[28px] font-bold text-text-primary mb-6">
             お問い合わせありがとうございます
           </h2>
-          <div className="text-[15px] lg:text-base text-text-primary leading-[1.8] mb-10">
+          <div className="text-text-primary mb-10">
             <p>お問い合わせを受け付けました。</p>
             <p>担当者より折り返しご連絡いたします。</p>
           </div>
@@ -114,7 +114,7 @@ function ContactForm() {
   return (
     <section className="py-10 lg:py-[60px] bg-white">
       <div className="max-w-[800px] mx-auto px-4">
-        <p className="text-center text-[15px] lg:text-base text-text-primary leading-[1.7] mb-6 lg:mb-8">
+        <p className="text-center text-text-primary mb-6 lg:mb-8">
           お気軽にお問い合わせください。
         </p>
 

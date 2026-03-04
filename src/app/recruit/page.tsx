@@ -91,7 +91,7 @@ function MessageSection() {
             <br />
             想いの込もったモノづくりを。
           </h2>
-          <p className="text-sm lg:text-base text-text-secondary leading-[2]">
+          <p className="text-text-secondary">
             私たちはトヨタホーム様の最重要部材として位置づけられている外壁を主に製造しております。
             単にモノづくりをするだけでなく、多様化するお客様のニーズに最も合った形で生産を行い、
             製品を通じて人々の暮らしに安全、安心を作る会社です。

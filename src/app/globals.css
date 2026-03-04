@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -49,8 +49,17 @@ body {
   font-family: var(--font-sans);
   color: var(--color-text-primary);
   background-color: var(--color-bg-white);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  line-height: 2.2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
 }
 
 /* Component Classes */
