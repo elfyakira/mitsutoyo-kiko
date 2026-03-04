@@ -162,7 +162,7 @@ function FeaturesSection() {
 // ============================================================
 function FullWidthImage() {
   return (
-    <section className="py-24 lg:py-40 bg-white">
+    <section id="our-strength" className="py-24 lg:py-40 bg-white">
       <div className="px-8 md:px-16 lg:px-24 text-center">
         <h2
           className="text-[40px] md:text-[60px] lg:text-[80px] font-bold text-navy tracking-[0.08em] leading-[1.1]"

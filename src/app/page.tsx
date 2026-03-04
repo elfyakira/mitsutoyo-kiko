@@ -127,10 +127,10 @@ function AboutSection() {
             </div>
             <Link
               href="/company"
-              className="inline-flex items-center justify-between mt-20 mb-24 border border-white/60 px-8 py-5 min-w-[280px] text-white tracking-[0.15em] text-[14px] lg:text-[16px] hover:bg-white/10 transition-colors"
+              className="btn-slide inline-flex items-center justify-between mt-20 mb-24 border border-white/60 px-8 py-5 min-w-[280px] text-white tracking-[0.15em] text-[14px] lg:text-[16px]"
             >
-              <span>事業内容を見る</span>
-              <svg className="w-5 h-5 text-accent ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span>私たちについて</span>
+              <svg className="w-5 h-5 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </Link>
@@ -164,13 +164,22 @@ function FacilitySection() {
           </p>
         </div>
 
-        {/* Content - 1/3 + 2/3 */}
-        <div className="flex flex-col lg:flex-row lg:gap-16 mb-16 lg:mb-24">
-          {/* Left - Spacer */}
-          <div className="hidden lg:block lg:w-1/3" />
+        <div className="mb-16 lg:mb-24" />
+
+        {/* Content - Left Image + Right Features */}
+        <div className="flex flex-col lg:flex-row lg:gap-16">
+          {/* Left - Image */}
+          <div className="lg:w-1/3 relative h-[250px] lg:h-[400px] mb-10 lg:mb-0 lg:self-start">
+            <Image
+              src="/images/skill-section.jpg"
+              alt="技を磨き、心を尽くす"
+              fill
+              className="object-cover"
+            />
+          </div>
 
           {/* Right - Features */}
-          <div className="lg:w-2/3">
+          <div className="lg:w-1/2 lg:pt-[200px]">
             {/* 01 */}
             <div className="pb-10 mb-10 border-b border-gray-200">
               <h3
@@ -211,11 +220,11 @@ function FacilitySection() {
             </div>
 
             <Link
-              href="/company"
-              className="inline-flex items-center justify-between mt-20 mb-24 border border-navy/30 px-8 py-5 min-w-[280px] text-navy tracking-[0.15em] text-[14px] lg:text-[16px] hover:bg-navy/5 transition-colors"
+              href="/company#our-strength"
+              className="btn-slide btn-slide-light inline-flex items-center justify-between mt-20 border border-navy/30 px-8 py-5 min-w-[280px] text-navy tracking-[0.15em] text-[14px] lg:text-[16px]"
             >
-              <span>事業内容を見る</span>
-              <svg className="w-5 h-5 text-accent ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span>詳しく見る</span>
+              <svg className="w-5 h-5 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </Link>
@@ -253,7 +262,7 @@ function RecruitSection() {
       <div className="lg:w-2/3 flex flex-col sm:flex-row">
         <div className="sm:w-1/2 relative min-h-[350px] lg:min-h-[700px]">
           <Image
-            src="/images/facility-1.jpg"
+            src="/images/products-section.jpg"
             alt="製品"
             fill
             className="object-cover"
@@ -261,7 +270,7 @@ function RecruitSection() {
         </div>
         <div className="sm:w-1/2 relative min-h-[350px] lg:min-h-[700px]">
           <Image
-            src="/images/facility-2.jpg"
+            src="/images/facilities-section.jpg"
             alt="設備"
             fill
             className="object-cover"
@@ -296,12 +305,8 @@ function CompanySection() {
   ];
 
   return (
-    <section className="flex flex-col lg:flex-row">
-      {/* Left 1/3 - Empty */}
-      <div className="hidden lg:block lg:w-1/3" />
-
-      {/* Right 2/3 */}
-      <div className="lg:w-2/3 py-16 lg:py-24 px-8 md:px-16 lg:px-24">
+    <section className="py-16 lg:py-24 bg-white">
+      <div className="px-8 md:px-16 lg:px-24">
         {/* Title */}
         <div className="mb-12 lg:mb-16">
           <span
@@ -314,7 +319,7 @@ function CompanySection() {
             className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-navy tracking-[0.25em] leading-[1.3]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
           >
-            誇れるものづくりを、<br />あなたと。
+            誇れるものづくりを、あなたと。
           </h2>
           <p
             className="text-[16px] md:text-[22px] lg:text-[30px] font-bold text-navy/70 tracking-[0.08em] leading-[1.3] mt-4"
@@ -324,27 +329,44 @@ function CompanySection() {
           </p>
         </div>
 
-        {/* Description */}
-        <div className="text-text-secondary">
-          <p>
-            金型の設計から製造・仕上げまで、すべてを自社で手掛けるからこそ、人の技術や判断力が品質を左右します。
-          </p>
-          <p className="mt-6">
-            だからこそ、私たちは「人」を何よりも大切にしています。確かな技術を学び、自分の手で&ldquo;精度&rdquo;を生み出すやりがいを感じられる場所。
-          </p>
-          <p className="mt-6">
-            ここで、あなたの力を活かしてみませんか？
-          </p>
-        </div>
+        <div className="mb-16 lg:mb-24" />
 
-        {/* Image */}
-        <div className="relative w-full aspect-[16/9] mt-12">
-          <Image
-            src="/images/recruit-bg.jpg"
-            alt="ものづくりの現場"
-            fill
-            className="object-cover"
-          />
+        {/* Content - Left Image + Right Text */}
+        <div className="flex flex-col lg:flex-row lg:gap-16">
+          {/* Left - Image */}
+          <div className="lg:w-1/3 relative h-[250px] lg:h-[400px] mb-10 lg:mb-0 lg:self-start">
+            <Image
+              src="/images/recruit-section.jpg"
+              alt="誇れるものづくりを、あなたと"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Right - Description */}
+          <div className="lg:w-1/2 lg:pt-[200px]">
+            <div className="text-text-secondary">
+              <p>
+                金型の設計から製造・仕上げまで、すべてを自社で手掛けるからこそ、人の技術や判断力が品質を左右します。
+              </p>
+              <p className="mt-6">
+                だからこそ、私たちは「人」を何よりも大切にしています。確かな技術を学び、自分の手で&ldquo;精度&rdquo;を生み出すやりがいを感じられる場所。
+              </p>
+              <p className="mt-6">
+                ここで、あなたの力を活かしてみませんか？
+              </p>
+            </div>
+
+            <Link
+              href="/recruit"
+              className="btn-slide btn-slide-light inline-flex items-center justify-between mt-20 border border-navy/30 px-8 py-5 min-w-[280px] text-navy tracking-[0.15em] text-[14px] lg:text-[16px]"
+            >
+              <span>採用情報を見る</span>
+              <svg className="w-5 h-5 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
