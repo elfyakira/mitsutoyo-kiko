@@ -3,8 +3,8 @@
 
 @theme {
   /* Brand Colors */
-  --color-navy: #1A3A5C;
-  --color-navy-dark: #0F2840;
+  --color-navy: #0080CC;
+  --color-navy-dark: #006AA8;
   --color-accent: #E65525;
   --color-accent-dark: #CC4A1F;
 
@@ -94,7 +94,7 @@ body {
 }
 
 .btn-secondary:hover {
-  background-color: rgba(26, 58, 92, 0.05);
+  background-color: rgba(0, 128, 204, 0.05);
 }
 
 .btn-outline-white {

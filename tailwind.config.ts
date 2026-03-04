@@ -11,8 +11,8 @@ const config: Config = {
       colors: {
         // Brand Colors
         navy: {
-          DEFAULT: "#1a3a5c",
-          dark: "#152e4a",
+          DEFAULT: "#0080CC",
+          dark: "#006AA8",
         },
         accent: {
           DEFAULT: "#e67635",

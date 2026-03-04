@@ -10,68 +10,39 @@ import ContactCTA from "@/components/ContactCTA";
 // Page Header
 // ============================================================
 function PageHeader() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 300);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <section className="relative min-h-[70vh] flex items-center">
-      {/* Background Images - Split */}
-      <div className="absolute inset-0 z-0 flex">
-        <div className="w-1/2 relative">
-          <Image
-            src="/images/recruit-header-1.jpg"
-            alt="採用情報"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-        <div className="w-1/2 relative">
-          <Image
-            src="/images/recruit-header-2.jpg"
-            alt="採用情報"
-            fill
-            className="object-cover"
-          />
-        </div>
+    <section className="relative h-[50vh] min-h-[400px] lg:min-h-[500px] flex items-end">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/recruit-header-1.jpg"
+          alt="採用情報"
+          fill
+          className="object-cover"
+          priority
+        />
         <div className="absolute inset-0 bg-navy/50" />
       </div>
 
-      {/* Background Text - Company Name */}
-      <div className="absolute inset-0 flex items-start justify-center pt-8 overflow-hidden">
-        <span
-          className={`text-[80px] lg:text-[180px] font-bold text-white/10 tracking-wider transition-all duration-1000 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          MITSUTOYO
-        </span>
-      </div>
-
-      {/* Background Text - RECRUIT */}
-      <div className="absolute inset-0 flex items-end justify-center pb-20 overflow-hidden">
-        <span
-          className={`text-[60px] lg:text-[140px] font-bold text-white/10 tracking-wider transition-all duration-1000 delay-300 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          RECRUIT
-        </span>
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 w-full text-center px-4">
+      {/* Content - Left-aligned, bottom */}
+      <div className="relative z-10 px-8 md:px-16 lg:px-24 pb-12 lg:pb-16 w-full">
         <h1
-          className={`text-2xl lg:text-3xl font-bold text-white tracking-wider transition-all duration-800 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
+          className="text-[18px] md:text-[26px] lg:text-[36px] font-light text-white/90 tracking-[0.25em] leading-relaxed"
+          style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
         >
           採用情報
         </h1>
+        <p
+          className="text-[40px] md:text-[70px] lg:text-[100px] font-bold text-white tracking-[0.08em] leading-[1.1] mt-2"
+          style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+        >
+          Recruit
+        </p>
+        <div className="mt-6 flex items-center gap-2 text-[12px] lg:text-[13px] text-white/60 tracking-[0.1em]">
+          <a href="/" className="hover:text-white/90 transition-colors">ホーム</a>
+          <span>＞</span>
+          <span className="text-white/90">採用情報</span>
+        </div>
       </div>
     </section>
   );

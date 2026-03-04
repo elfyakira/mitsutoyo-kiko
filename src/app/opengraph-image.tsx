@@ -20,7 +20,7 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#1a3a5c",
+          backgroundColor: "#0080CC",
         }}
       >
         <div
