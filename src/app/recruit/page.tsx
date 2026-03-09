@@ -49,6 +49,111 @@ function PageHeader() {
 }
 
 // ============================================================
+// Numbers Section - 数字で見る三豊機工
+// ============================================================
+function NumbersSection() {
+  const ageData = [
+    { label: "10代・20代", value: 20 },
+    { label: "30代", value: 25 },
+    { label: "40代", value: 25 },
+    { label: "50代", value: 20 },
+    { label: "60代", value: 10 },
+  ];
+
+  const numberCards = [
+    { label: "取引社数", number: "200", unit: "社" },
+    { label: "年間出荷数", number: "12", unit: "万個" },
+    { label: "創業年数", number: "60", unit: "年" },
+    { label: "海外取引国数", number: "10", unit: "カ国" },
+    { label: "連続黒字年数", number: "58", unit: "年" },
+    { label: "内製比率", number: "92", unit: "%" },
+    { label: "平均勤続年数", number: "18.8", unit: "年" },
+    { label: "離職率", number: "5", unit: "%" },
+  ];
+
+  return (
+    <section className="py-20 lg:py-32 bg-[#F5F7F9]">
+      <div className="px-8 md:px-16 lg:px-24">
+        {/* Section Title */}
+        <div className="text-center mb-16 lg:mb-24">
+          <h2
+            className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-navy tracking-[0.25em] leading-[1.3]"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+          >
+            数字で見る三豊機工
+          </h2>
+          <p
+            className="text-[14px] md:text-[18px] lg:text-[22px] font-bold text-navy/40 tracking-[0.08em] leading-[1.3] mt-3"
+            style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+          >
+            NUMBERS
+          </p>
+        </div>
+
+        {/* Cards Grid */}
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+          {numberCards.map((card) => (
+            <div key={card.label} className="bg-white p-6 lg:p-8 text-center">
+              <p
+                className="text-[12px] lg:text-[14px] font-bold text-navy/50 tracking-[0.15em] mb-4"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                {card.label}
+              </p>
+              <div className="flex items-baseline justify-center gap-1">
+                <span
+                  className="text-[40px] lg:text-[56px] font-bold text-navy leading-none"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  {card.number}
+                </span>
+                <span
+                  className="text-[16px] lg:text-[20px] font-bold text-navy"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  {card.unit}
+                </span>
+              </div>
+            </div>
+          ))}
+
+          {/* 年齢比率分布 - wider card */}
+          <div className="bg-white p-6 lg:p-8 col-span-2 text-center">
+            <p
+              className="text-[12px] lg:text-[14px] font-bold text-navy/50 tracking-[0.15em] mb-4"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              年齢比率分布
+            </p>
+            <div className="max-w-md mx-auto space-y-3">
+              {ageData.map((age) => (
+                <div key={age.label} className="flex items-center gap-3">
+                  <span className="text-[12px] lg:text-[13px] text-navy font-bold w-[80px] text-right shrink-0 tracking-[0.05em]">
+                    {age.label}
+                  </span>
+                  <div className="flex-1 h-5 bg-[#F5F7F9] rounded-sm overflow-hidden">
+                    <div
+                      className="h-full bg-navy rounded-sm"
+                      style={{ width: `${age.value}%` }}
+                    />
+                  </div>
+                  <span
+                    className="text-[13px] lg:text-[14px] font-bold text-navy w-[36px] text-right"
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                  >
+                    {age.value}%
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 // Message Section
 // ============================================================
 function MessageSection() {
@@ -174,49 +279,83 @@ function FlowSection() {
 // Requirements Section
 // ============================================================
 function RequirementsSection() {
-  const requirements = [
-    { label: "職種", value: "製造" },
-    { label: "勤務地", value: "〒444-0007 愛知県岡崎市大平町字榎田53番地1" },
-    { label: "就業時間", value: "8:00〜17:00（1時間休憩あり）" },
-    { label: "諸手当", value: "精勤手当・交通費支給" },
+  const jobs = [
+    {
+      title: "製造スタッフ",
+      items: [
+        { label: "職種", value: "製造" },
+        { label: "雇用形態", value: "正社員" },
+        { label: "勤務地", value: "鹿児島工場（鹿児島県南九州市川辺町清水1542番1）" },
+        { label: "就業時間", value: "8:00〜17:00（休憩60分）" },
+        { label: "休日", value: "土日祝日、年末年始、GW、夏季休暇" },
+        { label: "給与", value: "当社規定による（経験・能力を考慮の上決定）" },
+        { label: "諸手当", value: "精勤手当・交通費支給・残業手当" },
+        { label: "福利厚生", value: "各種社会保険完備、退職金制度" },
+      ],
+    },
+    {
+      title: "技術職（金型設計・加工）",
+      items: [
+        { label: "職種", value: "技術職" },
+        { label: "雇用形態", value: "正社員" },
+        { label: "勤務地", value: "鹿児島工場（鹿児島県南九州市川辺町清水1542番1）" },
+        { label: "就業時間", value: "8:00〜17:00（休憩60分）" },
+        { label: "休日", value: "土日祝日、年末年始、GW、夏季休暇" },
+        { label: "給与", value: "当社規定による（経験・能力を考慮の上決定）" },
+        { label: "諸手当", value: "精勤手当・交通費支給・残業手当" },
+        { label: "福利厚生", value: "各種社会保険完備、退職金制度" },
+      ],
+    },
   ];
 
   return (
-    <section className="relative py-16 lg:py-24 bg-[#F5F7F9] overflow-hidden">
-      {/* Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-        <span className="text-[60px] lg:text-[120px] font-bold text-gray-200 tracking-wider">
-          RECRUIT
-        </span>
-      </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-12">
-        {/* Title */}
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-xl lg:text-2xl font-bold text-navy tracking-wider">
+    <section className="py-20 lg:py-32 bg-white">
+      <div className="px-8 md:px-16 lg:px-24">
+        {/* Section Title */}
+        <div className="text-center mb-16 lg:mb-24">
+          <h2
+            className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-navy tracking-[0.25em] leading-[1.3]"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+          >
             募集要項
           </h2>
+          <p
+            className="text-[14px] md:text-[18px] lg:text-[22px] font-bold text-navy/40 tracking-[0.08em] leading-[1.3] mt-3"
+            style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+          >
+            REQUIREMENTS
+          </p>
         </div>
 
-        {/* Tab */}
-        <div className="mb-8">
-          <div className="inline-block bg-navy text-white text-sm font-bold px-8 py-3 tracking-wider">
-            正社員
-          </div>
-        </div>
-
-        {/* Table */}
-        <div className="bg-white">
-          {requirements.map((item, index) => (
-            <div
-              key={index}
-              className="flex border-b border-gray-200 last:border-b-0"
-            >
-              <div className="w-28 lg:w-40 flex-shrink-0 px-4 lg:px-6 py-4 lg:py-5 text-sm font-bold text-navy bg-gray-50">
-                {item.label}
+        {/* Job Cards - 2 columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          {jobs.map((job, jobIndex) => (
+            <div key={jobIndex} className="border border-navy/15">
+              {/* Job Title Header */}
+              <div className="bg-navy px-6 lg:px-8 py-5">
+                <h3
+                  className="text-[18px] lg:text-[22px] font-bold text-white tracking-[0.1em]"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  {job.title}
+                </h3>
               </div>
-              <div className="flex-1 px-4 lg:px-6 py-4 lg:py-5 text-sm text-text-primary">
-                {item.value}
+
+              {/* Job Details Table */}
+              <div>
+                {job.items.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex border-b border-navy/10 last:border-b-0"
+                  >
+                    <div className="w-[100px] lg:w-[130px] flex-shrink-0 px-4 lg:px-6 py-4 lg:py-5 text-[13px] lg:text-[14px] font-bold text-navy bg-[#F5F7F9] tracking-[0.1em]">
+                      {item.label}
+                    </div>
+                    <div className="flex-1 px-4 lg:px-6 py-4 lg:py-5 text-[13px] lg:text-[14px] text-text-secondary">
+                      {item.value}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
@@ -303,9 +442,10 @@ export default function RecruitPage() {
   return (
     <>
       <PageHeader />
+      <RequirementsSection />
+      <NumbersSection />
       <MessageSection />
       <FlowSection />
-      <RequirementsSection />
       <RecruitCTASection />
       <ContactCTA />
     </>

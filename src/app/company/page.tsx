@@ -144,7 +144,15 @@ function FeaturesSection() {
         {/* Philosophy Text */}
         <div className="text-center max-w-4xl mx-auto">
           <p
-            className="text-[20px] md:text-[26px] lg:text-[32px] text-white/90 tracking-[0.15em] leading-[2]"
+            className="text-[24px] md:text-[32px] lg:text-[40px] text-white font-bold tracking-[0.1em] leading-[1.6] mb-8"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+          >
+            他社がやらない事をやる！
+            <br />
+            他社が出来ない事をやる！
+          </p>
+          <p
+            className="text-[16px] text-white/80 tracking-[0.1em] leading-[2.2]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400 }}
           >
             他社との差別化ができる競争力のある製品を造り続け、&ldquo;戦わずして世界から選ばれる&rdquo;経営戦略を展開。
@@ -193,7 +201,7 @@ function FullWidthImage() {
 function PerformanceSection() {
   return (
     <section className="py-24 lg:py-32 bg-white">
-      <div className="px-16 md:px-32 lg:px-[384px]">
+      <div className="px-8 md:px-16 lg:px-24">
         <span
           className="text-[13px] lg:text-[15px] font-bold text-navy/40 tracking-[0.2em] uppercase mb-4 block"
           style={{ fontFamily: "'Inter', sans-serif" }}
@@ -207,8 +215,18 @@ function PerformanceSection() {
           一貫体制が生む、ゆるぎない品質。
         </h2>
 
-        {/* Description */}
-        <div className="mt-16">
+        {/* Image - Left wide */}
+        <div className="relative aspect-[16/9] mt-16 w-full lg:w-1/2">
+          <Image
+            src="/images/strength-01b.jpg"
+            alt="製造工程"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        {/* Description - Center aligned */}
+        <div className="mt-16 lg:mx-auto lg:w-[70%]">
           <h3
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
@@ -220,18 +238,8 @@ function PerformanceSection() {
           </p>
         </div>
 
-        {/* Image */}
-        <div className="relative aspect-[4/3] mt-16 w-1/2">
-          <Image
-            src="/images/strength-01b.jpg"
-            alt="製造工程"
-            fill
-            className="object-cover"
-          />
-        </div>
-
-        {/* Merit Box */}
-        <div className="mt-16 border border-navy/20 p-8 lg:p-10">
+        {/* Merit Box - Center aligned */}
+        <div className="mt-16 lg:mx-auto lg:w-[70%] border border-navy/20 p-8 lg:p-10">
           <h4
             className="text-[18px] lg:text-[22px] font-bold text-navy tracking-[0.1em] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
@@ -255,7 +263,7 @@ function PerformanceSection() {
         </div>
 
         {/* Closing Text */}
-        <div className="mt-16">
+        <div className="mt-16 lg:ml-auto lg:w-[70%]">
           <h3
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
@@ -282,7 +290,7 @@ function PerformanceSection() {
 function Strength02Section() {
   return (
     <section className="py-24 lg:py-32 bg-white">
-      <div className="px-16 md:px-32 lg:px-[384px]">
+      <div className="px-8 md:px-16 lg:px-24">
         <span
           className="text-[13px] lg:text-[15px] font-bold text-navy/40 tracking-[0.2em] uppercase mb-4 block"
           style={{ fontFamily: "'Inter', sans-serif" }}
@@ -296,8 +304,18 @@ function Strength02Section() {
           課題に向き合い、最適解をともに探す。
         </h2>
 
-        {/* Description */}
-        <div className="mt-16">
+        {/* Image - Left wide */}
+        <div className="relative aspect-[16/9] mt-16 w-full lg:w-1/2">
+          <Image
+            src="/images/strength-02.jpg"
+            alt="課題に向き合う"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        {/* Description - Center aligned */}
+        <div className="mt-16 lg:mx-auto lg:w-[70%]">
           <h3
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
@@ -314,8 +332,8 @@ function Strength02Section() {
           </div>
         </div>
 
-        {/* Double Hex */}
-        <div className="mt-16">
+        {/* Double Hex - Right aligned */}
+        <div className="mt-16 lg:ml-auto lg:w-[70%]">
           <h3
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
@@ -339,171 +357,160 @@ function Strength02Section() {
               &ldquo;どうすれば解決できるか&rdquo;を真剣に考える姿勢から生まれた、三豊機工ならではのオリジナル金型技術です。
             </p>
           </div>
-        </div>
 
-        {/* Double Hex Features */}
-        <div className="mt-24">
-          <h3
-            className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-          >
-            ダブルヘックス金型3つの特徴
-          </h3>
-          <div className="text-text-secondary">
-            <p>
-              ダブルヘックスは、1981年に日本・米国・欧州で世界特許を取得した、三豊機工独自のオリジナル技術です。特許自体はすでに切れているものの、製法には当社ならではのノウハウが数多く蓄積されており、高い精度と耐久性がユーザーに評価されている製品です。
-            </p>
-            <p className="mt-6">
-              その結果、ダブルヘックスは圧造メーカーの生産効率化やコスト低減に大きく貢献し、圧倒的なシェアを誇っています。
-            </p>
-            <p className="mt-6">
-              開発当初は六角形のみでしたが、現在では四角・長方形など多様な形状へと応用が広がり、特に角部に応力がかかる製品については、お客様と綿密な相談を重ねながら最適な金型を作り込んでいます。
-            </p>
-            <p className="mt-6">
-              半世紀にわたりロングセラーとして信頼を重ね、「ダブルヘックス＝三豊」と業界に広く認知される、まさにオンリーワンの技術です。
-            </p>
+          {/* Double Hex Features + Table - Background wrapper */}
+          <div className="mt-16 bg-[#F5F7F9] p-8 md:p-12 lg:p-16">
+          {/* Double Hex Features */}
+          <div>
+            <h3
+              className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              ダブルヘックス金型3つの特徴
+            </h3>
+            <div className="text-text-secondary">
+              <p>
+                ダブルヘックスは、1981年に日本・米国・欧州で世界特許を取得した、三豊機工独自のオリジナル技術です。特許自体はすでに切れているものの、製法には当社ならではのノウハウが数多く蓄積されており、高い精度と耐久性がユーザーに評価されている製品です。
+              </p>
+              <p className="mt-6">
+                その結果、ダブルヘックスは圧造メーカーの生産効率化やコスト低減に大きく貢献し、圧倒的なシェアを誇っています。
+              </p>
+              <p className="mt-6">
+                開発当初は六角形のみでしたが、現在では四角・長方形など多様な形状へと応用が広がり、特に角部に応力がかかる製品については、お客様と綿密な相談を重ねながら最適な金型を作り込んでいます。
+              </p>
+              <p className="mt-6">
+                半世紀にわたりロングセラーとして信頼を重ね、「ダブルヘックス＝三豊」と業界に広く認知される、まさにオンリーワンの技術です。
+              </p>
+            </div>
+          </div>
+
+          {/* Features - 3 columns */}
+          <div className="mt-20 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Feature 01 */}
+            <div className="border-t border-navy/10 pt-8">
+              <span
+                className="text-[13px] lg:text-[15px] font-bold text-accent tracking-[0.2em] mb-3 block"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
+                01
+              </span>
+              <h4
+                className="text-[18px] md:text-[20px] lg:text-[22px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-4"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                高精度を&ldquo;安定して&rdquo;実現する
+              </h4>
+              <div className="text-text-secondary text-[14px] lg:text-[15px]">
+                <p>
+                  各ピースは組立前に鏡面仕上げまで加工されるため、従来必要だった内面のハンドラップ作業が不要になります。
+                </p>
+                <ul className="mt-4 space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1 text-[10px]">&#9670;</span>
+                    <span>仕上がり精度が安定</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1 text-[10px]">&#9670;</span>
+                    <span>作業者によるばらつきゼロ</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1 text-[10px]">&#9670;</span>
+                    <span>高精度の量産に強い金型を実現</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Feature 02 */}
+            <div className="border-t border-navy/10 pt-8">
+              <span
+                className="text-[13px] lg:text-[15px] font-bold text-accent tracking-[0.2em] mb-3 block"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
+                02
+              </span>
+              <h4
+                className="text-[18px] md:text-[20px] lg:text-[22px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-4"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                生産性を劇的に高める耐久・安定性
+              </h4>
+              <div className="text-text-secondary text-[14px] lg:text-[15px]">
+                <p>
+                  ダブルヘックスがもつ高い耐久性と精度安定により、機械停止が減り、長時間の連続稼働が可能になります。
+                </p>
+                <ul className="mt-4 space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1 text-[10px]">&#9670;</span>
+                    <span>生産計画の立案が容易</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1 text-[10px]">&#9670;</span>
+                    <span>段取り替えロスの大幅削減</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1 text-[10px]">&#9670;</span>
+                    <span>不良率低減による品質安定</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Feature 03 */}
+            <div className="border-t border-navy/10 pt-8">
+              <span
+                className="text-[13px] lg:text-[15px] font-bold text-accent tracking-[0.2em] mb-3 block"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
+                03
+              </span>
+              <h4
+                className="text-[18px] md:text-[20px] lg:text-[22px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-4"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                三豊機工にしか作れないオンリーワンの金型技術
+              </h4>
+              <div className="text-text-secondary text-[14px] lg:text-[15px]">
+                <p>
+                  半世紀にわたりロングセラーとして信頼を重ね、「ダブルヘックス＝三豊」と業界に広く認知される技術です。多様な形状へと応用が広がり、お客様と綿密な相談を重ねながら最適な金型を作り込んでいます。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Comparison Table */}
+          <div className="mt-24">
+            <h3
+              className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-10"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              従来品との比較
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-[14px] lg:text-[16px] tracking-[0.1em]">
+                <thead>
+                  <tr>
+                    <th className="border border-navy/20 bg-white p-4 lg:p-6 w-1/4"></th>
+                    <th className="border border-navy/20 bg-navy text-white p-4 lg:p-6 w-[37.5%] font-bold text-[16px] lg:text-[18px]">ダブルヘックス</th>
+                    <th className="border border-navy/20 bg-white p-4 lg:p-6 w-[37.5%] font-bold text-navy text-[16px] lg:text-[18px]">従来金型</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 font-bold text-navy">耐久性</td>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-primary">応力分散で長寿命化<br />連続稼働が可能</td>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-secondary">角部が割れやすい<br />機械停止が多い</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 font-bold text-navy">コスト</td>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-primary">トータルコスト低減</td>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-secondary">段取り・交換頻繁</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-
-        {/* Feature 01 */}
-        <div className="mt-20 border-t border-navy/10 pt-12">
-          <span
-            className="text-[13px] lg:text-[15px] font-bold text-accent tracking-[0.2em] mb-3 block"
-            style={{ fontFamily: "'Inter', sans-serif" }}
-          >
-            01
-          </span>
-          <h4
-            className="text-[18px] md:text-[22px] lg:text-[24px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-          >
-            高精度を&ldquo;安定して&rdquo;実現する
-          </h4>
-          <div className="text-text-secondary">
-            <p>
-              各ピースは組立前に鏡面仕上げまで加工されるため、従来必要だった内面のハンドラップ作業が不要になります。
-            </p>
-            <p className="mt-6">その結果、</p>
-            <ul className="mt-4 space-y-3">
-              <li className="flex items-start gap-3">
-                <span className="text-accent mt-1">&#9670;</span>
-                <span>仕上がり精度が安定</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-accent mt-1">&#9670;</span>
-                <span>作業者によるばらつきゼロ</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-accent mt-1">&#9670;</span>
-                <span>高精度の量産に強い金型を実現</span>
-              </li>
-            </ul>
-            <p className="mt-6">
-              精度要求の高い製品でも、安心して量産ラインへ導入いただけます。
-            </p>
-          </div>
-        </div>
-
-        {/* Feature 02 */}
-        <div className="mt-20 border-t border-navy/10 pt-12">
-          <span
-            className="text-[13px] lg:text-[15px] font-bold text-accent tracking-[0.2em] mb-3 block"
-            style={{ fontFamily: "'Inter', sans-serif" }}
-          >
-            02
-          </span>
-          <h4
-            className="text-[18px] md:text-[22px] lg:text-[24px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-          >
-            生産性を劇的に高める耐久・安定性
-          </h4>
-          <div className="text-text-secondary">
-            <p>
-              ダブルヘックスがもつ高い耐久性と精度安定により、機械停止が減り、長時間の連続稼働が可能になります。
-            </p>
-            <p className="mt-6">これにより、</p>
-            <ul className="mt-4 space-y-3">
-              <li className="flex items-start gap-3">
-                <span className="text-accent mt-1">&#9670;</span>
-                <span>生産計画の立案が容易</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-accent mt-1">&#9670;</span>
-                <span>段取り替えロスの大幅削減</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-accent mt-1">&#9670;</span>
-                <span>不良率低減による品質安定</span>
-              </li>
-            </ul>
-            <p className="mt-6">
-              結果として、生産効率向上とトータルコスト低減に直結します。
-            </p>
-          </div>
-        </div>
-
-        {/* Feature 03 */}
-        <div className="mt-20 border-t border-navy/10 pt-12">
-          <span
-            className="text-[13px] lg:text-[15px] font-bold text-accent tracking-[0.2em] mb-3 block"
-            style={{ fontFamily: "'Inter', sans-serif" }}
-          >
-            03
-          </span>
-          <h4
-            className="text-[18px] md:text-[22px] lg:text-[24px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-          >
-            三豊機工にしか作れないオンリーワンの金型技術
-          </h4>
-          <div className="text-text-secondary">
-            <p>
-              ダブルヘックスは、1981年に日本・米国・欧州で世界特許を取得した、三豊機工独自のオリジナル技術です。特許自体はすでに切れているものの、製法には当社ならではのノウハウが数多く蓄積されており、高い精度と耐久性がユーザーに評価されている製品です。
-            </p>
-            <p className="mt-6">
-              その結果、ダブルヘックスは圧造メーカーの生産効率化やコスト低減に大きく貢献し、圧倒的なシェアを誇っています。
-            </p>
-            <p className="mt-6">
-              開発当初は六角形のみでしたが、現在では四角・長方形など多様な形状へと応用が広がり、特に角部に応力がかかる製品については、お客様と綿密な相談を重ねながら最適な金型を作り込んでいます。
-            </p>
-            <p className="mt-6">
-              半世紀にわたりロングセラーとして信頼を重ね、「ダブルヘックス＝三豊」と業界に広く認知される、まさにオンリーワンの技術です。
-            </p>
-          </div>
-        </div>
-
-        {/* Comparison Table */}
-        <div className="mt-24">
-          <h3
-            className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-10"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-          >
-            従来品との比較
-          </h3>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-[14px] lg:text-[16px] tracking-[0.1em]">
-              <thead>
-                <tr>
-                  <th className="border border-navy/20 bg-[#F5F7F9] p-4 lg:p-6 w-1/4"></th>
-                  <th className="border border-navy/20 bg-navy text-white p-4 lg:p-6 w-[37.5%] font-bold text-[16px] lg:text-[18px]">ダブルヘックス</th>
-                  <th className="border border-navy/20 bg-[#F5F7F9] p-4 lg:p-6 w-[37.5%] font-bold text-navy text-[16px] lg:text-[18px]">従来金型</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border border-navy/20 bg-[#F5F7F9] p-4 lg:p-6 font-bold text-navy">耐久性</td>
-                  <td className="border border-navy/20 p-4 lg:p-6 text-text-primary">応力分散で長寿命化<br />連続稼働が可能</td>
-                  <td className="border border-navy/20 p-4 lg:p-6 text-text-secondary">角部が割れやすい<br />機械停止が多い</td>
-                </tr>
-                <tr>
-                  <td className="border border-navy/20 bg-[#F5F7F9] p-4 lg:p-6 font-bold text-navy">コスト</td>
-                  <td className="border border-navy/20 p-4 lg:p-6 text-text-primary">トータルコスト低減</td>
-                  <td className="border border-navy/20 p-4 lg:p-6 text-text-secondary">段取り・交換頻繁</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
     </section>
@@ -516,7 +523,7 @@ function Strength02Section() {
 function Strength03Section() {
   return (
     <section className="py-24 lg:py-32 bg-white">
-      <div className="px-16 md:px-32 lg:px-[384px]">
+      <div className="px-8 md:px-16 lg:px-24">
         <span
           className="text-[13px] lg:text-[15px] font-bold text-navy/40 tracking-[0.2em] uppercase mb-4 block"
           style={{ fontFamily: "'Inter', sans-serif" }}

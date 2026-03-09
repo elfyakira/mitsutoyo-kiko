@@ -78,7 +78,7 @@ function AboutSection() {
           {/* Left - Title */}
           <div className="lg:w-1/2">
             <h2
-              className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-white tracking-[0.25em] leading-[1.3]"
+              className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-white tracking-[0.25em] leading-[1.3] whitespace-nowrap"
               style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
             >
               課題に寄り添い、解決へ導く。
@@ -169,7 +169,7 @@ function FacilitySection() {
         {/* Content - Left Image + Right Features */}
         <div className="flex flex-col lg:flex-row lg:gap-16">
           {/* Left - Image */}
-          <div className="lg:w-1/3 relative h-[250px] lg:h-[400px] mb-10 lg:mb-0 lg:self-start">
+          <div className="lg:w-[40%] relative h-[300px] lg:h-[500px] mb-10 lg:mb-0 lg:self-start">
             <Image
               src="/images/skill-section.jpg"
               alt="技を磨き、心を尽くす"
@@ -334,7 +334,7 @@ function CompanySection() {
         {/* Content - Left Image + Right Text */}
         <div className="flex flex-col lg:flex-row lg:gap-16">
           {/* Left - Image */}
-          <div className="lg:w-1/3 relative h-[250px] lg:h-[400px] mb-10 lg:mb-0 lg:self-start">
+          <div className="lg:w-[40%] relative h-[300px] lg:h-[500px] mb-10 lg:mb-0 lg:self-start">
             <Image
               src="/images/recruit-section.jpg"
               alt="誇れるものづくりを、あなたと"
