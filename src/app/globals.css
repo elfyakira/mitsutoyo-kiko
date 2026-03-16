@@ -3,15 +3,15 @@
 
 @theme {
   /* Brand Colors */
-  --color-navy: #0080CC;
-  --color-navy-dark: #006AA8;
+  --color-navy: #005FA0;
+  --color-navy-dark: #004A7C;
   --color-accent: #E65525;
   --color-accent-dark: #CC4A1F;
 
   /* Text Colors */
-  --color-text-primary: #333333;
-  --color-text-secondary: #666666;
-  --color-text-muted: #999999;
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-text-muted: #000000;
 
   /* Background Colors */
   --color-bg-light: #e0e0e0;
@@ -151,43 +151,59 @@ body {
   }
 }
 
-/* Slide Button - hover fills from left with #c9a333, click pushes down */
-@layer components {
-  .btn-slide {
-    position: relative;
-    overflow: hidden;
-    z-index: 0;
-    transition: color 0.4s ease, transform 0.1s ease;
-  }
+/* Slide Button - hover fills from left, click pushes down */
+.btn-slide {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.4s ease, border-color 0.4s ease, transform 0.1s ease;
+}
 
-  .btn-slide::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #c9a333;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-    z-index: -1;
-  }
+.btn-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
 
-  .btn-slide:hover::before {
-    transform: scaleX(1);
-  }
+.btn-slide:hover::before {
+  transform: scaleX(1);
+}
 
-  .btn-slide:hover {
-    border-color: #c9a333;
-  }
+/* Dark bg (white text) → hover: white bg, navy text */
+.btn-slide:hover {
+  color: var(--color-navy) !important;
+  border-color: var(--color-navy) !important;
+}
 
-  .btn-slide-light:hover {
-    color: #ffffff !important;
-  }
+/* Light bg (navy text) → hover: navy bg, white text */
+.btn-slide-light::before {
+  background-color: var(--color-navy) !important;
+}
 
-  .btn-slide:active {
-    transform: translateY(2px);
+.btn-slide-light:hover {
+  color: #ffffff !important;
+  border-color: var(--color-navy) !important;
+}
+
+.btn-slide:active {
+  transform: translateY(2px);
+}
+
+/* Scroll Animation */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 

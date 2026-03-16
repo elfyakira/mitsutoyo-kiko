@@ -10,7 +10,7 @@ function PageHeader() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/facility-2.jpg"
+          src="/images/facilities-section.jpg"
           alt="設備情報"
           fill
           className="object-cover"

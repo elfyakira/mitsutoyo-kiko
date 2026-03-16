@@ -15,7 +15,7 @@ function PageHeader() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/recruit-header-1.jpg"
+          src="/images/recruit-hero.jpg"
           alt="採用情報"
           fill
           className="object-cover"
@@ -60,16 +60,6 @@ function NumbersSection() {
     { label: "60代", value: 10 },
   ];
 
-  const numberCards = [
-    { label: "取引社数", number: "200", unit: "社" },
-    { label: "年間出荷数", number: "12", unit: "万個" },
-    { label: "創業年数", number: "60", unit: "年" },
-    { label: "海外取引国数", number: "10", unit: "カ国" },
-    { label: "連続黒字年数", number: "58", unit: "年" },
-    { label: "内製比率", number: "92", unit: "%" },
-    { label: "平均勤続年数", number: "18.8", unit: "年" },
-    { label: "離職率", number: "5", unit: "%" },
-  ];
 
   return (
     <section className="py-20 lg:py-32 bg-[#F5F7F9]">
@@ -90,61 +80,251 @@ function NumbersSection() {
           </p>
         </div>
 
-        {/* Cards Grid */}
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
-          {numberCards.map((card) => (
-            <div key={card.label} className="bg-white p-6 lg:p-8 text-center">
+        {/* === 会社の実績 === */}
+        <div className="max-w-5xl mx-auto mb-16 lg:mb-24">
+          <h3
+            className="text-[18px] lg:text-[22px] font-bold text-navy tracking-[0.15em] mb-6 lg:mb-8"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+          >
+            会社の実績
+          </h3>
+          {/* 3cols × 3rows = 9 cells → perfect rectangle */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+
+            {/* 内製比率 - Large featured (2×2) */}
+            <div className="bg-white py-4 px-6 lg:py-6 lg:px-8 text-center col-span-2 lg:row-span-2 flex flex-col items-center justify-center">
               <p
-                className="text-[12px] lg:text-[14px] font-bold text-navy/50 tracking-[0.15em] mb-4"
+                className="text-[13px] lg:text-[16px] font-bold text-navy/50 tracking-[0.15em] mb-3"
                 style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
               >
-                {card.label}
+                内製比率
               </p>
               <div className="flex items-baseline justify-center gap-1">
                 <span
-                  className="text-[40px] lg:text-[56px] font-bold text-navy leading-none"
+                  className="text-[80px] lg:text-[120px] font-bold text-navy leading-none"
                   style={{ fontFamily: "'Inter', sans-serif" }}
                 >
-                  {card.number}
+                  92
                 </span>
                 <span
-                  className="text-[16px] lg:text-[20px] font-bold text-navy"
+                  className="text-[24px] lg:text-[32px] font-bold text-navy"
                   style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
                 >
-                  {card.unit}
+                  %
                 </span>
               </div>
             </div>
-          ))}
 
-          {/* 年齢比率分布 - wider card */}
-          <div className="bg-white p-6 lg:p-8 col-span-2 text-center">
-            <p
-              className="text-[12px] lg:text-[14px] font-bold text-navy/50 tracking-[0.15em] mb-4"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-            >
-              年齢比率分布
-            </p>
-            <div className="max-w-md mx-auto space-y-3">
-              {ageData.map((age) => (
-                <div key={age.label} className="flex items-center gap-3">
-                  <span className="text-[12px] lg:text-[13px] text-navy font-bold w-[80px] text-right shrink-0 tracking-[0.05em]">
-                    {age.label}
-                  </span>
-                  <div className="flex-1 h-5 bg-[#F5F7F9] rounded-sm overflow-hidden">
-                    <div
-                      className="h-full bg-navy rounded-sm"
-                      style={{ width: `${age.value}%` }}
-                    />
+            {/* 取引社数 */}
+            <div className="bg-white py-3 px-4 lg:py-4 lg:px-5 text-center flex flex-col items-center justify-center">
+              <p
+                className="text-[11px] lg:text-[13px] font-bold text-navy/50 tracking-[0.15em] mb-2"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                取引社数
+              </p>
+              <div className="flex items-baseline justify-center gap-1">
+                <span
+                  className="text-[38px] lg:text-[52px] font-bold text-navy leading-none"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  200
+                </span>
+                <span
+                  className="text-[14px] lg:text-[16px] font-bold text-navy"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  社
+                </span>
+              </div>
+            </div>
+
+            {/* 年間出荷数 */}
+            <div className="bg-white py-3 px-4 lg:py-4 lg:px-5 text-center flex flex-col items-center justify-center">
+              <p
+                className="text-[11px] lg:text-[13px] font-bold text-navy/50 tracking-[0.15em] mb-2"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                年間出荷数
+              </p>
+              <div className="flex items-baseline justify-center gap-1">
+                <span
+                  className="text-[38px] lg:text-[52px] font-bold text-navy leading-none"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  12
+                </span>
+                <span
+                  className="text-[14px] lg:text-[16px] font-bold text-navy"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  万個
+                </span>
+              </div>
+            </div>
+
+            {/* 創業年数 */}
+            <div className="bg-white py-3 px-4 lg:py-4 lg:px-5 text-center flex flex-col items-center justify-center">
+              <p
+                className="text-[11px] lg:text-[13px] font-bold text-navy/50 tracking-[0.15em] mb-2"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                創業年数
+              </p>
+              <div className="flex items-baseline justify-center gap-1">
+                <span
+                  className="text-[38px] lg:text-[52px] font-bold text-navy leading-none"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  60
+                </span>
+                <span
+                  className="text-[14px] lg:text-[16px] font-bold text-navy"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  年
+                </span>
+              </div>
+            </div>
+
+            {/* 連続黒字年数 */}
+            <div className="bg-white py-3 px-4 lg:py-4 lg:px-5 text-center flex flex-col items-center justify-center">
+              <p
+                className="text-[11px] lg:text-[13px] font-bold text-navy/50 tracking-[0.15em] mb-2"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                連続黒字年数
+              </p>
+              <div className="flex items-baseline justify-center gap-1">
+                <span
+                  className="text-[38px] lg:text-[52px] font-bold text-navy leading-none"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  58
+                </span>
+                <span
+                  className="text-[14px] lg:text-[16px] font-bold text-navy"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  年
+                </span>
+              </div>
+            </div>
+
+            {/* 海外取引国数 */}
+            <div className="bg-white py-3 px-4 lg:py-4 lg:px-5 text-center flex flex-col items-center justify-center">
+              <p
+                className="text-[11px] lg:text-[13px] font-bold text-navy/50 tracking-[0.15em] mb-2"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                海外取引国数
+              </p>
+              <div className="flex items-baseline justify-center gap-1">
+                <span
+                  className="text-[38px] lg:text-[52px] font-bold text-navy leading-none"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  10
+                </span>
+                <span
+                  className="text-[14px] lg:text-[16px] font-bold text-navy"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  カ国
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* === 働く環境 === */}
+        <div className="max-w-5xl mx-auto">
+          <h3
+            className="text-[18px] lg:text-[22px] font-bold text-navy tracking-[0.15em] mb-6 lg:mb-8"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+          >
+            働く環境
+          </h3>
+          {/* 3cols × 2rows = 6 cells → perfect rectangle */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+
+            {/* 平均勤続年数 - Large featured (2×2) */}
+            <div className="bg-white py-4 px-6 lg:py-6 lg:px-8 text-center col-span-2 lg:row-span-2 flex flex-col items-center justify-center">
+              <p
+                className="text-[13px] lg:text-[16px] font-bold text-navy/50 tracking-[0.15em] mb-3"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                平均勤続年数
+              </p>
+              <div className="flex items-baseline justify-center gap-1">
+                <span
+                  className="text-[80px] lg:text-[120px] font-bold text-navy leading-none"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  18.8
+                </span>
+                <span
+                  className="text-[24px] lg:text-[32px] font-bold text-navy"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  年
+                </span>
+              </div>
+            </div>
+
+            {/* 離職率 */}
+            <div className="bg-white py-3 px-4 lg:py-4 lg:px-5 text-center flex flex-col items-center justify-center">
+              <p
+                className="text-[11px] lg:text-[13px] font-bold text-navy/50 tracking-[0.15em] mb-2"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                離職率
+              </p>
+              <div className="flex items-baseline justify-center gap-1">
+                <span
+                  className="text-[38px] lg:text-[52px] font-bold text-navy leading-none"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  5
+                </span>
+                <span
+                  className="text-[14px] lg:text-[16px] font-bold text-navy"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  %
+                </span>
+              </div>
+            </div>
+
+            {/* 年齢比率分布 */}
+            <div className="bg-white py-3 px-4 lg:py-4 lg:px-6 flex flex-col items-center justify-center">
+              <p
+                className="text-[11px] lg:text-[13px] font-bold text-navy/50 tracking-[0.15em] mb-3"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                年齢比率分布
+              </p>
+              <div className="w-full space-y-2">
+                {ageData.map((age) => (
+                  <div key={age.label} className="flex items-center gap-2">
+                    <span className="text-[10px] lg:text-[11px] text-navy font-bold w-[60px] text-right shrink-0 tracking-[0.05em]">
+                      {age.label}
+                    </span>
+                    <div className="flex-1 h-4 bg-[#F5F7F9] rounded-sm overflow-hidden">
+                      <div
+                        className="h-full bg-navy rounded-sm"
+                        style={{ width: `${age.value}%` }}
+                      />
+                    </div>
+                    <span
+                      className="text-[11px] lg:text-[12px] font-bold text-navy w-[30px] text-right"
+                      style={{ fontFamily: "'Inter', sans-serif" }}
+                    >
+                      {age.value}%
+                    </span>
                   </div>
-                  <span
-                    className="text-[13px] lg:text-[14px] font-bold text-navy w-[36px] text-right"
-                    style={{ fontFamily: "'Inter', sans-serif" }}
-                  >
-                    {age.value}%
-                  </span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -157,116 +337,53 @@ function NumbersSection() {
 // Message Section
 // ============================================================
 function MessageSection() {
-  return (
-    <section className="relative py-16 lg:py-0">
-      <div className="flex flex-col lg:flex-row">
-        {/* Left - Message Box */}
-        <div className="lg:w-1/2 bg-white py-12 lg:py-20 px-8 lg:px-16">
-          <h2 className="text-xl lg:text-2xl font-bold text-navy leading-relaxed mb-6">
-            成長しあえる職場で、
-            <br />
-            想いの込もったモノづくりを。
-          </h2>
-          <p className="text-text-secondary">
-            私たちはトヨタホーム様の最重要部材として位置づけられている外壁を主に製造しております。
-            単にモノづくりをするだけでなく、多様化するお客様のニーズに最も合った形で生産を行い、
-            製品を通じて人々の暮らしに安全、安心を作る会社です。
-          </p>
-        </div>
-
-        {/* Right - Image */}
-        <div className="lg:w-1/2 relative min-h-[300px] lg:min-h-[500px]">
-          <Image
-            src="/images/recruit-message.jpg"
-            alt="作業風景"
-            fill
-            className="object-cover"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================
-// Flow Section
-// ============================================================
-function FlowSection() {
-  const steps = [
-    {
-      step: "STEP01",
-      title: "エントリー",
-      image: "/images/flow-entry.png",
-    },
-    {
-      step: "STEP02",
-      title: "書類選考",
-      image: "/images/flow-document.png",
-    },
-    {
-      step: "STEP03",
-      title: "面接",
-      image: "/images/flow-interview.png",
-    },
-    {
-      step: "STEP04",
-      title: "内定",
-      image: "/images/flow-offer.png",
-    },
-  ];
+  const workImages = Array.from({ length: 25 }, (_, i) => {
+    const num = String(i + 1).padStart(2, "0");
+    return { src: `/images/work/work-${num}.jpg`, alt: `作業風景 ${num}` };
+  });
 
   return (
-    <section className="relative py-16 lg:py-24 bg-white overflow-hidden">
-      {/* Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-        <span className="text-[80px] lg:text-[160px] font-bold text-gray-100 tracking-wider">
-          FLOW
-        </span>
+    <section className="py-16 lg:py-24 bg-white">
+      <div className="text-center px-8 md:px-16 lg:px-24 mb-12 lg:mb-16">
+        <h2
+          className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-navy tracking-[0.25em] leading-[1.3]"
+          style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+        >
+          人の手が、精度を生む。
+        </h2>
+        <p
+          className="text-[14px] md:text-[18px] lg:text-[22px] font-bold text-navy/40 tracking-[0.08em] leading-[1.3] mt-3"
+          style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+        >
+          CRAFTSMANSHIP
+        </p>
       </div>
 
-      <div className="relative z-10 max-w-container mx-auto px-6 lg:px-12">
-        {/* Title */}
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-xl lg:text-2xl font-bold text-navy tracking-wider">
-            採用の流れ
-          </h2>
+      {/* Scrolling gallery - two rows */}
+      <div className="space-y-8 overflow-hidden">
+        {/* Row 1 - images 1-13 */}
+        <div className="flex animate-[scrollLeft_80s_linear_infinite] gap-8 w-max">
+          {[...workImages.slice(0, 13), ...workImages.slice(0, 13)].map((img, i) => (
+            <div key={`row1-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover"
+              />
+            </div>
+          ))}
         </div>
-
-        {/* Steps */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0">
-          {steps.map((item, index) => (
-            <div key={item.step} className="flex items-center">
-              {/* Step Card */}
-              <div className="text-center">
-                {/* Step Badge */}
-                <div className="inline-block bg-navy text-white text-xs font-bold px-4 py-1 tracking-wider mb-4">
-                  {item.step}
-                </div>
-
-                {/* Title */}
-                <p className="text-sm font-medium text-navy mb-4 tracking-wider">
-                  {item.title}
-                </p>
-
-                {/* Icon/Image */}
-                <div className="w-32 h-32 lg:w-40 lg:h-40 mx-auto relative border-2 border-navy rounded-lg p-4 bg-white">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-contain p-4"
-                  />
-                </div>
-              </div>
-
-              {/* Arrow (not on last item) */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block mx-4">
-                  <svg className="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              )}
+        {/* Row 2 - images 14-25 */}
+        <div className="flex animate-[scrollLeft_70s_linear_infinite] gap-8 w-max">
+          {[...workImages.slice(13), ...workImages.slice(13)].map((img, i) => (
+            <div key={`row2-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover"
+              />
             </div>
           ))}
         </div>
@@ -274,6 +391,7 @@ function FlowSection() {
     </section>
   );
 }
+
 
 // ============================================================
 // Requirements Section
@@ -445,7 +563,7 @@ export default function RecruitPage() {
       <RequirementsSection />
       <NumbersSection />
       <MessageSection />
-      <FlowSection />
+
       <RecruitCTASection />
       <ContactCTA />
     </>

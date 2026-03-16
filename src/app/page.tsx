@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { company, contact, site } from "@/lib/site";
 import ContactCTA from "@/components/ContactCTA";
+import AnimatedLink from "@/components/animations/AnimatedLink";
 
 // ============================================================
 // Hero Section
@@ -127,7 +128,7 @@ function AboutSection() {
             </div>
             <Link
               href="/company"
-              className="btn-slide inline-flex items-center justify-between mt-20 mb-24 border border-white/60 px-8 py-5 min-w-[280px] text-white tracking-[0.15em] text-[14px] lg:text-[16px]"
+              className="btn-slide btn-slide-light inline-flex items-center justify-between mt-20 mb-24 bg-white border border-white px-8 py-5 min-w-[280px] text-navy tracking-[0.15em] text-[14px] lg:text-[16px]"
             >
               <span>私たちについて</span>
               <svg className="w-5 h-5 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -221,7 +222,7 @@ function FacilitySection() {
 
             <Link
               href="/company#our-strength"
-              className="btn-slide btn-slide-light inline-flex items-center justify-between mt-20 border border-navy/30 px-8 py-5 min-w-[280px] text-navy tracking-[0.15em] text-[14px] lg:text-[16px]"
+              className="btn-slide inline-flex items-center justify-between mt-20 bg-navy border border-navy px-8 py-5 min-w-[280px] text-white tracking-[0.15em] text-[14px] lg:text-[16px]"
             >
               <span>詳しく見る</span>
               <svg className="w-5 h-5 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -256,6 +257,27 @@ function RecruitSection() {
         >
           Products/Facilities
         </p>
+
+        <div className="flex flex-col gap-4 mt-12">
+          <Link
+            href="/products"
+            className="btn-slide btn-slide-light inline-flex items-center justify-between bg-white border border-white px-8 py-5 min-w-[280px] text-navy tracking-[0.15em] text-[14px] lg:text-[16px]"
+          >
+            <span>製品情報</span>
+            <svg className="w-5 h-5 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+          <Link
+            href="/equipment"
+            className="btn-slide btn-slide-light inline-flex items-center justify-between bg-white border border-white px-8 py-5 min-w-[280px] text-navy tracking-[0.15em] text-[14px] lg:text-[16px]"
+          >
+            <span>設備紹介</span>
+            <svg className="w-5 h-5 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
       </div>
 
       {/* Right 2/3 - Two image columns */}
@@ -359,7 +381,7 @@ function CompanySection() {
 
             <Link
               href="/recruit"
-              className="btn-slide btn-slide-light inline-flex items-center justify-between mt-20 border border-navy/30 px-8 py-5 min-w-[280px] text-navy tracking-[0.15em] text-[14px] lg:text-[16px]"
+              className="btn-slide inline-flex items-center justify-between mt-20 bg-navy border border-navy px-8 py-5 min-w-[280px] text-white tracking-[0.15em] text-[14px] lg:text-[16px]"
             >
               <span>採用情報を見る</span>
               <svg className="w-5 h-5 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

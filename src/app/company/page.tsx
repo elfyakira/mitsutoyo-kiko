@@ -170,7 +170,7 @@ function FeaturesSection() {
 // ============================================================
 function FullWidthImage() {
   return (
-    <section id="our-strength" className="py-24 lg:py-40 bg-white">
+    <section id="our-strength" className="pt-24 pb-4 lg:pt-40 lg:pb-6 bg-white">
       <div className="px-8 md:px-16 lg:px-24 text-center">
         <h2
           className="text-[40px] md:text-[60px] lg:text-[80px] font-bold text-navy tracking-[0.08em] leading-[1.1]"
@@ -202,15 +202,9 @@ function PerformanceSection() {
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="px-8 md:px-16 lg:px-24">
-        <span
-          className="text-[13px] lg:text-[15px] font-bold text-navy/40 tracking-[0.2em] uppercase mb-4 block"
-          style={{ fontFamily: "'Inter', sans-serif" }}
-        >
-          01
-        </span>
         <h2
-          className="text-[28px] md:text-[36px] lg:text-[46px] font-light text-navy tracking-[0.2em] leading-[1.4]"
-          style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+          className="text-[28px] md:text-[36px] lg:text-[46px] font-bold text-navy tracking-[0.2em] leading-[1.4]"
+          style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
         >
           一貫体制が生む、ゆるぎない品質。
         </h2>
@@ -236,31 +230,18 @@ function PerformanceSection() {
           <p className="text-text-secondary">
             設計から製造、仕上げまでのすべてを自社内で行うこと。それは、単なる効率化ではなく、「品質を守るための仕組み」です。各工程の担当者が常に情報を共有し、仕様変更や改善を即時に反映。試作から量産までの流れをスムーズにコントロールできます。
           </p>
+
+          <div className="relative mt-[-156px] w-full">
+            <Image
+              src="/images/production-flow.png"
+              alt="一貫生産体制の流れ"
+              width={1200}
+              height={400}
+              className="w-full h-auto"
+            />
+          </div>
         </div>
 
-        {/* Merit Box - Center aligned */}
-        <div className="mt-16 lg:mx-auto lg:w-[70%] border border-navy/20 p-8 lg:p-10">
-          <h4
-            className="text-[18px] lg:text-[22px] font-bold text-navy tracking-[0.1em] mb-6"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-          >
-            メリット
-          </h4>
-          <ul className="space-y-4 text-text-secondary">
-            <li className="flex items-start gap-3">
-              <span className="text-accent mt-1">&#9670;</span>
-              <span>不具合発生時も社内で迅速に原因追及・対策</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-accent mt-1">&#9670;</span>
-              <span>長期的に同品質を維持できる安定体制</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-accent mt-1">&#9670;</span>
-              <span>フィードバック体制により改良サイクルを高速化</span>
-            </li>
-          </ul>
-        </div>
 
         {/* Closing Text */}
         <div className="mt-16 lg:ml-auto lg:w-[70%]">
@@ -291,15 +272,9 @@ function Strength02Section() {
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="px-8 md:px-16 lg:px-24">
-        <span
-          className="text-[13px] lg:text-[15px] font-bold text-navy/40 tracking-[0.2em] uppercase mb-4 block"
-          style={{ fontFamily: "'Inter', sans-serif" }}
-        >
-          02
-        </span>
         <h2
-          className="text-[28px] md:text-[36px] lg:text-[46px] font-light text-navy tracking-[0.2em] leading-[1.4]"
-          style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+          className="text-[28px] md:text-[36px] lg:text-[46px] font-bold text-navy tracking-[0.2em] leading-[1.4]"
+          style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
         >
           課題に向き合い、最適解をともに探す。
         </h2>
@@ -524,15 +499,9 @@ function Strength03Section() {
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="px-8 md:px-16 lg:px-24">
-        <span
-          className="text-[13px] lg:text-[15px] font-bold text-navy/40 tracking-[0.2em] uppercase mb-4 block"
-          style={{ fontFamily: "'Inter', sans-serif" }}
-        >
-          03
-        </span>
         <h2
-          className="text-[28px] md:text-[36px] lg:text-[46px] font-light text-navy tracking-[0.2em] leading-[1.4]"
-          style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+          className="text-[28px] md:text-[36px] lg:text-[46px] font-bold text-navy tracking-[0.2em] leading-[1.4]"
+          style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
         >
           一つひとつに、誠実に。
         </h2>
@@ -553,20 +522,31 @@ function Strength03Section() {
           </p>
         </div>
 
-        {/* English Translation */}
-        <div
-          className="mt-16 text-navy/50 text-[13px] lg:text-[15px] leading-[2.2] tracking-[0.06em]"
-          style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
-        >
-          <p>There&apos;s no such thing as a &quot;small job&quot; in manufacturing.</p>
-          <p>Every mold is made for someone who relies on it,</p>
-          <p>and every drawing carries someone&apos;s intent.</p>
-          <p>We approach each one with sincerity—</p>
-          <p>creating not just products, but responses.</p>
-          <p className="mt-4">Our precision and original methods</p>
-          <p>are all means to uphold our clients&apos; trust.</p>
-          <p>Technology thrives only where human trust exists.</p>
-          <p>That belief drives everything we do.</p>
+        {/* English Translation + Image */}
+        <div className="mt-16 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          <div
+            className="text-navy text-[13px] lg:text-[15px] leading-[2.2] tracking-[0.06em]"
+            style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+          >
+            <p>There&apos;s no such thing as a &quot;small job&quot; in manufacturing.</p>
+            <p>Every mold is made for someone who relies on it,</p>
+            <p>and every drawing carries someone&apos;s intent.</p>
+            <p>We approach each one with sincerity—</p>
+            <p>creating not just products, but responses.</p>
+            <p className="mt-4">Our precision and original methods</p>
+            <p>are all means to uphold our clients&apos; trust.</p>
+            <p>Technology thrives only where human trust exists.</p>
+            <p>That belief drives everything we do.</p>
+          </div>
+
+          <div className="relative aspect-[16/9] w-full lg:w-1/3 shrink-0">
+            <Image
+              src="/images/strength-03b.jpg"
+              alt="誠実なものづくり"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>
