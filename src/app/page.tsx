@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { company, contact, site } from "@/lib/site";
 import ContactCTA from "@/components/ContactCTA";
 import AnimatedLink from "@/components/animations/AnimatedLink";
@@ -10,135 +10,202 @@ import AnimatedLink from "@/components/animations/AnimatedLink";
 // ============================================================
 // Hero Section
 // ============================================================
-function HeroSection() {
+function HeroAboutSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [fadeProgress, setFadeProgress] = useState(0);
+  const [contentScroll, setContentScroll] = useState(0);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentOverflow, setContentOverflow] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 300);
     return () => clearTimeout(timer);
   }, []);
 
-  return (
-    <section className="relative h-screen min-h-[600px] flex items-end">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/hero-bg.jpg"
-          alt="メインビジュアル"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/40" />
-      </div>
+  // Measure how much the about content overflows beyond viewport
+  useEffect(() => {
+    if (contentRef.current) {
+      const overflow = Math.max(contentRef.current.scrollHeight - window.innerHeight, 0);
+      setContentOverflow(overflow);
+    }
+  }, []);
 
-      {/* Content - Left-aligned, bottom-left */}
-      <div className="relative z-10 text-left px-8 md:px-16 lg:px-24 pb-24 md:pb-32">
+  const handleScroll = useCallback(() => {
+    if (!wrapperRef.current) return;
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const totalScroll = rect.height - window.innerHeight;
+    if (totalScroll <= 0) return;
+
+    const scrolled = -rect.top;
+    // Phase 1: crossfade (first 100vh of scroll)
+    const fadeZone = window.innerHeight;
+    const fade = Math.min(Math.max(scrolled / fadeZone, 0), 1);
+    setFadeProgress(fade);
+
+    // Phase 2: content scroll (remaining scroll after crossfade)
+    const contentScrollAmount = Math.max(scrolled - fadeZone, 0);
+    setContentScroll(contentScrollAmount);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", () => {
+      if (contentRef.current) {
+        setContentOverflow(Math.max(contentRef.current.scrollHeight - window.innerHeight, 0));
+      }
+    });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const heroBlur = fadeProgress * 20;
+  const heroOpacity = 1 - fadeProgress;
+  const aboutBlur = (1 - fadeProgress) * 15;
+  const aboutOpacity = fadeProgress;
+
+  // Total height: 1 screen (initial) + 1 screen (crossfade) + content overflow (scroll)
+  const totalHeight = `calc(200vh + ${contentOverflow}px)`;
+
+  return (
+    <div ref={wrapperRef} className="relative" style={{ height: totalHeight }}>
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Hero Layer */}
         <div
-          className={`transition-all duration-1000 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className="absolute inset-0 z-0"
+          style={{ filter: `blur(${heroBlur}px)`, opacity: heroOpacity, transform: "scale(1.05)" }}
         >
-          {/* English Tagline */}
-          <h1
-            className="text-[40px] md:text-[70px] lg:text-[100px] font-bold text-white tracking-[0.08em] leading-[1.1] mb-4"
-            style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
           >
-            <span className="block">All in-house.</span>
-            <span className="block">All for Precision.</span>
-          </h1>
-          {/* Japanese Tagline */}
-          <p
-            className="text-[18px] md:text-[26px] lg:text-[36px] font-light text-white/90 tracking-[0.25em] leading-relaxed"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
-          >
-            <span className="block">すべてを自社で。すべては信頼のために。</span>
-          </p>
+            <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/40" />
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/70 animate-bounce">
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================
-// About Section
-// ============================================================
-function AboutSection() {
-  return (
-    <section className="relative">
-      {/* Top Part - Title and Description */}
-      <div className="bg-navy py-16 lg:py-24 px-8 md:px-16 lg:px-24">
-        <div className="flex flex-col lg:flex-row lg:gap-16">
-          {/* Left - Title */}
-          <div className="lg:w-1/2">
-            <h2
-              className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-white tracking-[0.25em] leading-[1.3] whitespace-nowrap"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
-            >
-              課題に寄り添い、解決へ導く。
-            </h2>
-            <p
-              className="text-[16px] md:text-[22px] lg:text-[30px] font-bold text-white/70 tracking-[0.08em] leading-[1.3] mt-4"
-              style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
-            >
-              Close to your challenges. Closer to the solution.
-            </p>
-          </div>
-
-          {/* Right - Description */}
-          <div className="lg:w-1/2 mt-10 lg:mt-[200px]">
+        {/* Hero Content */}
+        <div
+          className="absolute inset-0 z-10 flex items-end"
+          style={{ filter: `blur(${heroBlur}px)`, opacity: heroOpacity }}
+        >
+          <div className="text-left px-8 md:px-16 lg:px-24 pb-24 md:pb-32">
             <div
-              className="text-[14px] lg:text-[16px] text-white/85 leading-[2.2] tracking-[0.2em]"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400 }}
+              className={`transition-opacity duration-1000 ease-out ${
+                isVisible ? "opacity-100" : "opacity-0"
+              }`}
             >
-              <p>
-                私たちは、冷間圧造工具の設計から製造、仕上げまでを100％自社内で完結する体制を築いています。それは、ただ効率を求めた結果ではありません。
-              </p>
-              <p className="mt-6">
-                どんなご依頼にも、そこにあるのは&ldquo;解決したい課題&rdquo;。
-                <br />
-                すべての工程を自社で担うのは「どの工程でどんな工夫が必要か」
-                <br />
-                を正確に把握し、最善の答えにたどりつくためです。
-              </p>
-              <p className="mt-6">
-                そしてこの一貫体制は、
-                <br />
-                品質を安定させ、納期を守り、どんなご要望にも柔軟に応える─
-                <br />
-                その積み重ねによって信頼を築くための、確かな基盤にもなっています。
-              </p>
-              <p className="mt-6">
-                高度な加工技術や独自のノウハウは、
-                <br />
-                &ldquo;どうしたら課題を解決できるか&rdquo;
-                <br />
-                に真摯に向き合うための力です。
-              </p>
-              <p className="mt-6">
-                まずは、どんなことでもご相談ください。
+              <h1
+                className="text-[40px] md:text-[70px] lg:text-[100px] font-bold text-white tracking-[0.08em] leading-[1.1] mb-4"
+                style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+              >
+                <span className="block">All in-house.</span>
+                <span className="block">All for Precision.</span>
+              </h1>
+              <p
+                className="text-[18px] md:text-[26px] lg:text-[36px] font-light text-white/90 tracking-[0.25em] leading-relaxed"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+              >
+                <span className="block">すべてを自社で。すべては信頼のために。</span>
               </p>
             </div>
-            <Link
-              href="/company"
-              className="btn-slide btn-slide-light inline-flex items-center justify-between mt-20 mb-24 bg-white border border-white px-8 py-5 min-w-[280px] text-navy tracking-[0.15em] text-[14px] lg:text-[16px]"
-            >
-              <span>私たちについて</span>
-              <svg className="w-5 h-5 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </Link>
           </div>
         </div>
+
+        {/* About Layer */}
+        <div
+          className="absolute inset-0 z-20"
+          style={{ filter: `blur(${aboutBlur}px)`, opacity: aboutOpacity, transform: `translateY(-${contentScroll}px)` }}
+        >
+          {/* Background */}
+          <div className="absolute inset-0 bg-cover bg-no-repeat" style={{ backgroundImage: "url('/images/solution-section-bg.jpg')", backgroundPosition: "center 80%", height: `calc(100% + ${contentScroll}px)`, top: 0 }}>
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+          {/* Content */}
+          <div
+            ref={contentRef}
+            className="relative"
+          >
+            <div className="pt-[35vh] pb-16 lg:pb-24 px-8 md:px-16 lg:px-24">
+              <div className="flex flex-col lg:flex-row lg:gap-16">
+                {/* Left - Title */}
+                <div className="lg:w-1/2">
+                  <h2
+                    className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-white tracking-[0.25em] leading-[1.3] whitespace-nowrap"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+                  >
+                    課題に寄り添い、解決へ導く。
+                  </h2>
+                  <p
+                    className="text-[16px] md:text-[22px] lg:text-[30px] font-bold text-white/70 tracking-[0.08em] leading-[1.3] mt-4"
+                    style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+                  >
+                    Close to your challenges. Closer to the solution.
+                  </p>
+                </div>
+
+                {/* Right - Description */}
+                <div className="lg:w-1/2 mt-10 lg:mt-[200px]">
+                  <div
+                    className="text-[14px] lg:text-[16px] text-white/85 leading-[2.2] tracking-[0.2em]"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400 }}
+                  >
+                    <p>
+                      私たちは、冷間圧造工具の設計から製造、仕上げまでを100％自社内で完結する体制を築いています。それは、ただ効率を求めた結果ではありません。
+                    </p>
+                    <p className="mt-6">
+                      どんなご依頼にも、そこにあるのは&ldquo;解決したい課題&rdquo;。
+                      <br />
+                      すべての工程を自社で担うのは「どの工程でどんな工夫が必要か」
+                      <br />
+                      を正確に把握し、最善の答えにたどりつくためです。
+                    </p>
+                    <p className="mt-6">
+                      そしてこの一貫体制は、
+                      <br />
+                      品質を安定させ、納期を守り、どんなご要望にも柔軟に応える─
+                      <br />
+                      その積み重ねによって信頼を築くための、確かな基盤にもなっています。
+                    </p>
+                    <p className="mt-6">
+                      高度な加工技術や独自のノウハウは、
+                      <br />
+                      &ldquo;どうしたら課題を解決できるか&rdquo;
+                      <br />
+                      に真摯に向き合うための力です。
+                    </p>
+                    <p className="mt-6">
+                      まずは、どんなことでもご相談ください。
+                    </p>
+                  </div>
+                  <Link
+                    href="/company"
+                    className="btn-slide btn-slide-light inline-flex items-center justify-between mt-20 mb-24 bg-white border border-white px-8 py-5 min-w-[280px] text-navy tracking-[0.15em] text-[14px] lg:text-[16px]"
+                  >
+                    <span>私たちについて</span>
+                    <svg className="w-5 h-5 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center text-white/70 animate-bounce"
+          style={{ opacity: Math.max(1 - fadeProgress * 4, 0) }}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -402,8 +469,7 @@ function CompanySection() {
 export default function Home() {
   return (
     <>
-      <HeroSection />
-      <AboutSection />
+      <HeroAboutSection />
       <FacilitySection />
       <RecruitSection />
       <CompanySection />

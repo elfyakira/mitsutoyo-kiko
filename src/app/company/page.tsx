@@ -13,7 +13,7 @@ function PageHeader() {
           src="/images/company-header-bg.jpg"
           alt="事業内容"
           fill
-          className="object-cover"
+          className="object-cover" style={{ objectPosition: "center 85%" }}
           priority
         />
         <div className="absolute inset-0 bg-navy/50" />
@@ -108,7 +108,17 @@ function MessageSection() {
 // ============================================================
 function FeaturesSection() {
   return (
-    <section className="relative py-24 lg:py-40 bg-navy overflow-hidden">
+    <section className="relative py-24 lg:py-40 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/philosophy-bg.jpg"
+          alt="企業理念背景"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
       <div className="relative z-10 max-w-container mx-auto px-6 lg:px-12">
         {/* Title */}
         <div className="text-center mb-16 lg:mb-24">
@@ -119,7 +129,7 @@ function FeaturesSection() {
             企業理念
           </h2>
           <p
-            className="text-[14px] md:text-[18px] lg:text-[22px] font-bold text-white/40 tracking-[0.08em] leading-[1.3] mt-3"
+            className="text-[14px] md:text-[18px] lg:text-[22px] font-bold text-[#0080CC] tracking-[0.08em] leading-[1.3] mt-3"
             style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
           >
             PHILOSOPHY
@@ -204,8 +214,8 @@ function PerformanceSection() {
           />
         </div>
 
-        {/* Description - Center aligned */}
-        <div className="mt-16 lg:mx-auto lg:w-[70%]">
+        {/* Description - Left aligned */}
+        <div className="mt-16 lg:w-[70%]">
           <h3
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
@@ -216,7 +226,7 @@ function PerformanceSection() {
             設計から製造、仕上げまでのすべてを自社内で行うこと。それは、単なる効率化ではなく、「品質を守るための仕組み」です。各工程の担当者が常に情報を共有し、仕様変更や改善を即時に反映。試作から量産までの流れをスムーズにコントロールできます。
           </p>
 
-          <div className="relative mt-[-156px] w-full">
+          <div className="relative mt-8 w-full lg:w-[80%]">
             <Image
               src="/images/production-flow.png"
               alt="一貫生産体制の流れ"
@@ -229,7 +239,7 @@ function PerformanceSection() {
 
 
         {/* Closing Text */}
-        <div className="mt-16 lg:ml-auto lg:w-[70%]">
+        <div className="mt-16 lg:w-[70%]">
           <h3
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
@@ -257,25 +267,27 @@ function Strength02Section() {
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="px-8 md:px-16 lg:px-24">
-        <h2
-          className="text-[28px] md:text-[36px] lg:text-[46px] font-bold text-navy tracking-[0.2em] leading-[1.4]"
-          style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-        >
-          課題に向き合い、最適解をともに探す。
-        </h2>
+        <div className="lg:ml-auto lg:w-[70%]">
+          <h2
+            className="text-[28px] md:text-[36px] lg:text-[46px] font-bold text-navy tracking-[0.2em] leading-[1.4]"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+          >
+            課題に向き合い、最適解をともに探す。
+          </h2>
 
-        {/* Image - Left wide */}
-        <div className="relative aspect-[16/9] mt-16 w-full lg:w-1/2">
-          <Image
-            src="/images/strength-02.jpg"
-            alt="課題に向き合う"
-            fill
-            className="object-cover"
-          />
+          {/* Image */}
+          <div className="relative aspect-[16/9] mt-16 w-full lg:w-2/3">
+            <Image
+              src="/images/strength-02.jpg"
+              alt="課題に向き合う"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
 
-        {/* Description - Center aligned */}
-        <div className="mt-16 lg:mx-auto lg:w-[70%]">
+        {/* Description */}
+        <div className="mt-16 lg:ml-auto lg:w-[70%]">
           <h3
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
@@ -285,8 +297,7 @@ function Strength02Section() {
           <div className="text-text-secondary">
             <p>
               私たちが大切にしているのは、&ldquo;できない理由&rdquo;ではなく&ldquo;できる方法&rdquo;を探すことです。課題の本質に向き合い、最適解へと組み立て直す――。
-            </p>
-            <p className="mt-6">
+              <br />
               そのプロセスこそが価値となり、信頼につながると考えています。
             </p>
           </div>
@@ -303,17 +314,13 @@ function Strength02Section() {
           <div className="text-text-secondary">
             <p>
               六角・四角をはじめ多角形金型は、角部に応力が集中し、早期破損による機械停止や段取り替えが避けられないという課題を抱えていました。
-            </p>
-            <p className="mt-6">
+              <br />
               「割れるなら、はじめから分割すればいい。」
-            </p>
-            <p className="mt-6">
+              <br />
               そんな発想から誕生したのが、分割した6ピースの部材を組み合わせて作ったダブルヘックスです。
-            </p>
-            <p className="mt-6">
+              <br />
               この6分割構造によって応力が均等に分散。衝撃も「応力吸収孔」で吸収し、早期破損を防ぎます。
-            </p>
-            <p className="mt-6">
+              <br />
               &ldquo;どうすれば解決できるか&rdquo;を真剣に考える姿勢から生まれた、三豊機工ならではのオリジナル金型技術です。
             </p>
           </div>
@@ -458,8 +465,13 @@ function Strength02Section() {
                 <tbody>
                   <tr>
                     <td className="border border-navy/20 bg-white p-4 lg:p-6 font-bold text-navy">耐久性</td>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-primary">応力分散で長寿命化<br />連続稼働が可能</td>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-secondary">角部が割れやすい<br />機械停止が多い</td>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-primary">応力分散で長寿命化</td>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-secondary">角部が割れやすい</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 font-bold text-navy">稼働率</td>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-primary">連続稼働が可能</td>
+                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-secondary">機械停止が多い</td>
                   </tr>
                   <tr>
                     <td className="border border-navy/20 bg-white p-4 lg:p-6 font-bold text-navy">コスト</td>
