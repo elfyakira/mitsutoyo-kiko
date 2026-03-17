@@ -1,90 +1,62 @@
 import Link from "next/link";
-import { contact } from "@/lib/site";
 
 export default function ContactCTA() {
   return (
-    <section className="relative py-16 lg:py-24">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/contact-bg.jpg')" }}
-        />
-        <div className="absolute inset-0 bg-navy/60" />
-      </div>
-
-      {/* Content */}
-      <div className="relative max-w-4xl mx-auto px-6">
-        {/* White Card */}
-        <div className="bg-white rounded-lg p-8 lg:p-12 text-center">
-          {/* Title */}
-          <h2 className="text-2xl lg:text-3xl font-bold tracking-[0.2em] text-navy mb-4">
-            CONTACT
-          </h2>
-          <p className="text-text-secondary mb-2">
-            商品おひとつのみの制作からでも受注可能です。
-          </p>
-          <p className="text-text-secondary mb-8">
-            お気軽にお問い合わせ下さい！
-          </p>
-
-          {/* Phone and Contact Button */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-8 mb-8">
-            {/* Phone */}
-            <a
-              href={`tel:${contact.phoneTel || contact.phone.replace(/-/g, "")}`}
-              className="flex items-center gap-3"
-            >
-              <svg className="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              <div className="text-left">
-                <span className="text-2xl lg:text-3xl font-bold text-navy tracking-wide">
-                  {contact.phoneFormatted || contact.phone}
-                </span>
-                <p className="text-xs text-text-secondary">
-                  受付時間／{contact.hours}
-                </p>
+    <section className="py-16 lg:py-24 bg-white">
+      <div className="px-8 md:px-16 lg:px-24">
+        {/* Blue rounded card */}
+        <div className="bg-navy rounded-[24px] px-8 md:px-16 lg:px-20 py-16 lg:py-20">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-16">
+            {/* Left side - Text */}
+            <div>
+              <h2
+                className="text-[36px] md:text-[48px] lg:text-[56px] font-light text-white tracking-[0.05em] leading-[1.2]"
+                style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+              >
+                Contact
+              </h2>
+              <p
+                className="text-[14px] lg:text-[16px] text-white/70 tracking-[0.2em] mt-2"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400 }}
+              >
+                お問い合わせ
+              </p>
+              <div
+                className="text-[13px] lg:text-[14px] text-white/70 leading-[2] tracking-[0.15em] mt-8"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400 }}
+              >
+                <p>「こんな資材があれば...」「相談にのって欲しい」</p>
+                <p>どのようなお問い合わせでも構いません。</p>
+                <p>あなたの抱えている思いをどうぞお聞かせください。</p>
               </div>
-            </a>
+            </div>
 
-            {/* Contact Button */}
-            <Link
-              href="/contact"
-              className="flex items-center justify-center gap-2 bg-accent text-white px-8 py-4 rounded font-semibold transition-colors hover:bg-accent-dark"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              お問い合わせ
-            </Link>
-          </div>
-
-          {/* Divider */}
-          <div className="border-t border-gray-200 pt-6">
-            {/* SNS */}
-            <div className="flex items-center justify-center gap-4">
-              <span className="text-sm text-text-secondary tracking-wider">
-                SNS更新中！
-              </span>
-              <a
-                href="#"
-                className="flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-4 py-2 rounded text-sm font-medium transition-opacity hover:opacity-90"
+            {/* Right side - Large Button */}
+            <div className="flex-shrink-0">
+              <Link
+                href="/contact"
+                className="group flex items-center justify-between bg-white/20 hover:bg-white/30 transition-colors rounded-full px-12 md:px-16 py-8 md:py-10 min-w-[320px] md:min-w-[400px]"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                Instagram
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded text-sm font-medium transition-opacity hover:opacity-80"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
-                </svg>
-                TikTok
-              </a>
+                <div className="text-left">
+                  <span
+                    className="block text-[20px] md:text-[24px] font-bold text-white tracking-[0.08em]"
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                  >
+                    Contact form
+                  </span>
+                  <span
+                    className="block text-[12px] md:text-[14px] text-white/70 tracking-[0.15em] mt-1"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400 }}
+                  >
+                    お問い合わせフォーム
+                  </span>
+                </div>
+                <div className="w-12 h-12 rounded-full border border-white/50 flex items-center justify-center ml-8 group-hover:bg-white/20 transition-colors">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

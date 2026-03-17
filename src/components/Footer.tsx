@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { company, locations, images } from "@/lib/site";
+import { company, contact, locations, images } from "@/lib/site";
 
 const navLinks = [
   { label: "製品情報", href: "/products" },
@@ -39,6 +39,9 @@ export default function Footer() {
             {hq.zipCode && hq.address && (
               <p>〒{hq.zipCode} {hq.address}</p>
             )}
+            <a href={`tel:${contact.phoneTel}`} className="block mt-1 hover:text-white transition-colors">
+              Tel. {contact.phoneFormatted}
+            </a>
           </div>
         </div>
 
