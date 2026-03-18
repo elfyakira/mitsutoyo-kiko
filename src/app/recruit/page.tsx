@@ -443,10 +443,10 @@ function RequirementsSection() {
           </p>
         </div>
 
-        {/* Job Cards - 2 columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+        {/* Job Cards - 2 columns with aligned rows */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 lg:gap-x-12 max-w-6xl mx-auto" style={{ gridTemplateRows: "repeat(8, auto)" }}>
           {jobs.map((job, jobIndex) => (
-            <div key={jobIndex} className="border border-navy/15">
+            <div key={jobIndex} className="border border-navy/15" style={{ display: "grid", gridTemplateRows: "subgrid", gridRow: "span " + (job.items.length + 1) }}>
               {/* Job Title Header */}
               <div className="bg-navy px-6 lg:px-8 py-5">
                 <h3
@@ -457,21 +457,20 @@ function RequirementsSection() {
                 </h3>
               </div>
 
-              {/* Job Details Table */}
-              <table className="w-full border-collapse">
-                <tbody>
-                  {job.items.map((item, index) => (
-                    <tr key={index} className="border-b border-navy/10 last:border-b-0">
-                      <th className="w-[100px] lg:w-[130px] px-4 lg:px-6 py-4 lg:py-5 text-[13px] lg:text-[14px] font-bold text-navy bg-[#F5F7F9] tracking-[0.1em] text-left align-top">
-                        {item.label}
-                      </th>
-                      <td className="px-4 lg:px-6 py-4 lg:py-5 text-[13px] lg:text-[14px] text-text-secondary whitespace-pre-line">
-                        {item.value}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              {/* Job Details Rows */}
+              {job.items.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex border-b border-navy/10 last:border-b-0"
+                >
+                  <div className="w-[100px] lg:w-[130px] flex-shrink-0 px-4 lg:px-6 py-4 lg:py-5 text-[13px] lg:text-[14px] font-bold text-navy bg-[#F5F7F9] tracking-[0.1em]">
+                    {item.label}
+                  </div>
+                  <div className="flex-1 px-4 lg:px-6 py-4 lg:py-5 text-[13px] lg:text-[14px] text-text-secondary whitespace-pre-line">
+                    {item.value}
+                  </div>
+                </div>
+              ))}
             </div>
           ))}
         </div>
