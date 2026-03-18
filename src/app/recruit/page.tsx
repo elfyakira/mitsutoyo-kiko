@@ -399,29 +399,27 @@ function MessageSection() {
 function RequirementsSection() {
   const jobs = [
     {
-      title: "製造スタッフ",
+      title: "設計（金型の製図・設計・開発）",
       items: [
-        { label: "職種", value: "製造" },
+        { label: "職種", value: "設計（金型の製図・設計・開発）" },
         { label: "雇用形態", value: "正社員" },
-        { label: "勤務地", value: "鹿児島工場（鹿児島県南九州市川辺町清水1542番1）" },
-        { label: "就業時間", value: "8:00〜17:00（休憩60分）" },
-        { label: "休日", value: "土日祝日、年末年始、GW、夏季休暇" },
-        { label: "給与", value: "当社規定による（経験・能力を考慮の上決定）" },
-        { label: "諸手当", value: "精勤手当・交通費支給・残業手当" },
-        { label: "福利厚生", value: "各種社会保険完備、退職金制度" },
+        { label: "勤務地", value: "愛知県春日井市東野新町一丁目4番地" },
+        { label: "就業時間", value: "8:00～17:00（実働：7.66h）\n\n休憩時間（合計80分）\n10:00～10:10\n12:00～13:00\n15:00～15:10" },
+        { label: "休日", value: "週休2日制（土日休み）\n長期休暇あり（GW・夏季休暇・年末年始休暇）" },
+        { label: "給与", value: "【経験者】月給227,000円～260,000円\n【未経験】月給220,000円～246,000円\n※半年後以降 技術手当(19,000～23,000)を支給\n賞与あり" },
+        { label: "福利厚生", value: "雇用保険・労災保険・厚生年金・健康保険\n住宅手当(独身者のみ)\n財形貯蓄\n敷地内駐車場\n慶弔見舞金制度\n産休/育休制度\n改善提案報奨金\n研修制度(OJT研修・鹿児島工場研修)" },
       ],
     },
     {
-      title: "技術職（金型設計・加工）",
+      title: "営業職（既存客先向け営業）",
       items: [
-        { label: "職種", value: "技術職" },
+        { label: "職種", value: "営業職（既存客先向け営業）" },
         { label: "雇用形態", value: "正社員" },
-        { label: "勤務地", value: "鹿児島工場（鹿児島県南九州市川辺町清水1542番1）" },
-        { label: "就業時間", value: "8:00〜17:00（休憩60分）" },
-        { label: "休日", value: "土日祝日、年末年始、GW、夏季休暇" },
-        { label: "給与", value: "当社規定による（経験・能力を考慮の上決定）" },
-        { label: "諸手当", value: "精勤手当・交通費支給・残業手当" },
-        { label: "福利厚生", value: "各種社会保険完備、退職金制度" },
+        { label: "勤務地", value: "愛知県春日井市東野新町一丁目4番地" },
+        { label: "就業時間", value: "8:00～17:00（実働：7.66h）\n\n休憩時間（合計80分）\n10:00～10:10\n12:00～13:00\n15:00～15:10" },
+        { label: "休日", value: "週休2日制（土日休み）\n長期休暇あり（GW・夏季休暇・年末年始休暇）" },
+        { label: "給与", value: "【未経験】220,000円～238,000円（想定年収 360～390万円）\n【経験者】227,000円～250,000円（想定年収 370～400万円）\n※入社半年後以降に営業手当（19,000～22,000円）を支給\n賞与あり" },
+        { label: "福利厚生", value: "雇用保険・労災保険・厚生年金・健康保険\n住宅手当(独身者のみ)\n財形貯蓄\n敷地内駐車場\n慶弔見舞金制度\n産休/育休制度\n改善提案報奨金\n研修制度(OJT研修・鹿児島工場研修)" },
       ],
     },
   ];
@@ -460,21 +458,20 @@ function RequirementsSection() {
               </div>
 
               {/* Job Details Table */}
-              <div>
-                {job.items.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex border-b border-navy/10 last:border-b-0"
-                  >
-                    <div className="w-[100px] lg:w-[130px] flex-shrink-0 px-4 lg:px-6 py-4 lg:py-5 text-[13px] lg:text-[14px] font-bold text-navy bg-[#F5F7F9] tracking-[0.1em]">
-                      {item.label}
-                    </div>
-                    <div className="flex-1 px-4 lg:px-6 py-4 lg:py-5 text-[13px] lg:text-[14px] text-text-secondary">
-                      {item.value}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <table className="w-full border-collapse">
+                <tbody>
+                  {job.items.map((item, index) => (
+                    <tr key={index} className="border-b border-navy/10 last:border-b-0">
+                      <th className="w-[100px] lg:w-[130px] px-4 lg:px-6 py-4 lg:py-5 text-[13px] lg:text-[14px] font-bold text-navy bg-[#F5F7F9] tracking-[0.1em] text-left align-top">
+                        {item.label}
+                      </th>
+                      <td className="px-4 lg:px-6 py-4 lg:py-5 text-[13px] lg:text-[14px] text-text-secondary whitespace-pre-line">
+                        {item.value}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           ))}
         </div>
