@@ -38,8 +38,8 @@ function HeroAboutSection() {
     if (totalScroll <= 0) return;
 
     const scrolled = -rect.top;
-    // Phase 1: crossfade (first 100vh of scroll)
-    const fadeZone = window.innerHeight;
+    // Phase 1: crossfade (first 300vh of scroll)
+    const fadeZone = window.innerHeight * 3;
     const fade = Math.min(Math.max(scrolled / fadeZone, 0), 1);
     setFadeProgress(fade);
 
@@ -58,13 +58,19 @@ function HeroAboutSection() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  const heroBlur = fadeProgress * 20;
+  // Mirage effect: shimmer scale oscillation during transition
+  const mirageIntensity = Math.sin(fadeProgress * Math.PI); // peaks at 50%
+  const mirageScaleX = 1.05 + mirageIntensity * 0.02;
+  const mirageScaleY = 1.05 + mirageIntensity * 0.04;
+  const heroBlur = fadeProgress * 25 + mirageIntensity * 5;
   const heroOpacity = 1 - fadeProgress;
-  const aboutBlur = (1 - fadeProgress) * 15;
+  const aboutBlur = (1 - fadeProgress) * 20 + mirageIntensity * 3;
   const aboutOpacity = fadeProgress;
+  const heroBrightness = 1 + mirageIntensity * 0.15;
+  const heroSaturate = 1 + mirageIntensity * 0.3;
 
-  // Total height: 1 screen (initial) + 1 screen (crossfade) + content overflow (scroll)
-  const totalHeight = `calc(200vh + ${contentOverflow}px)`;
+  // Total height: 1 screen (initial) + 3 screens (crossfade) + content overflow (scroll)
+  const totalHeight = `calc(400vh + ${contentOverflow}px)`;
 
   return (
     <div ref={wrapperRef} className="relative" style={{ height: totalHeight }}>
@@ -72,7 +78,11 @@ function HeroAboutSection() {
         {/* Hero Layer */}
         <div
           className="absolute inset-0 z-0"
-          style={{ filter: `blur(${heroBlur}px)`, opacity: heroOpacity, transform: "scale(1.05)" }}
+          style={{
+            filter: `blur(${heroBlur}px) brightness(${heroBrightness}) saturate(${heroSaturate})`,
+            opacity: heroOpacity,
+            transform: `scale(${mirageScaleX}, ${mirageScaleY})`,
+          }}
         >
           <video
             autoPlay
@@ -89,7 +99,11 @@ function HeroAboutSection() {
         {/* Hero Content */}
         <div
           className="absolute inset-0 z-10 flex items-end"
-          style={{ filter: `blur(${heroBlur}px)`, opacity: heroOpacity }}
+          style={{
+            filter: `blur(${heroBlur}px)`,
+            opacity: heroOpacity,
+            transform: `scaleY(${1 + mirageIntensity * 0.02})`,
+          }}
         >
           <div className="text-left px-8 md:px-16 lg:px-24 pb-24 md:pb-32">
             <div

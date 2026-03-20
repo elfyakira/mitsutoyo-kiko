@@ -52,9 +52,7 @@ export default function Header() {
               alt={company.name || "会社ロゴ"}
               width={200}
               height={50}
-              className={`transition-all duration-300 ${
-                isScrolled ? "" : "brightness-0 invert"
-              }`}
+              className="transition-all duration-300"
             />
           </Link>
 
