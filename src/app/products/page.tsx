@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ContactCTA from "@/components/ContactCTA";
+import ProductCatalog from "@/components/ProductCatalog";
 
 // ============================================================
 // Page Header
@@ -50,6 +51,7 @@ export default function ProductsPage() {
   return (
     <>
       <PageHeader />
+      <ProductCatalog />
       <ContactCTA />
     </>
   );
