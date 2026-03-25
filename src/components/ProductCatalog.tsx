@@ -2,7 +2,14 @@
 
 import { useState, useRef } from "react";
 import Image from "next/image";
-import { productCategories, type ProductCategory, type SubCategory } from "@/lib/products";
+import { productCategories, type ProductCategory, type SubCategory, type ProductImage } from "@/lib/products";
+
+function getImageSrc(img: string | ProductImage): string {
+  return typeof img === "string" ? img : img.src;
+}
+function getImageLabel(img: string | ProductImage): string | undefined {
+  return typeof img === "string" ? undefined : img.label;
+}
 
 type Selection =
   | { type: "category"; category: ProductCategory }
@@ -65,6 +72,12 @@ export default function ProductCatalog() {
     selection.type === "sub"
       ? `${selection.category.name} / ${selection.sub.name}`
       : selection.category.name;
+
+  // 表示タイトル英語
+  const displayTitleEn =
+    selection.type === "sub"
+      ? selection.sub.nameEn || null
+      : selection.category.nameEn || null;
 
   return (
     <section className="py-16 lg:py-24 bg-white">
@@ -161,7 +174,7 @@ export default function ProductCatalog() {
                                 key={sub.slug}
                                 onClick={() => handleSubClick(cat, sub)}
                                 className={`
-                                  text-left px-5 py-3 text-[13px] tracking-[0.08em]
+                                  text-left px-6 py-4 text-[15px] tracking-[0.08em]
                                   transition-colors duration-150 border-r border-gray-100 last:border-r-0
                                   whitespace-nowrap
                                   ${
@@ -171,7 +184,14 @@ export default function ProductCatalog() {
                                   }
                                 `}
                               >
-                                {sub.name}
+                                <span>{sub.name}</span>
+                                {sub.nameEn && (
+                                  <span className="block text-[12px] tracking-[0.04em] opacity-60 mt-0.5"
+                                    style={{ fontFamily: "'Inter', sans-serif" }}
+                                  >
+                                    {sub.nameEn}
+                                  </span>
+                                )}
                               </button>
                             );
                           })}
@@ -216,16 +236,26 @@ export default function ProductCatalog() {
           {/* ===== Right Content Area ===== */}
           <div className="flex-1 pt-6 lg:pt-0">
             {/* Title + Sub-category buttons */}
-            <div className="mb-6 lg:mb-8 pb-4 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center gap-4">
-              <h3
-                className="text-[18px] lg:text-[22px] font-medium text-navy tracking-[0.12em] shrink-0"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-              >
-                {displayTitle}
-              </h3>
+            <div className="mb-6 lg:mb-8 pb-4 border-b border-gray-200 flex flex-col gap-4">
+              <div className="flex items-baseline gap-3">
+                <h3
+                  className="text-[18px] lg:text-[22px] font-medium text-navy tracking-[0.12em] shrink-0"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  {displayTitle}
+                </h3>
+                {displayTitleEn && (
+                  <p
+                    className="text-[12px] lg:text-[14px] font-bold text-navy/40 tracking-[0.06em]"
+                    style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+                  >
+                    {displayTitleEn}
+                  </p>
+                )}
+              </div>
 
               {selection.category.subCategories.length > 0 && (
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3">
                   {selection.category.subCategories.map((sub) => {
                     const isCurrentSub =
                       selection.type === "sub" &&
@@ -237,7 +267,7 @@ export default function ProductCatalog() {
                           handleSubClick(selection.category, sub)
                         }
                         className={`
-                          px-4 py-1.5 text-[12px] lg:text-[13px] tracking-[0.06em]
+                          px-6 py-3 text-[14px] lg:text-[16px] tracking-[0.06em]
                           rounded-full font-medium
                           transition-all duration-200
                           ${
@@ -248,6 +278,11 @@ export default function ProductCatalog() {
                         `}
                       >
                         {sub.name}
+                        {sub.nameEn && (
+                          <span className="ml-2 text-[12px] lg:text-[13px] opacity-70">
+                            {sub.nameEn}
+                          </span>
+                        )}
                       </button>
                     );
                   })}
@@ -261,49 +296,84 @@ export default function ProductCatalog() {
                 {selection.category.subCategories.map((sub) => (
                   <div key={sub.slug} id={`sub-${sub.slug}`} className="scroll-mt-24">
                     <div className="flex items-center gap-3 mb-6">
-                      <h4 className="text-[16px] lg:text-[18px] font-medium text-navy tracking-[0.1em] shrink-0">
-                        {sub.name}
-                      </h4>
+                      <div className="shrink-0">
+                        <h4 className="text-[16px] lg:text-[18px] font-medium text-navy tracking-[0.1em]">
+                          {sub.name}
+                        </h4>
+                        {sub.nameEn && (
+                          <p
+                            className="text-[11px] lg:text-[12px] font-bold text-navy/40 tracking-[0.04em] mt-0.5"
+                            style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+                          >
+                            {sub.nameEn}
+                          </p>
+                        )}
+                      </div>
                       <div className="flex-1 h-px bg-gray-200" />
                     </div>
-                    <div className="space-y-8">
-                      {sub.images.map((src, i) => (
-                        <div
-                          key={`${sub.slug}-${i}`}
-                          className="relative w-full"
-                          style={{ aspectRatio: "4 / 3" }}
-                        >
-                          <Image
-                            src={src}
-                            alt={`${sub.name} ${i + 1}`}
-                            fill
-                            className="object-contain"
-                            sizes="(max-width: 1280px) 100vw, 70vw"
-                          />
-                        </div>
-                      ))}
+                    <div className="space-y-8 ">
+                      {sub.images.map((img, i) => {
+                        const src = getImageSrc(img);
+                        const label = getImageLabel(img);
+                        return (
+                          <div key={`${sub.slug}-${i}`}>
+                            {label && (
+                              <div className="flex items-center gap-3 mb-4">
+                                <h5 className="text-[14px] lg:text-[16px] font-medium text-navy tracking-[0.08em] shrink-0">
+                                  {label}
+                                </h5>
+                                <div className="flex-1 h-px bg-gray-200" />
+                              </div>
+                            )}
+                            <div
+                              className="relative w-full"
+                              style={{ aspectRatio: "4 / 3" }}
+                            >
+                              <Image
+                                src={src}
+                                alt={label || `${sub.name} ${i + 1}`}
+                                fill
+                                className="object-contain"
+                                sizes="(max-width: 1280px) 100vw, 70vw"
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}
               </div>
             ) : displayImages.length > 0 ? (
-              <div className="space-y-8">
-                {displayImages.map((src, i) => (
+              <div className="space-y-8 ">
+                {displayImages.map((img, i) => {
+                  const src = getImageSrc(img);
+                  const label = getImageLabel(img);
+                  return (
                   <div key={`${selection.type === "sub" ? selection.sub.slug : selection.category.slug}-${i}`}>
+                    {label && (
+                      <div className="flex items-center gap-3 mb-4">
+                        <h5 className="text-[14px] lg:text-[16px] font-medium text-navy tracking-[0.08em] shrink-0">
+                          {label}
+                        </h5>
+                        <div className="flex-1 h-px bg-gray-200" />
+                      </div>
+                    )}
                     <div
                       className="relative w-full"
                       style={{ aspectRatio: "4 / 3" }}
                     >
                       <Image
                         src={src}
-                        alt={`${displayTitle} ${i + 1}`}
+                        alt={label || `${displayTitle} ${i + 1}`}
                         fill
                         className="object-contain"
                         sizes="(max-width: 1280px) 100vw, 70vw"
                       />
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             ) : (
               <div className="flex items-center justify-center h-[300px] bg-gray-50 rounded-lg border border-gray-100">

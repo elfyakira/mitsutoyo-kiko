@@ -53,6 +53,7 @@ export default function Header() {
               width={200}
               height={50}
               className="transition-all duration-300"
+              style={isScrolled ? undefined : { filter: "brightness(0) invert(1)" }}
             />
           </Link>
 
