@@ -207,6 +207,23 @@ body {
   }
 }
 
+/* Slow horizontal pan for hero images */
+@keyframes slowPan {
+  0% {
+    object-position: 0% 50%;
+  }
+  50% {
+    object-position: 100% 50%;
+  }
+  100% {
+    object-position: 0% 50%;
+  }
+}
+
+@utility animate-slow-pan {
+  animation: slowPan 30s ease-in-out infinite;
+}
+
 /* Custom Utility Classes */
 @utility max-w-container {
   max-width: var(--width-container);

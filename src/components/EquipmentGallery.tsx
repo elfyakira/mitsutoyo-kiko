@@ -136,12 +136,11 @@ function buildTiles(): Tile[] {
 const allTiles = buildTiles();
 
 export default function EquipmentGallery() {
-  const firstImage = categories[0];
-  const [selected, setSelected] = useState({
-    category: firstImage.name,
-    file: firstImage.images[0],
-  });
-  const [selectedCategory, setSelectedCategory] = useState(firstImage.name);
+  const [selected, setSelected] = useState<{
+    category: string;
+    file: string;
+  } | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
 
   const handleSelect = useCallback(
@@ -153,8 +152,10 @@ export default function EquipmentGallery() {
     [],
   );
 
-  const currentCategory = categories.find((c) => c.name === selected.category);
-  const currentIndex = currentCategory
+  const currentCategory = selected
+    ? categories.find((c) => c.name === selected.category)
+    : null;
+  const currentIndex = currentCategory && selected
     ? currentCategory.images.indexOf(selected.file)
     : 0;
 
@@ -178,43 +179,63 @@ export default function EquipmentGallery() {
         {/* Main image viewer */}
         <div ref={mainRef} className="scroll-mt-24 mb-8 lg:mb-12">
           <div className="relative w-full aspect-[16/9] max-h-[600px] bg-black rounded-lg overflow-hidden shadow-card">
-            <Image
-              key={`${selected.category}/${selected.file}`}
-              src={imagePath(selected.category, selected.file)}
-              alt={`${selected.category}の設備写真`}
-              fill
-              className="object-contain"
-              sizes="(max-width: 1400px) 100vw, 1400px"
-              priority
-            />
+            {selected ? (
+              <>
+                <Image
+                  key={`${selected.category}/${selected.file}`}
+                  src={imagePath(selected.category, selected.file)}
+                  alt={`${selected.category}の設備写真`}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1400px) 100vw, 1400px"
+                  priority
+                />
 
-            {/* Prev / Next arrows */}
-            <button
-              onClick={goPrev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors"
-              aria-label="前の画像"
-            >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </button>
-            <button
-              onClick={goNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors"
-              aria-label="次の画像"
-            >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 4l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </button>
+                {/* Prev / Next arrows */}
+                <button
+                  onClick={goPrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors"
+                  aria-label="前の画像"
+                >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </button>
+                <button
+                  onClick={goNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors"
+                  aria-label="次の画像"
+                >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 4l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </button>
 
-            {/* Caption */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-5 pb-4 pt-10">
-              <span className="text-white text-body-sm font-medium">
-                {selected.category}
-              </span>
-              {currentCategory && (
-                <span className="text-white/60 text-caption ml-3">
-                  {currentIndex + 1} / {currentCategory.images.length}
-                </span>
-              )}
-            </div>
+                {/* Caption */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-5 pb-4 pt-10">
+                  <span className="text-white text-body-sm font-medium">
+                    {selected.category}
+                  </span>
+                  {currentCategory && (
+                    <span className="text-white/60 text-caption ml-3">
+                      {currentIndex + 1} / {currentCategory.images.length}
+                    </span>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <Image
+                  src="/images/equipment-hero.png"
+                  alt="工場上空からの全景"
+                  fill
+                  className="object-cover animate-slow-pan"
+                  sizes="(max-width: 1400px) 100vw, 1400px"
+                  priority
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-5 pb-4 pt-10">
+                  <span className="text-white text-body-sm font-medium">
+                    下のカテゴリまたは写真をクリックしてください
+                  </span>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
@@ -244,8 +265,8 @@ export default function EquipmentGallery() {
             }
 
             const isSelected =
-              selected.category === tile.category &&
-              selected.file === tile.file;
+              selected?.category === tile.category &&
+              selected?.file === tile.file;
 
             return (
               <button

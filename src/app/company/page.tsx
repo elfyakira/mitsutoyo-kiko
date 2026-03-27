@@ -69,33 +69,46 @@ function MessageSection() {
           </p>
         </div>
 
-        {/* Message Text - Center aligned */}
-        <div className="max-w-3xl mx-auto text-center text-text-secondary">
-          <p>
-            弊社は、冷間圧造工具の専門メーカーとして、設計・製造・仕上げまでの全工程を自社内で一貫して行う体制を築いてまいりました。
-          </p>
-          <p className="mt-6">
-            創業以来、私たちが大切にしてきたのは「お客様の課題に、誠実に向き合うこと」です。どんなご依頼にも、その背景にある課題を理解し、最善の答えをともに探す─その姿勢が、今日の信頼につながっていると考えています。
-          </p>
-          <p className="mt-6">
-            すべての工程を自社で担うことで、品質のばらつきを抑え、納期を守り、柔軟な対応を可能にしています。この一貫体制こそが、私たちのものづくりの基盤です。
-          </p>
-          <p className="mt-6">
-            これからも、技術を磨き、人を育て、お客様にとって「なくてはならない存在」であり続けることを目指してまいります。
-          </p>
-          <p className="mt-6">
-            どうぞよろしくお願いいたします。
-          </p>
-
-          {/* Name */}
-          <div className="mt-12 text-text-primary">
-            <p className="text-[13px] tracking-[0.15em]">株式会社三豊機工</p>
-            <p className="text-[13px] tracking-[0.15em] mt-1">
-              代表取締役社長
-              <span className="text-[20px] lg:text-[24px] font-bold tracking-[0.2em] ml-4">
-                舟橋 佳孝
-              </span>
+        {/* Message Text - Left aligned with image on right */}
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+          <div className="flex-1 text-left text-text-secondary">
+            <p>
+              弊社は、冷間圧造工具の専門メーカーとして、設計・製造・仕上げまでの全工程を自社内で一貫して行う体制を築いてまいりました。
             </p>
+            <p className="mt-6">
+              創業以来、私たちが大切にしてきたのは「お客様の課題に、誠実に向き合うこと」です。どんなご依頼にも、その背景にある課題を理解し、最善の答えをともに探す─その姿勢が、今日の信頼につながっていると考えています。
+            </p>
+            <p className="mt-6">
+              すべての工程を自社で担うことで、品質のばらつきを抑え、納期を守り、柔軟な対応を可能にしています。この一貫体制こそが、私たちのものづくりの基盤です。
+            </p>
+            <p className="mt-6">
+              これからも、技術を磨き、人を育て、お客様にとって「なくてはならない存在」であり続けることを目指してまいります。
+            </p>
+            <p className="mt-6">
+              どうぞよろしくお願いいたします。
+            </p>
+
+            {/* Name */}
+            <div className="mt-12 text-text-primary">
+              <p className="text-[13px] tracking-[0.15em]">三豊機工株式会社</p>
+              <p className="text-[13px] tracking-[0.15em] mt-1">
+                代表取締役社長
+                <span className="text-[20px] lg:text-[24px] font-bold tracking-[0.2em] ml-4">
+                  舟橋 佳孝
+                </span>
+              </p>
+            </div>
+          </div>
+
+          {/* Right side image */}
+          <div className="w-full lg:w-[45%] flex-shrink-0">
+            <Image
+              src="/images/honsha.png"
+              alt="本社外観"
+              width={800}
+              height={600}
+              className="w-full h-auto object-cover rounded"
+            />
           </div>
         </div>
       </div>
