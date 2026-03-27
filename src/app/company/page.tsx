@@ -774,7 +774,7 @@ function CompanyInfoSection() {
             <p className="text-text-secondary mb-4">〒486-0816　愛知県春日井市東野新町一丁目4番地</p>
             <div className="aspect-[16/9] w-full">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3258.8!2d136.955!3d35.255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60037b5c5c5c5c5d%3A0x0!2z5oSb55-l55yM5pil5pel5LqV5biC5p2x6YeO5paw55S6!5e0!3m2!1sja!2sjp!4v1"
+                src="https://maps.google.com/maps?q=%E4%B8%89%E8%B1%8A%E6%A9%9F%E5%B7%A5+%E6%84%9B%E7%9F%A5%E7%9C%8C%E6%98%A5%E6%97%A5%E4%BA%95%E5%B8%82%E6%9D%B1%E9%87%8E%E6%96%B0%E7%94%BA1-4&t=m&z=16&output=embed&iwloc="
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -794,7 +794,7 @@ function CompanyInfoSection() {
             <p className="text-text-secondary mb-4">〒344-0064　埼玉県春日部市南四丁目2-3</p>
             <div className="aspect-[16/9] w-full">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3230.5!2d139.752!3d35.975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018930000000001%3A0x0!2z5Z-8546J55yM5pil5pel6YOo5biC5Y2X!5e0!3m2!1sja!2sjp!4v1"
+                src="https://maps.google.com/maps?q=%E5%9F%BC%E7%8E%89%E7%9C%8C%E6%98%A5%E6%97%A5%E9%83%A8%E5%B8%82%E5%8D%97%E5%9B%9B%E4%B8%81%E7%9B%AE2-3&t=m&z=16&output=embed&iwloc="
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -814,7 +814,7 @@ function CompanyInfoSection() {
             <p className="text-text-secondary mb-4">〒897-0202　鹿児島県南九州市川辺町清水1542番1</p>
             <div className="aspect-[16/9] w-full">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3400.5!2d130.378!3d31.383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x353e6a0000000001%3A0x0!2z6bm_5YWQ5bO255yM5Y2X5Lmd5bee5biC5bed6L665bKh!5e0!3m2!1sja!2sjp!4v1"
+                src="https://maps.google.com/maps?q=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C%E5%8D%97%E4%B9%9D%E5%B7%9E%E5%B8%82%E5%B7%9D%E8%BE%BA%E7%94%BA%E6%B8%85%E6%B0%B41542%E7%95%AA1&t=m&z=16&output=embed&iwloc="
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
