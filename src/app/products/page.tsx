@@ -11,10 +11,11 @@ function PageHeader() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/products-section.jpg"
+          src="/images/products-hero.png"
           alt="製品情報"
           fill
           className="object-cover"
+          style={{ objectPosition: "50% 87%" }}
           priority
         />
         <div className="absolute inset-0 bg-navy/50" />

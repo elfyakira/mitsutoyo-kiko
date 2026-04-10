@@ -340,7 +340,7 @@ function MessageSection() {
   const workImages = Array.from({ length: 25 }, (_, i) => {
     const num = String(i + 1).padStart(2, "0");
     return { src: `/images/work/work-${num}.jpg`, alt: `作業風景 ${num}` };
-  });
+  }).filter((img) => !["work-02.jpg", "work-03.jpg"].some((name) => img.src.endsWith(name)));
 
   return (
     <section className="py-16 lg:py-24 bg-white">
@@ -399,26 +399,32 @@ function MessageSection() {
 function RequirementsSection() {
   const jobs = [
     {
-      title: "設計（金型の製図・設計・開発）",
+      title: "金型の製図・設計・開発",
       items: [
-        { label: "職種", value: "設計（金型の製図・設計・開発）" },
+        { label: "職種", value: "金型の製図・設計・開発" },
         { label: "雇用形態", value: "正社員" },
+        { label: "募集区分", value: "中途採用" },
         { label: "勤務地", value: "愛知県春日井市東野新町一丁目4番地" },
         { label: "就業時間", value: "8:00～17:00（実働：7.66h）\n\n休憩時間（合計80分）\n10:00～10:10\n12:00～13:00\n15:00～15:10" },
         { label: "休日", value: "週休2日制（土日休み）\n長期休暇あり（GW・夏季休暇・年末年始休暇）" },
-        { label: "給与", value: "【経験者】月給227,000円～260,000円\n【未経験】月給220,000円～246,000円\n※半年後以降 技術手当(19,000～23,000)を支給\n賞与あり" },
+        { label: "給与", value: "【経験者】月給227,000円～260,000円\n【未経験】月給220,000円～246,000円\n※半年後以降 技術手当(19,000～23,000)を支給\n経験・能力等を考慮の上、当社規定により支給します。" },
+        { label: "昇給", value: "年1回" },
+        { label: "賞与", value: "年3回" },
         { label: "福利厚生", value: "雇用保険・労災保険・厚生年金・健康保険\n住宅手当(独身者のみ)\n財形貯蓄\n敷地内駐車場\n慶弔見舞金制度\n産休/育休制度\n改善提案報奨金\n研修制度(OJT研修・鹿児島工場研修)" },
       ],
     },
     {
-      title: "営業職（既存客先向け営業）",
+      title: "既存客先向け営業",
       items: [
-        { label: "職種", value: "営業職（既存客先向け営業）" },
+        { label: "職種", value: "既存客先向け営業" },
         { label: "雇用形態", value: "正社員" },
+        { label: "募集区分", value: "中途採用" },
         { label: "勤務地", value: "愛知県春日井市東野新町一丁目4番地" },
         { label: "就業時間", value: "8:00～17:00（実働：7.66h）\n\n休憩時間（合計80分）\n10:00～10:10\n12:00～13:00\n15:00～15:10" },
         { label: "休日", value: "週休2日制（土日休み）\n長期休暇あり（GW・夏季休暇・年末年始休暇）" },
-        { label: "給与", value: "【未経験】220,000円～238,000円（想定年収 360～390万円）\n【経験者】227,000円～250,000円（想定年収 370～400万円）\n※入社半年後以降に営業手当（19,000～22,000円）を支給\n賞与あり" },
+        { label: "給与", value: "【未経験】220,000円～238,000円（想定年収 360～390万円）\n【経験者】227,000円～250,000円（想定年収 370～400万円）\n※入社半年後以降に営業手当（19,000～22,000円）を支給\n経験・能力等を考慮の上、当社規定により支給します。" },
+        { label: "昇給", value: "年1回" },
+        { label: "賞与", value: "年3回" },
         { label: "福利厚生", value: "雇用保険・労災保険・厚生年金・健康保険\n住宅手当(独身者のみ)\n財形貯蓄\n敷地内駐車場\n慶弔見舞金制度\n産休/育休制度\n改善提案報奨金\n研修制度(OJT研修・鹿児島工場研修)" },
       ],
     },
@@ -444,9 +450,9 @@ function RequirementsSection() {
         </div>
 
         {/* Job Cards - 2 columns with aligned rows */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 lg:gap-x-12 max-w-6xl mx-auto" style={{ gridTemplateRows: "repeat(8, auto)" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 lg:gap-x-12 max-w-6xl mx-auto" style={{ gridTemplateRows: "repeat(12, auto)" }}>
           {jobs.map((job, jobIndex) => (
-            <div key={jobIndex} className="border border-navy/15" style={{ display: "grid", gridTemplateRows: "subgrid", gridRow: "span " + (job.items.length + 1) }}>
+            <div key={`card-${jobIndex}`} className="border border-navy/15" style={{ display: "grid", gridTemplateRows: "subgrid", gridRow: "span " + (job.items.length + 1) }}>
               {/* Job Title Header */}
               <div className="bg-navy px-6 lg:px-8 py-5">
                 <h3
@@ -471,6 +477,19 @@ function RequirementsSection() {
                   </div>
                 </div>
               ))}
+            </div>
+          ))}
+          {jobs.map((_, jobIndex) => (
+            <div key={`apply-${jobIndex}`} className="pt-6 flex justify-center">
+              <button
+                type="button"
+                className="inline-flex items-center justify-center gap-2 bg-navy text-white px-10 py-4 text-[14px] lg:text-[16px] font-bold tracking-[0.15em] transition-colors hover:bg-navy/90"
+              >
+                応募する
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
             </div>
           ))}
         </div>

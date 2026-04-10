@@ -238,16 +238,6 @@ function PerformanceSection() {
           <p className="text-text-secondary">
             設計から製造、仕上げまでのすべてを自社内で行うこと。それは、単なる効率化ではなく、「品質を守るための仕組み」です。各工程の担当者が常に情報を共有し、仕様変更や改善を即時に反映。試作から量産までの流れをスムーズにコントロールできます。
           </p>
-
-          <div className="relative mt-8 w-full lg:w-[80%]">
-            <Image
-              src="/images/production-flow.png"
-              alt="一貫生産体制の流れ"
-              width={1200}
-              height={400}
-              className="w-full h-auto"
-            />
-          </div>
         </div>
 
 

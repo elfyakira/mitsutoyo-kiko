@@ -74,14 +74,6 @@ const categories: Category[] = [
     ],
   },
   {
-    name: "パレットチェンジャー付き自動化システム",
-    nameEn: "Pallet Changer System",
-    images: [
-      "160519d4-8c6f-4139-a2f1-c15cefdf2b96.jpg",
-      "669daa3f-6641-4473-a155-af8a4c4e8c33.jpg",
-    ],
-  },
-  {
     name: "金属３D プリンター",
     nameEn: "Metal 3D Printer",
     images: [

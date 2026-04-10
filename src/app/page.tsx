@@ -112,14 +112,14 @@ function HeroAboutSection() {
               }`}
             >
               <h1
-                className="text-[40px] md:text-[70px] lg:text-[100px] font-bold text-white tracking-[0.08em] leading-[1.1] mb-4"
+                className="text-[32px] md:text-[52px] lg:text-[72px] font-bold text-white tracking-[0.08em] leading-[1.1] mb-4"
                 style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
               >
                 <span className="block">All in-house.</span>
                 <span className="block">All for Precision.</span>
               </h1>
               <p
-                className="text-[18px] md:text-[26px] lg:text-[36px] font-light text-white/90 tracking-[0.25em] leading-relaxed"
+                className="text-[15px] md:text-[20px] lg:text-[26px] font-light text-white/90 tracking-[0.25em] leading-relaxed"
                 style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
               >
                 <span className="block">すべてを自社で。すべては信頼のために。</span>
@@ -363,17 +363,18 @@ function RecruitSection() {
 
       {/* Right 2/3 - Two image columns */}
       <div className="lg:w-2/3 flex flex-col sm:flex-row">
-        <div className="sm:w-1/2 relative min-h-[350px] lg:min-h-[700px]">
+        <div className="sm:w-1/2 relative min-h-[350px] lg:min-h-[700px] overflow-hidden">
           <Image
-            src="/images/products-section.jpg"
+            src="/images/products-section.png"
             alt="製品"
             fill
             className="object-cover"
+            style={{ objectPosition: "75% 90%", transform: "scale(1.25)" }}
           />
         </div>
         <div className="sm:w-1/2 relative min-h-[350px] lg:min-h-[700px]">
           <Image
-            src="/images/facilities-section.jpg"
+            src="/images/facilities-section.png"
             alt="設備"
             fill
             className="object-cover"

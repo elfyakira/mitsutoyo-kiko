@@ -23,32 +23,6 @@ export type ProductCategory = {
 
 export const productCategories: ProductCategory[] = [
   {
-    name: "研究開発",
-    nameEn: "Research & Development",
-    slug: "rnd",
-    images: [
-      "/images/products/rnd/rnd-main.png",
-    ],
-    subCategories: [
-      {
-        name: "高合金鋼圧造",
-        nameEn: "Special Metal Forging",
-        slug: "special-metal-forging",
-        images: [
-          "/images/products/rnd/special-metal-forging/special-metal-forging.png",
-        ],
-      },
-      {
-        name: "直彫加工品",
-        nameEn: "Direct Milling Machining Center",
-        slug: "direct-engraving",
-        images: [
-          "/images/products/rnd/latest-processing/direct-engraving/direct-engraving.png",
-        ],
-      },
-    ],
-  },
-  {
     name: "ダブルヘックス割型シリーズ",
     nameEn: "Double Hex",
     slug: "double-hex",
@@ -82,8 +56,8 @@ export const productCategories: ProductCategory[] = [
     ],
   },
   {
-    name: "ニブシリーズ＆リング",
-    nameEn: "Nibs Series & Ring",
+    name: "ニブシリーズ",
+    nameEn: "Nibs Series",
     slug: "nibs-ring",
     images: ["/images/products/nibs-ring/nibs-ring-group.png"],
     subCategories: [
@@ -95,12 +69,6 @@ export const productCategories: ProductCategory[] = [
           { src: "/images/products/nibs-ring/dn-nib/hex-upset-nib.png", label: "DN《六角アップセットニブ》" },
           { src: "/images/products/nibs-ring/dn-nib/square-root-nib.png", label: "DS《根角ニブ》" },
         ],
-      },
-      {
-        name: "リング",
-        nameEn: "Hex Nib & Ring",
-        slug: "hex-nib-ring",
-        images: ["/images/products/nibs-ring/hex-nib-ring/hex-nib-ring.png"],
       },
     ],
   },
@@ -134,6 +102,12 @@ export const productCategories: ProductCategory[] = [
         images: ["/images/products/steel-tool/dies-case/dies-case.png"],
       },
       {
+        name: "パンチケース",
+        nameEn: "Punch Case",
+        slug: "punch-case",
+        images: ["/images/products/steel-tool/punch-case/punch-case.png"],
+      },
+      {
         name: "トリミングダイス",
         nameEn: "Trimming Dies",
         slug: "trimming-dies",
@@ -142,10 +116,10 @@ export const productCategories: ProductCategory[] = [
         ],
       },
       {
-        name: "パンチケース",
-        nameEn: "Punch Case",
-        slug: "punch-case",
-        images: ["/images/products/steel-tool/punch-case/punch-case.png"],
+        name: "リング",
+        nameEn: "Ring",
+        slug: "ring",
+        images: ["/images/products/nibs-ring/hex-nib-ring/hex-nib-ring.png"],
       },
     ],
   },
@@ -162,7 +136,7 @@ export const productCategories: ProductCategory[] = [
         nameEn: "Punch Pin & Dies Pin",
         slug: "punch-pin-dies-pin",
         images: [
-          "/images/products/pin-punch-nib/punch-pin-dies-pin/punch-pin-dies-pin.png",
+          "/images/products/pin-punch-nib/punch-pin-dies-pin/punch-pin-dies-pin.jpg",
         ],
       },
       {
@@ -201,6 +175,34 @@ export const productCategories: ProductCategory[] = [
         nameEn: "Finger",
         slug: "finger",
         images: ["/images/products/knife-finger/finger/finger.png"],
+      },
+    ],
+  },
+  {
+    name: "金属3Dプリンタ製品",
+    nameEn: "Metal 3D Printed Products",
+    slug: "metal-3d-printed",
+    images: [
+      "/images/products/metal-3d-printed/metal-3d-printed-1.jpg",
+      "/images/products/metal-3d-printed/metal-3d-printed-2.jpg",
+    ],
+    subCategories: [],
+  },
+  {
+    name: "研究開発",
+    nameEn: "Research & Development",
+    slug: "rnd",
+    images: [
+      "/images/products/rnd/rnd-main.png",
+    ],
+    subCategories: [
+      {
+        name: "高合金鋼圧造",
+        nameEn: "Special Metal Forging",
+        slug: "special-metal-forging",
+        images: [
+          "/images/products/rnd/special-metal-forging/special-metal-forging.png",
+        ],
       },
     ],
   },
