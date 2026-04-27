@@ -270,7 +270,7 @@ function Strength02Section() {
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="px-8 md:px-16 lg:px-24">
-        <div className="lg:ml-auto lg:w-[70%]">
+        <div className="lg:mr-auto lg:w-[70%]">
           <h2
             className="text-[28px] md:text-[36px] lg:text-[46px] font-bold text-navy tracking-[0.2em] leading-[1.4]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
@@ -290,7 +290,7 @@ function Strength02Section() {
         </div>
 
         {/* Description */}
-        <div className="mt-16 lg:ml-auto lg:w-[70%]">
+        <div className="mt-16 lg:mr-auto lg:w-[70%]">
           <h3
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
@@ -307,7 +307,7 @@ function Strength02Section() {
         </div>
 
         {/* Double Hex - Right aligned */}
-        <div className="mt-16 lg:ml-auto lg:w-[70%]">
+        <div className="mt-16 lg:mr-auto lg:w-[70%]">
           <h3
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}

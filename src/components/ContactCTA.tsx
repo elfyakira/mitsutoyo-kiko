@@ -25,7 +25,7 @@ export default function ContactCTA() {
                 className="text-[13px] lg:text-[14px] text-white/70 leading-[2] tracking-[0.15em] mt-8"
                 style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400 }}
               >
-                <p>「こんな資材があれば...」「相談にのって欲しい」</p>
+                <p>「こんな金型があれば...」「相談にのって欲しい」</p>
                 <p>どのようなお問い合わせでも構いません。</p>
                 <p>あなたの抱えている思いをどうぞお聞かせください。</p>
               </div>

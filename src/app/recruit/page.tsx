@@ -401,7 +401,6 @@ function RequirementsSection() {
     {
       title: "金型の製図・設計・開発",
       items: [
-        { label: "職種", value: "金型の製図・設計・開発" },
         { label: "雇用形態", value: "正社員" },
         { label: "募集区分", value: "中途採用" },
         { label: "勤務地", value: "愛知県春日井市東野新町一丁目4番地" },
@@ -416,7 +415,6 @@ function RequirementsSection() {
     {
       title: "既存客先向け営業",
       items: [
-        { label: "職種", value: "既存客先向け営業" },
         { label: "雇用形態", value: "正社員" },
         { label: "募集区分", value: "中途採用" },
         { label: "勤務地", value: "愛知県春日井市東野新町一丁目4番地" },
@@ -450,7 +448,7 @@ function RequirementsSection() {
         </div>
 
         {/* Job Cards - 2 columns with aligned rows */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 lg:gap-x-12 max-w-6xl mx-auto" style={{ gridTemplateRows: "repeat(12, auto)" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 lg:gap-x-12 max-w-6xl mx-auto" style={{ gridTemplateRows: "repeat(11, auto)" }}>
           {jobs.map((job, jobIndex) => (
             <div key={`card-${jobIndex}`} className="border border-navy/15" style={{ display: "grid", gridTemplateRows: "subgrid", gridRow: "span " + (job.items.length + 1) }}>
               {/* Job Title Header */}

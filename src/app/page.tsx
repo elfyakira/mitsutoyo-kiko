@@ -369,7 +369,7 @@ function RecruitSection() {
             alt="製品"
             fill
             className="object-cover"
-            style={{ objectPosition: "75% 90%", transform: "scale(1.25)" }}
+            style={{ objectPosition: "center 0%", transform: "scale(1.5) translateY(5%)" }}
           />
         </div>
         <div className="sm:w-1/2 relative min-h-[350px] lg:min-h-[700px]">
