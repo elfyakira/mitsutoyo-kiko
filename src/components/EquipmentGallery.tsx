@@ -11,98 +11,72 @@ type Category = {
 
 const categories: Category[] = [
   {
-    name: "マシニング&フライス",
-    nameEn: "Machining & Milling",
-    images: [
-      "56a75fa1-e9cd-4e2c-9168-0f49c74a158f.jpg",
-      "68af4049-8c4b-47d0-9371-5333680803a3.jpg",
-      "dd5ffdea-8ba5-49f4-a319-5a6bd719bf71.jpg",
-      "ea3f776d-76fb-4cad-8b04-4a3e9f9f09a9.jpg",
-    ],
+    name: "材料",
+    nameEn: "Materials",
+    images: ["1.jpg", "2.jpg", "3.jpg"],
   },
   {
     name: "旋盤",
     nameEn: "Lathe",
-    images: [
-      "ac09553e-293d-4817-827c-cc8cf1441fac.jpg",
-      "e88f24be-a402-4fd3-a324-9dfa7324c59f.jpg",
-    ],
+    images: ["1.jpg", "2.jpg", "3.jpg"],
+  },
+  {
+    name: "マシニング",
+    nameEn: "Machining",
+    images: ["1.jpg", "2.jpg", "3.jpg"],
+  },
+  {
+    name: "熱処理",
+    nameEn: "Heat Treatment",
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
   },
   {
     name: "研削",
     nameEn: "Grinding",
     images: [
-      "4292850c-ec51-4726-b36d-4e66b7581cdd.jpg",
-      "4459d3ea-d988-4355-a336-6078b927cf04.jpg",
-      "5ce38678-98c6-4abe-9e0b-827e1ef0b6eb.jpg",
-      "64883984-bcec-4623-9780-f5df43a69b96.jpg",
-      "87d43ed1-5a60-498f-b207-8ed629b922bb.jpg",
-      "8c382478-d841-456b-9903-5bb147dc97dc.jpg",
-      "aa41e333-3e6e-4f4e-b0c9-3c7e518df237.jpg",
-      "c8742354-970b-4906-b718-ae5040ae0eff.jpg",
-      "caf13738-167d-4b7b-afac-cddfc6851c79.jpg",
-      "eaa246d2-14fe-4945-97ed-6d4c9950b917.jpg",
-      "f0b3d137-3056-469c-9231-211c769ef0ba.jpg",
-      "ffead560-618e-4110-954a-b4b0d006cc5e.jpg",
+      "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg",
+      "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg",
     ],
   },
   {
     name: "放電",
     nameEn: "EDM",
-    images: [
-      "32b78e92-9956-48c5-a187-f14fd2c4f39b.jpg",
-      "79ab5f1c-221b-43d4-b412-28dac5843b7e.jpg",
-      "7a3f82bd-0aab-439b-bde3-c4e03d1a7e35.jpg",
-      "879af888-3ef9-4e58-a7a2-4287d11725fe.jpg",
-    ],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"],
   },
   {
-    name: "ホーニング盤",
-    nameEn: "Honing",
-    images: [
-      "099ae189-764c-4c30-9b42-bdc986a4ec2f.jpg",
-    ],
+    name: "5軸マシニング",
+    nameEn: "5-Axis Machining",
+    images: ["1.jpg", "2.jpg", "3.jpg"],
   },
   {
-    name: "自動化設備",
-    nameEn: "Automation",
-    images: [
-      "7714dfc0-9618-4ea1-b8c7-424e088e230c.jpg",
-      "90699cce-7464-4064-811d-0021ad87acfe.jpg",
-      "dd2c735c-ea58-4617-9d71-7faa4f9997a9.jpg",
-      "f7008fd7-80bd-49e1-ba6e-f87cab0c82ac.jpg",
-    ],
-  },
-  {
-    name: "金属３D プリンター",
-    nameEn: "Metal 3D Printer",
-    images: [
-      "4c076ea4-f935-47d3-ad98-9479a0e1de40.jpg",
-      "710eac93-d790-477a-939a-1fc110b052c5.jpg",
-      "b7ae3e6a-6149-4d77-a260-ecbc3076a63e.jpg",
-    ],
-  },
-  {
-    name: "熱処理",
-    nameEn: "Heat Treatment",
-    images: [
-      "9c0078c0-5f67-4b7d-aa8a-f1e330d06792.jpg",
-    ],
+    name: "ラップ",
+    nameEn: "Lapping",
+    images: ["1.jpg", "2.jpg", "3.jpg"],
   },
   {
     name: "コーティング",
     nameEn: "Coating",
-    images: [
-      "0a4024a8-db09-404d-8d16-c6b7629f3171.jpg",
-      "58963cf4-97d3-4920-9c94-6f69559eb2f2.jpg",
-    ],
+    images: ["1.jpg", "2.jpg", "3.jpg"],
   },
   {
-    name: "材料",
-    nameEn: "Materials",
-    images: [
-      "78ad752e-5806-4d39-bec9-d1ac3917dba9.jpg",
-    ],
+    name: "金属3Dプリンター",
+    nameEn: "Metal 3D Printer",
+    images: ["1.jpg", "2.jpg"],
+  },
+  {
+    name: "その他",
+    nameEn: "Others",
+    images: ["1.jpg", "2.jpg"],
+  },
+  {
+    name: "検査",
+    nameEn: "Inspection",
+    images: ["1.jpg", "2.jpg", "3.jpg"],
+  },
+  {
+    name: "研究開発",
+    nameEn: "R&D",
+    images: ["1.jpg", "2.jpg"],
   },
 ];
 
@@ -214,7 +188,7 @@ export default function EquipmentGallery() {
             ) : (
               <>
                 <Image
-                  src="/images/equipment-hero.png"
+                  src="/images/equipment-hero.jpg"
                   alt="工場上空からの全景"
                   fill
                   className="object-cover animate-slow-pan"

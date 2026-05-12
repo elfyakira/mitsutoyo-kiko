@@ -365,11 +365,11 @@ function RecruitSection() {
       <div className="lg:w-2/3 flex flex-col sm:flex-row">
         <div className="sm:w-1/2 relative min-h-[350px] lg:min-h-[700px] overflow-hidden">
           <Image
-            src="/images/products-section.png"
+            src="/images/products-section.jpg"
             alt="製品"
             fill
             className="object-cover"
-            style={{ objectPosition: "center 0%", transform: "scale(1.5) translateY(5%)" }}
+            style={{ objectPosition: "center 0%", transform: "scale(1.1) translateY(8%)" }}
           />
         </div>
         <div className="sm:w-1/2 relative min-h-[350px] lg:min-h-[700px]">
