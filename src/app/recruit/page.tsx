@@ -337,10 +337,10 @@ function NumbersSection() {
 // Message Section
 // ============================================================
 function MessageSection() {
-  const workImages = Array.from({ length: 25 }, (_, i) => {
+  const workImages = Array.from({ length: 26 }, (_, i) => {
     const num = String(i + 1).padStart(2, "0");
     return { src: `/images/work/work-${num}.jpg`, alt: `作業風景 ${num}` };
-  }).filter((img) => !["work-02.jpg", "work-03.jpg"].some((name) => img.src.endsWith(name)));
+  });
 
   return (
     <section className="py-16 lg:py-24 bg-white">
@@ -374,7 +374,7 @@ function MessageSection() {
             </div>
           ))}
         </div>
-        {/* Row 2 - images 14-25 */}
+        {/* Row 2 - images 14-26 */}
         <div className="flex animate-[scrollLeft_70s_linear_infinite] gap-8 w-max">
           {[...workImages.slice(13), ...workImages.slice(13)].map((img, i) => (
             <div key={`row2-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded">
