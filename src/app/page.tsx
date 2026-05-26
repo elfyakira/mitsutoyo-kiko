@@ -10,13 +10,62 @@ import AnimatedLink from "@/components/animations/AnimatedLink";
 // ============================================================
 // Hero Section
 // ============================================================
+const HERO_VIDEOS = [
+  "/videos/hero-1.mp4",
+  "/videos/hero-2.mp4",
+  "/videos/hero-3.mp4",
+  "/videos/hero-4.mp4",
+  "/videos/hero-5.mp4",
+  "/videos/hero-6.mp4",
+];
+
+// ① はくっきり、②以降は少しだけブラー
+const videoBlurPx = (src: string) => (src === HERO_VIDEOS[0] ? 0 : 3);
+
+const CROSSFADE_MS = 1000;
+
 function HeroAboutSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [fadeProgress, setFadeProgress] = useState(0);
   const [contentScroll, setContentScroll] = useState(0);
+  // クロスフェード用の2スロット。最初の動画を slot A、次の動画(プリロード)を slot B
+  const [slotASrc, setSlotASrc] = useState(HERO_VIDEOS[0]);
+  const [slotBSrc, setSlotBSrc] = useState(HERO_VIDEOS[1]);
+  const [activeSlot, setActiveSlot] = useState<"A" | "B">("A");
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const slotARef = useRef<HTMLVideoElement>(null);
+  const slotBRef = useRef<HTMLVideoElement>(null);
   const [contentOverflow, setContentOverflow] = useState(0);
+
+  const getNextSrc = useCallback((src: string) => {
+    const idx = HERO_VIDEOS.indexOf(src);
+    return HERO_VIDEOS[(idx + 1) % HERO_VIDEOS.length];
+  }, []);
+
+  const handleEnded = useCallback(
+    (endedSlot: "A" | "B") => () => {
+      if (endedSlot !== activeSlot) return;
+      const nextSlot = endedSlot === "A" ? "B" : "A";
+      const nextRef = nextSlot === "A" ? slotARef : slotBRef;
+      if (nextRef.current) {
+        nextRef.current.currentTime = 0;
+        nextRef.current.play().catch(() => {});
+      }
+      setActiveSlot(nextSlot);
+      // クロスフェード完了後、非表示になった側に次々の動画を仕込む
+      setTimeout(() => {
+        const visibleSrc = nextSlot === "A" ? slotASrc : slotBSrc;
+        const nextNextSrc = getNextSrc(visibleSrc);
+        if (endedSlot === "A") {
+          setSlotASrc(nextNextSrc);
+        } else {
+          setSlotBSrc(nextNextSrc);
+        }
+      }, CROSSFADE_MS);
+    },
+    [activeSlot, slotASrc, slotBSrc, getNextSrc],
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 300);
@@ -84,15 +133,41 @@ function HeroAboutSection() {
             transform: `scale(${mirageScaleX}, ${mirageScaleY})`,
           }}
         >
+          {/* クロスフェード用 2 スロット */}
           <video
-            autoPlay
+            ref={slotARef}
+            key={`A-${slotASrc}`}
+            autoPlay={activeSlot === "A"}
             muted
-            loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="/videos/hero-bg.mp4" type="video/mp4" />
-          </video>
+            preload="auto"
+            onEnded={handleEnded("A")}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity"
+            style={{
+              opacity: activeSlot === "A" ? 1 : 0,
+              transitionDuration: `${CROSSFADE_MS}ms`,
+              filter: `blur(${videoBlurPx(slotASrc)}px)`,
+              transform: "scale(1.03)",
+            }}
+            src={slotASrc}
+          />
+          <video
+            ref={slotBRef}
+            key={`B-${slotBSrc}`}
+            autoPlay={activeSlot === "B"}
+            muted
+            playsInline
+            preload="auto"
+            onEnded={handleEnded("B")}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity"
+            style={{
+              opacity: activeSlot === "B" ? 1 : 0,
+              transitionDuration: `${CROSSFADE_MS}ms`,
+              filter: `blur(${videoBlurPx(slotBSrc)}px)`,
+              transform: "scale(1.03)",
+            }}
+            src={slotBSrc}
+          />
           <div className="absolute inset-0 bg-black/40" />
         </div>
 
@@ -479,6 +554,67 @@ function CompanySection() {
 
 
 // ============================================================
+// Related Banners Section
+// ============================================================
+function RelatedBannersSection() {
+  const banners = [
+    {
+      src: "/images/banners/mitsutoyo-golf-club.png",
+      alt: "MITSUTOYO Golf Club",
+      href: "http://mitsutoyogolf.com/",
+    },
+    {
+      src: "/images/banners/satsuma-farm.png",
+      alt: "薩摩農園",
+      href: "https://satsuma-farm.jp/",
+    },
+  ];
+
+  return (
+    <section className="py-16 lg:py-24 bg-white">
+      <div className="px-8 md:px-16 lg:px-24">
+        {/* Title */}
+        <div className="mb-12 lg:mb-16">
+          <h2
+            className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-navy tracking-[0.25em] leading-[1.3]"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+          >
+            鹿児島の広大な大地とともに
+          </h2>
+          <p
+            className="text-[16px] md:text-[22px] lg:text-[30px] font-bold text-navy/70 tracking-[0.08em] leading-[1.3] mt-4"
+            style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+          >
+            With the Vast Land of Kagoshima
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          {banners.map((b) => (
+            <a
+              key={b.src}
+              href={b.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-full overflow-hidden block transition-opacity duration-200 hover:opacity-80"
+              style={{ aspectRatio: "16 / 9" }}
+            >
+              <Image
+                src={b.src}
+                alt={b.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 // Main Page
 // ============================================================
 export default function Home() {
@@ -488,6 +624,7 @@ export default function Home() {
       <FacilitySection />
       <RecruitSection />
       <CompanySection />
+      <RelatedBannersSection />
       <ContactCTA />
     </>
   );
