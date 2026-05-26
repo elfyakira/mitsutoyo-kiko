@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef } from "react";
-import Image from "next/image";
 import { productCategories, type ProductCategory, type SubCategory, type ProductImage } from "@/lib/products";
 
 function getImageSrc(img: string | ProductImage): string {
@@ -41,7 +40,12 @@ export default function ProductCatalog() {
   };
 
   const handleCategoryClick = (cat: ProductCategory) => {
-    setSelection({ type: "category", category: cat });
+    // 集合画像が無く、サブカテゴリがある場合は最初のサブを表示
+    if (cat.images.length === 0 && cat.subCategories.length > 0) {
+      setSelection({ type: "sub", category: cat, sub: cat.subCategories[0] });
+    } else {
+      setSelection({ type: "category", category: cat });
+    }
     setHoveredIndex(null);
   };
 
@@ -311,7 +315,7 @@ export default function ProductCatalog() {
                       </div>
                       <div className="flex-1 h-px bg-gray-200" />
                     </div>
-                    <div className="space-y-8 ">
+                    <div className="space-y-4">
                       {sub.images.map((img, i) => {
                         const src = getImageSrc(img);
                         const label = getImageLabel(img);
@@ -325,18 +329,12 @@ export default function ProductCatalog() {
                                 <div className="flex-1 h-px bg-gray-200" />
                               </div>
                             )}
-                            <div
-                              className="relative w-full"
-                              style={{ aspectRatio: "4 / 3" }}
-                            >
-                              <Image
-                                src={src}
-                                alt={label || `${sub.name} ${i + 1}`}
-                                fill
-                                className="object-contain"
-                                sizes="(max-width: 1280px) 100vw, 70vw"
-                              />
-                            </div>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={src}
+                              alt={label || `${sub.name} ${i + 1}`}
+                              className="w-full h-auto object-contain"
+                            />
                           </div>
                         );
                       })}
@@ -345,7 +343,7 @@ export default function ProductCatalog() {
                 ))}
               </div>
             ) : displayImages.length > 0 ? (
-              <div className="space-y-8 ">
+              <div className="space-y-4">
                 {displayImages.map((img, i) => {
                   const src = getImageSrc(img);
                   const label = getImageLabel(img);
@@ -359,18 +357,12 @@ export default function ProductCatalog() {
                         <div className="flex-1 h-px bg-gray-200" />
                       </div>
                     )}
-                    <div
-                      className="relative w-full"
-                      style={{ aspectRatio: "4 / 3" }}
-                    >
-                      <Image
-                        src={src}
-                        alt={label || `${displayTitle} ${i + 1}`}
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 1280px) 100vw, 70vw"
-                      />
-                    </div>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={src}
+                      alt={label || `${displayTitle} ${i + 1}`}
+                      className="w-full h-auto object-contain"
+                    />
                   </div>
                   );
                 })}

@@ -87,14 +87,7 @@ export const productCategories: ProductCategory[] = [
     nameEn: "Steel Tool",
     slug: "steel-tool",
     images: [],
-    showAllSubs: true,
     subCategories: [
-      {
-        name: "スリーブ",
-        nameEn: "Sleeve",
-        slug: "sleeve",
-        images: ["/images/products/steel-tool/sleeve/sleeve.png"],
-      },
       {
         name: "ダイスケース",
         nameEn: "Dies Case",
@@ -108,18 +101,24 @@ export const productCategories: ProductCategory[] = [
         images: ["/images/products/steel-tool/punch-case/punch-case.png"],
       },
       {
-        name: "トリミングダイス",
-        nameEn: "Trimming Dies",
-        slug: "trimming-dies",
-        images: [
-          "/images/products/steel-tool/trimming-dies/trimming-dies.png",
-        ],
+        name: "スリーブ",
+        nameEn: "Sleeve",
+        slug: "sleeve",
+        images: ["/images/products/steel-tool/sleeve/sleeve.png"],
       },
       {
         name: "リング",
         nameEn: "Ring",
         slug: "ring",
         images: ["/images/products/nibs-ring/hex-nib-ring/hex-nib-ring.png"],
+      },
+      {
+        name: "トリミングダイス",
+        nameEn: "Trimming Dies",
+        slug: "trimming-dies",
+        images: [
+          "/images/products/steel-tool/trimming-dies/trimming-dies.png",
+        ],
       },
     ],
   },

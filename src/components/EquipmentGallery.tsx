@@ -101,6 +101,11 @@ function buildTiles(): Tile[] {
 
 const allTiles = buildTiles();
 
+// 矢印ナビ用：カテゴリラベルを除いた全画像のフラットリスト
+const allImages: { category: string; file: string }[] = categories.flatMap(
+  (cat) => cat.images.map((file) => ({ category: cat.name, file })),
+);
+
 export default function EquipmentGallery() {
   const [selected, setSelected] = useState<{
     category: string;
@@ -126,18 +131,28 @@ export default function EquipmentGallery() {
     : 0;
 
   const goPrev = useCallback(() => {
-    if (!currentCategory) return;
-    const idx =
-      currentIndex > 0 ? currentIndex - 1 : currentCategory.images.length - 1;
-    setSelected({ category: currentCategory.name, file: currentCategory.images[idx] });
-  }, [currentCategory, currentIndex]);
+    if (!selected) return;
+    const flatIdx = allImages.findIndex(
+      (it) => it.category === selected.category && it.file === selected.file,
+    );
+    if (flatIdx === -1) return;
+    const prev =
+      allImages[flatIdx > 0 ? flatIdx - 1 : allImages.length - 1];
+    setSelected(prev);
+    setSelectedCategory(prev.category);
+  }, [selected]);
 
   const goNext = useCallback(() => {
-    if (!currentCategory) return;
-    const idx =
-      currentIndex < currentCategory.images.length - 1 ? currentIndex + 1 : 0;
-    setSelected({ category: currentCategory.name, file: currentCategory.images[idx] });
-  }, [currentCategory, currentIndex]);
+    if (!selected) return;
+    const flatIdx = allImages.findIndex(
+      (it) => it.category === selected.category && it.file === selected.file,
+    );
+    if (flatIdx === -1) return;
+    const next =
+      allImages[flatIdx < allImages.length - 1 ? flatIdx + 1 : 0];
+    setSelected(next);
+    setSelectedCategory(next.category);
+  }, [selected]);
 
   return (
     <section className="py-section-y-sp lg:py-section-y bg-white">

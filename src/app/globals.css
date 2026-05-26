@@ -203,7 +203,9 @@ body {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    /* gap-8 (2rem) を 26 個に 25 個入れる構造のため、-50% では半ギャップ分(1rem)ずれる。
+       1rem 余分にずらして、最終画像と先頭画像の間も他と同じ 2rem ギャップで繋がるよう補正 */
+    transform: translateX(calc(-50% - 1rem));
   }
 }
 

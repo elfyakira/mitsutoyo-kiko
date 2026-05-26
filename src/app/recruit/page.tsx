@@ -361,31 +361,35 @@ function MessageSection() {
 
       {/* Scrolling gallery - two rows */}
       <div className="space-y-8 overflow-hidden">
-        {/* Row 1 - images 1-13 */}
+        {/* Row 1 - images 1-13 (2セット連結、セット間にも gap-8 を入れて全ギャップ均一) */}
         <div className="flex animate-[scrollLeft_80s_linear_infinite] gap-8 w-max">
-          {[...workImages.slice(0, 13), ...workImages.slice(0, 13)].map((img, i) => (
-            <div key={`row1-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover"
-              />
-            </div>
-          ))}
+          {[0, 1].map((copyIdx) =>
+            workImages.slice(0, 13).map((img, i) => (
+              <div key={`row1-${copyIdx}-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded">
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            )),
+          )}
         </div>
         {/* Row 2 - images 14-26 */}
         <div className="flex animate-[scrollLeft_70s_linear_infinite] gap-8 w-max">
-          {[...workImages.slice(13), ...workImages.slice(13)].map((img, i) => (
-            <div key={`row2-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover"
-              />
-            </div>
-          ))}
+          {[0, 1].map((copyIdx) =>
+            workImages.slice(13).map((img, i) => (
+              <div key={`row2-${copyIdx}-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded">
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            )),
+          )}
         </div>
       </div>
     </section>
