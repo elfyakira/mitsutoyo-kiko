@@ -121,7 +121,7 @@ function MessageSection() {
 // ============================================================
 function FeaturesSection() {
   return (
-    <section className="relative pt-16 pb-24 lg:pt-64 lg:pb-40 overflow-hidden">
+    <section className="relative py-24 lg:py-56 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -134,7 +134,7 @@ function FeaturesSection() {
       </div>
       <div className="relative z-10 max-w-container mx-auto px-6 lg:px-12">
         {/* Title */}
-        <div className="text-center mb-40 lg:mb-60">
+        <div className="text-center mb-56 lg:mb-96">
           <h2
             className="text-[24px] md:text-[40px] lg:text-[50px] font-light text-white tracking-[0.25em] leading-[1.3]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
@@ -150,7 +150,7 @@ function FeaturesSection() {
         </div>
 
         {/* Philosophy Text */}
-        <div className="text-center max-w-4xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto mt-32 lg:mt-56">
           <p
             className="text-[16px] md:text-[32px] lg:text-[40px] text-white font-bold tracking-[0.1em] leading-[1.6] mb-3 md:mb-8"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
