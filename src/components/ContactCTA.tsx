@@ -32,10 +32,10 @@ export default function ContactCTA() {
             </div>
 
             {/* Right side - Large Button */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 w-full lg:w-auto flex justify-center lg:block">
               <Link
                 href="/contact"
-                className="group flex items-center justify-between bg-white/20 hover:bg-white/30 transition-colors rounded-full px-12 md:px-16 py-8 md:py-10 min-w-[320px] md:min-w-[400px]"
+                className="group flex items-center justify-between bg-white/20 hover:bg-white/30 transition-colors rounded-full px-6 md:px-16 py-6 md:py-10 w-full md:w-auto md:min-w-[400px]"
               >
                 <div className="text-left">
                   <span
@@ -51,7 +51,7 @@ export default function ContactCTA() {
                     お問い合わせフォーム
                   </span>
                 </div>
-                <div className="w-12 h-12 rounded-full border border-white/50 flex items-center justify-center ml-8 group-hover:bg-white/20 transition-colors">
+                <div className="w-12 h-12 rounded-full border border-white/50 flex items-center justify-center ml-4 md:ml-8 group-hover:bg-white/20 transition-colors">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>

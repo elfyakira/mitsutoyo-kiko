@@ -197,7 +197,8 @@ function HeroAboutSection() {
                 className="text-[15px] md:text-[20px] lg:text-[26px] font-light text-white/90 tracking-[0.25em] leading-relaxed"
                 style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
               >
-                <span className="block">すべてを自社で。すべては信頼のために。</span>
+                <span className="block lg:inline">すべてを自社で。</span>
+                <span className="block lg:inline">すべては信頼のために。</span>
               </p>
             </div>
           </div>
@@ -225,13 +226,13 @@ function HeroAboutSection() {
                     className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-white tracking-[0.25em] leading-[1.3] whitespace-nowrap"
                     style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
                   >
-                    課題に寄り添い、解決へ導く。
+                    課題に寄り添い、<br className="lg:hidden" />解決へ導く。
                   </h2>
                   <p
                     className="text-[16px] md:text-[22px] lg:text-[30px] font-bold text-white/70 tracking-[0.08em] leading-[1.3] mt-4"
                     style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
                   >
-                    Close to your challenges. Closer to the solution.
+                    Close to your challenges.<br className="lg:hidden" /> Closer to the solution.
                   </p>
                 </div>
 
@@ -559,8 +560,8 @@ function CompanySection() {
 function RelatedBannersSection() {
   const banners = [
     {
-      src: "/images/banners/mitsutoyo-golf-club.png",
-      alt: "MITSUTOYO Golf Club",
+      src: "/images/banners/mitsutoyo-hp.png",
+      alt: "三豊機工",
       href: "http://mitsutoyogolf.com/",
     },
     {

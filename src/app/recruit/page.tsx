@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { contact, site } from "@/lib/site";
 import ContactCTA from "@/components/ContactCTA";
 
@@ -342,6 +342,29 @@ function MessageSection() {
     return { src: `/images/work/work-${num}.jpg`, alt: `作業風景 ${num}` };
   });
 
+  // ギャラリーが画面に入った瞬間からアニメーションを開始することで、
+  // スクロール速度や読込時間に依らず毎回同じ位置から再生される
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const target = galleryRef.current;
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsPlaying(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  const playState = isPlaying ? "running" : "paused";
+
   return (
     <section className="py-16 lg:py-24 bg-white">
       <div className="text-center px-8 md:px-16 lg:px-24 mb-12 lg:mb-16">
@@ -359,13 +382,18 @@ function MessageSection() {
         </p>
       </div>
 
-      {/* Scrolling gallery - two rows */}
-      <div className="space-y-8 overflow-hidden">
-        {/* Row 1 - images 1-13 (2セット連結、セット間にも gap-8 を入れて全ギャップ均一) */}
-        <div className="flex animate-[scrollLeft_80s_linear_infinite] gap-8 w-max">
-          {[0, 1].map((copyIdx) =>
+      {/* Scrolling gallery - two rows
+          3セット連結 + 各アイテムに mr-8 で、scrollLeft キーフレームの -100%/3 が
+          正確に 1 セット分のシフトに一致 → ループ継ぎ目に空白が出ない */}
+      <div ref={galleryRef} className="space-y-8 overflow-hidden">
+        {/* Row 1 - images 1-13 */}
+        <div
+          className="flex animate-[scrollLeft_80s_linear_infinite] w-max"
+          style={{ animationPlayState: playState }}
+        >
+          {[0, 1, 2].map((copyIdx) =>
             workImages.slice(0, 13).map((img, i) => (
-              <div key={`row1-${copyIdx}-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded">
+              <div key={`row1-${copyIdx}-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded mr-8">
                 <Image
                   src={img.src}
                   alt={img.alt}
@@ -377,10 +405,13 @@ function MessageSection() {
           )}
         </div>
         {/* Row 2 - images 14-26 */}
-        <div className="flex animate-[scrollLeft_70s_linear_infinite] gap-8 w-max">
-          {[0, 1].map((copyIdx) =>
+        <div
+          className="flex animate-[scrollLeft_70s_linear_infinite] w-max"
+          style={{ animationPlayState: playState }}
+        >
+          {[0, 1, 2].map((copyIdx) =>
             workImages.slice(13).map((img, i) => (
-              <div key={`row2-${copyIdx}-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded">
+              <div key={`row2-${copyIdx}-${i}`} className="relative w-[280px] lg:w-[360px] aspect-[3/2] shrink-0 overflow-hidden rounded mr-8">
                 <Image
                   src={img.src}
                   alt={img.alt}

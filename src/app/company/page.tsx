@@ -121,7 +121,7 @@ function MessageSection() {
 // ============================================================
 function FeaturesSection() {
   return (
-    <section className="relative py-24 lg:py-40 overflow-hidden">
+    <section className="relative pt-40 pb-24 lg:pt-64 lg:pb-40 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -134,7 +134,7 @@ function FeaturesSection() {
       </div>
       <div className="relative z-10 max-w-container mx-auto px-6 lg:px-12">
         {/* Title */}
-        <div className="text-center mb-16 lg:mb-24">
+        <div className="text-center mb-44 lg:mb-60">
           <h2
             className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-white tracking-[0.25em] leading-[1.3]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}

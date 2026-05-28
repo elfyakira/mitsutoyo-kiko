@@ -333,7 +333,7 @@ function ContactForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full max-w-[300px] h-14 rounded-btn text-base font-semibold transition-colors ${
+                className={`block mx-auto w-full max-w-[300px] h-14 rounded-btn text-base font-semibold transition-colors ${
                   isSubmitting
                     ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                     : "bg-accent text-white hover:bg-accent-dark"

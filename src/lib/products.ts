@@ -159,7 +159,6 @@ export const productCategories: ProductCategory[] = [
     nameEn: "Knife & Finger",
     slug: "knife-finger",
     images: [],
-    showAllSubs: true,
     subCategories: [
       {
         name: "カッター&ナイフ",
