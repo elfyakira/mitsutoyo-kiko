@@ -221,14 +221,23 @@ export default function ProductCatalog() {
             <div className="mb-6 lg:mb-8 pb-4 border-b border-gray-200 flex flex-col gap-4">
               <div className="flex flex-col lg:flex-row lg:items-baseline gap-1 lg:gap-3">
                 <h3
-                  className="text-[18px] lg:text-[22px] font-medium text-navy tracking-[0.12em] shrink-0"
+                  className="text-[20px] lg:text-[22px] font-medium text-navy tracking-[0.12em] shrink-0"
                   style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
                 >
-                  {displayTitle}
+                  {selection.type === "sub" ? (
+                    <>
+                      <span className="text-[20px] lg:text-[22px]">{selection.category.name}</span>
+                      <span className="hidden lg:inline"> / </span>
+                      <br className="lg:hidden" />
+                      <span className="text-[15px] lg:text-[22px] underline lg:no-underline underline-offset-4">{selection.sub.name}</span>
+                    </>
+                  ) : (
+                    displayTitle
+                  )}
                 </h3>
                 {displayTitleEn && (
                   <p
-                    className="text-[12px] lg:text-[14px] font-bold text-navy/40 tracking-[0.06em]"
+                    className="text-[12px] lg:text-[14px] font-bold text-navy/40 tracking-[0.06em] whitespace-nowrap lg:whitespace-normal"
                     style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
                   >
                     {displayTitleEn}
@@ -261,7 +270,7 @@ export default function ProductCatalog() {
                       >
                         {sub.name}
                         {sub.nameEn && (
-                          <span className="ml-2 text-[12px] lg:text-[13px] opacity-70">
+                          <span className={`${sub.name === "DH《ナットフォーミングダイス》" ? "block text-left lg:inline lg:ml-2 lg:text-center" : "ml-2"} text-[12px] lg:text-[13px] opacity-70`}>
                             {sub.nameEn}
                           </span>
                         )}

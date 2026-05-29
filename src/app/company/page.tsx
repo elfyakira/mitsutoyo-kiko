@@ -121,28 +121,28 @@ function MessageSection() {
 // ============================================================
 function FeaturesSection() {
   return (
-    <section className="relative pt-40 pb-24 lg:pt-64 lg:pb-40 overflow-hidden">
+    <section className="relative pt-16 pb-24 lg:pt-64 lg:pb-40 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/philosophy-bg.jpg"
           alt="企業理念背景"
           fill
-          className="object-cover"
+          className="object-cover scale-125 -translate-y-[10%] lg:scale-100 lg:translate-y-0"
         />
         <div className="absolute inset-0 bg-black/60" />
       </div>
       <div className="relative z-10 max-w-container mx-auto px-6 lg:px-12">
         {/* Title */}
-        <div className="text-center mb-80 lg:mb-60">
+        <div className="text-center mb-40 lg:mb-60">
           <h2
-            className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-white tracking-[0.25em] leading-[1.3]"
+            className="text-[24px] md:text-[40px] lg:text-[50px] font-light text-white tracking-[0.25em] leading-[1.3]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
           >
             企業理念
           </h2>
           <p
-            className="text-[14px] md:text-[18px] lg:text-[22px] font-bold text-[#0080CC] tracking-[0.08em] leading-[1.3] mt-3"
+            className="text-[12px] md:text-[18px] lg:text-[22px] font-bold text-[#0080CC] tracking-[0.08em] leading-[1.3] mt-3"
             style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
           >
             PHILOSOPHY
@@ -152,7 +152,7 @@ function FeaturesSection() {
         {/* Philosophy Text */}
         <div className="text-center max-w-4xl mx-auto">
           <p
-            className="text-[24px] md:text-[32px] lg:text-[40px] text-white font-bold tracking-[0.1em] leading-[1.6] mb-8"
+            className="text-[16px] md:text-[32px] lg:text-[40px] text-white font-bold tracking-[0.1em] leading-[1.6] mb-3 md:mb-8"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
           >
             他社がやらない事をやる！
@@ -160,7 +160,7 @@ function FeaturesSection() {
             他社が出来ない事をやる！
           </p>
           <p
-            className="text-[16px] text-white/80 tracking-[0.1em] leading-[2.2]"
+            className="text-[12px] md:text-[16px] text-white/80 tracking-[0.1em] leading-[2.2]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400 }}
           >
             他社との差別化ができる競争力のある製品を造り続け、&ldquo;戦わずして世界から選ばれる&rdquo;経営戦略を展開。
@@ -275,7 +275,7 @@ function Strength02Section() {
             className="text-[28px] md:text-[36px] lg:text-[46px] font-bold text-navy tracking-[0.2em] leading-[1.4]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
           >
-            課題に向き合い、<br className="md:hidden" />最適解をともに探す。
+            課題に向き合い、<br />最適解をともに探す。
           </h2>
 
           {/* Image */}

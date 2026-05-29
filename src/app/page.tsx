@@ -232,7 +232,7 @@ function HeroAboutSection() {
                     className="text-[16px] md:text-[22px] lg:text-[30px] font-bold text-white/70 tracking-[0.08em] leading-[1.3] mt-4"
                     style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
                   >
-                    Close to your challenges.<br className="lg:hidden" /> Closer to the solution.
+                    Close to your challenges.<br /> Closer to the solution.
                   </p>
                 </div>
 
@@ -344,7 +344,7 @@ function FacilitySection() {
                 className="text-[20px] lg:text-[22px] font-bold text-navy tracking-[0.1em] leading-[1.6] mb-4"
                 style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
               >
-                <span className="text-navy/40 block md:inline md:mr-3" style={{ fontFamily: "'Inter', sans-serif" }}>01</span><span className="hidden md:inline">｜</span>一貫生産体制が生む、<br className="md:hidden" />ゆるぎない品質。
+                <span className="text-navy/40 block md:inline md:mr-3 text-[40px] md:text-[20px] lg:text-[22px]" style={{ fontFamily: "'Inter', sans-serif" }}>01</span><span className="hidden md:inline">｜</span>一貫生産体制が生む、<br className="md:hidden" />ゆるぎない品質。
               </h3>
               <p className="text-text-secondary">
                 各工程を自社内で完結することで、品質のばらつきを最小限に抑え、常に安定したクオリティをお届けします。
@@ -357,7 +357,7 @@ function FacilitySection() {
                 className="text-[20px] lg:text-[22px] font-bold text-navy tracking-[0.1em] leading-[1.6] mb-4"
                 style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
               >
-                <span className="text-navy/40 block md:inline md:mr-3" style={{ fontFamily: "'Inter', sans-serif" }}>02</span><span className="hidden md:inline">｜</span>課題に向き合い、<br className="md:hidden" />最適解をともに探す。
+                <span className="text-navy/40 block md:inline md:mr-3 text-[40px] md:text-[20px] lg:text-[22px]" style={{ fontFamily: "'Inter', sans-serif" }}>02</span><span className="hidden md:inline">｜</span>課題に向き合い、<br className="md:hidden" />最適解をともに探す。
               </h3>
               <p className="text-text-secondary">
                 独自の製法「ダブルヘックス」をはじめ、蓄積された技術と知見をもとに、お客様の課題に真摯に向き合い、&ldquo;どうすればできるか&rdquo;をともに考えます。
@@ -370,7 +370,7 @@ function FacilitySection() {
                 className="text-[20px] lg:text-[22px] font-bold text-navy tracking-[0.1em] leading-[1.6] mb-4"
                 style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
               >
-                <span className="text-navy/40 block md:inline md:mr-3" style={{ fontFamily: "'Inter', sans-serif" }}>03</span><span className="hidden md:inline">｜</span>一つひとつに、誠実に。
+                <span className="text-navy/40 block md:inline md:mr-3 text-[40px] md:text-[20px] lg:text-[22px]" style={{ fontFamily: "'Inter', sans-serif" }}>03</span><span className="hidden md:inline">｜</span>一つひとつに、誠実に。
               </h3>
               <p className="text-text-secondary">
                 どんな仕事にも、真摯に向き合う。私たちは&ldquo;造る&rdquo;だけでなく、&ldquo;応える&rdquo;ものづくりを大切にしています。

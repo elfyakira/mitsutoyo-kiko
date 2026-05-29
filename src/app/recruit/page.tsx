@@ -547,8 +547,8 @@ function RecruitCTASection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/recruit-cta-bg.jpg"
-          alt="採用CTA"
+          src="/images/recruit-section.jpg"
+          alt=""
           fill
           className="object-cover"
         />

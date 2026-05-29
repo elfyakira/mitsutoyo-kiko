@@ -37,7 +37,9 @@ export default function Footer() {
           <div className="text-sm text-white/80 leading-relaxed text-center lg:text-left">
             <p className="font-medium text-white mb-1">{company.name}</p>
             {hq.zipCode && hq.address && (
-              <p>〒{hq.zipCode} {hq.address}</p>
+              <p>
+                〒{hq.zipCode} {hq.address.replace("一丁目4番地", "")}<br className="md:hidden" />一丁目4番地
+              </p>
             )}
             <a href={`tel:${contact.phoneTel}`} className="block mt-1 hover:text-white transition-colors">
               Tel. {contact.phoneFormatted}

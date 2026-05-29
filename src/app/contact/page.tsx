@@ -11,11 +11,21 @@ import { FadeInUp } from "@/components/animations";
 
 // お問い合わせ種別
 const CONTACT_TYPES = [
-  { id: "service1" as const, label: "サービス1のご相談" },
-  { id: "service2" as const, label: "サービス2のご相談" },
-  { id: "recruit" as const, label: "採用に関するお問い合わせ" },
-  { id: "other" as const, label: "その他のお問い合わせ" },
+  { id: "service1" as const, label: "サービス1の\nご相談" },
+  { id: "service2" as const, label: "サービス2の\nご相談" },
+  { id: "recruit" as const, label: "採用に関する\nお問い合わせ" },
+  { id: "other" as const, label: "その他の\nお問い合わせ" },
 ];
+
+function renderLabel(label: string) {
+  const parts = label.split("\n");
+  return parts.map((part, i) => (
+    <span key={i}>
+      {i > 0 && <br />}
+      {part}
+    </span>
+  ));
+}
 
 type ContactType = (typeof CONTACT_TYPES)[number]["id"];
 
@@ -129,7 +139,7 @@ function ContactForm() {
                   : "bg-white text-text-primary border-gray-200 hover:border-navy"
               }`}
             >
-              {type.label}
+              {renderLabel(type.label)}
             </button>
           ))}
         </div>
