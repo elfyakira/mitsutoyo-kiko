@@ -10,7 +10,7 @@ import AnimatedLink from "@/components/animations/AnimatedLink";
 // ============================================================
 // Hero Section
 // ============================================================
-const HERO_VIDEOS = [
+const HERO_VIDEOS_DESKTOP = [
   "/videos/hero-1.mp4",
   "/videos/hero-2.mp4",
   "/videos/hero-3.mp4",
@@ -19,33 +19,72 @@ const HERO_VIDEOS = [
   "/videos/hero-6.mp4",
 ];
 
-// ① はくっきり、②以降は少しだけブラー
-const videoBlurPx = (src: string) => (src === HERO_VIDEOS[0] ? 0 : 3);
+const HERO_VIDEOS_MOBILE = [
+  "/videos/hero-mobile-1.mp4",
+  "/videos/hero-mobile-2.mp4",
+  "/videos/hero-mobile-3.mp4",
+  "/videos/hero-mobile-4.mp4",
+  "/videos/hero-mobile-5.mp4",
+  "/videos/hero-mobile-6.mp4",
+];
 
 const CROSSFADE_MS = 1000;
+// 動画終了の手前でクロスフェードを開始して、停止する瞬間を隠す
+const EARLY_CROSSFADE_SEC = CROSSFADE_MS / 1000;
 
 function HeroAboutSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [fadeProgress, setFadeProgress] = useState(0);
   const [contentScroll, setContentScroll] = useState(0);
+  // viewport の判定。null = 未確定 (動画は描画しない)
+  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
+  const heroVideos = isDesktop === false ? HERO_VIDEOS_MOBILE : HERO_VIDEOS_DESKTOP;
+  // ① はくっきり、②以降は少しだけブラー
+  const videoBlurPx = (src: string) => (src === heroVideos[0] ? 0 : 3);
   // クロスフェード用の2スロット。最初の動画を slot A、次の動画(プリロード)を slot B
-  const [slotASrc, setSlotASrc] = useState(HERO_VIDEOS[0]);
-  const [slotBSrc, setSlotBSrc] = useState(HERO_VIDEOS[1]);
+  const [slotASrc, setSlotASrc] = useState(HERO_VIDEOS_DESKTOP[0]);
+  const [slotBSrc, setSlotBSrc] = useState(HERO_VIDEOS_DESKTOP[1]);
   const [activeSlot, setActiveSlot] = useState<"A" | "B">("A");
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const slotARef = useRef<HTMLVideoElement>(null);
   const slotBRef = useRef<HTMLVideoElement>(null);
+  const isTransitioningRef = useRef(false);
   const [contentOverflow, setContentOverflow] = useState(0);
 
-  const getNextSrc = useCallback((src: string) => {
-    const idx = HERO_VIDEOS.indexOf(src);
-    return HERO_VIDEOS[(idx + 1) % HERO_VIDEOS.length];
+  // viewport を検出して動画セットを切替
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
 
-  const handleEnded = useCallback(
-    (endedSlot: "A" | "B") => () => {
+  // viewport が変わったらスロットをリセット
+  useEffect(() => {
+    if (isDesktop === null) return;
+    const list = isDesktop ? HERO_VIDEOS_DESKTOP : HERO_VIDEOS_MOBILE;
+    setSlotASrc(list[0]);
+    setSlotBSrc(list[1]);
+    setActiveSlot("A");
+    isTransitioningRef.current = false;
+  }, [isDesktop]);
+
+  const getNextSrc = useCallback(
+    (src: string) => {
+      const list = isDesktop ? HERO_VIDEOS_DESKTOP : HERO_VIDEOS_MOBILE;
+      const idx = list.indexOf(src);
+      return list[(idx + 1) % list.length];
+    },
+    [isDesktop],
+  );
+
+  const triggerCrossfade = useCallback(
+    (endedSlot: "A" | "B") => {
+      if (isTransitioningRef.current) return;
       if (endedSlot !== activeSlot) return;
+      isTransitioningRef.current = true;
       const nextSlot = endedSlot === "A" ? "B" : "A";
       const nextRef = nextSlot === "A" ? slotARef : slotBRef;
       if (nextRef.current) {
@@ -62,9 +101,30 @@ function HeroAboutSection() {
         } else {
           setSlotBSrc(nextNextSrc);
         }
+        isTransitioningRef.current = false;
       }, CROSSFADE_MS);
     },
     [activeSlot, slotASrc, slotBSrc, getNextSrc],
+  );
+
+  const handleTimeUpdate = useCallback(
+    (slot: "A" | "B") => () => {
+      if (slot !== activeSlot) return;
+      const v = (slot === "A" ? slotARef : slotBRef).current;
+      if (!v) return;
+      const duration = v.duration;
+      if (!duration || !isFinite(duration)) return;
+      if (duration - v.currentTime <= EARLY_CROSSFADE_SEC) {
+        triggerCrossfade(slot);
+      }
+    },
+    [activeSlot, triggerCrossfade],
+  );
+
+  // フォールバック: timeupdate を取り逃した場合のための onEnded
+  const handleEnded = useCallback(
+    (slot: "A" | "B") => () => triggerCrossfade(slot),
+    [triggerCrossfade],
   );
 
   useEffect(() => {
@@ -133,73 +193,101 @@ function HeroAboutSection() {
             transform: `scale(${mirageScaleX}, ${mirageScaleY})`,
           }}
         >
-          {/* クロスフェード用 2 スロット */}
-          <video
-            ref={slotARef}
-            key={`A-${slotASrc}`}
-            autoPlay={activeSlot === "A"}
-            muted
-            playsInline
-            preload="auto"
-            onEnded={handleEnded("A")}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity"
-            style={{
-              opacity: activeSlot === "A" ? 1 : 0,
-              transitionDuration: `${CROSSFADE_MS}ms`,
-              filter: `blur(${videoBlurPx(slotASrc)}px)`,
-              transform: "scale(1.03)",
-            }}
-            src={slotASrc}
-          />
-          <video
-            ref={slotBRef}
-            key={`B-${slotBSrc}`}
-            autoPlay={activeSlot === "B"}
-            muted
-            playsInline
-            preload="auto"
-            onEnded={handleEnded("B")}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity"
-            style={{
-              opacity: activeSlot === "B" ? 1 : 0,
-              transitionDuration: `${CROSSFADE_MS}ms`,
-              filter: `blur(${videoBlurPx(slotBSrc)}px)`,
-              transform: "scale(1.03)",
-            }}
-            src={slotBSrc}
-          />
+          {/* クロスフェード用 2 スロット。viewport 判定前は描画しない */}
+          {isDesktop !== null && (
+            <>
+              <video
+                ref={slotARef}
+                key={`A-${slotASrc}`}
+                autoPlay={activeSlot === "A"}
+                muted
+                playsInline
+                preload="auto"
+                onTimeUpdate={handleTimeUpdate("A")}
+                onEnded={handleEnded("A")}
+                className="absolute inset-0 w-full h-full object-cover transition-opacity"
+                style={{
+                  opacity: activeSlot === "A" ? 1 : 0,
+                  transitionDuration: `${CROSSFADE_MS}ms`,
+                  filter: `blur(${videoBlurPx(slotASrc)}px)`,
+                  transform: "scale(1.03)",
+                }}
+                src={slotASrc}
+              />
+              <video
+                ref={slotBRef}
+                key={`B-${slotBSrc}`}
+                autoPlay={activeSlot === "B"}
+                muted
+                playsInline
+                preload="auto"
+                onTimeUpdate={handleTimeUpdate("B")}
+                onEnded={handleEnded("B")}
+                className="absolute inset-0 w-full h-full object-cover transition-opacity"
+                style={{
+                  opacity: activeSlot === "B" ? 1 : 0,
+                  transitionDuration: `${CROSSFADE_MS}ms`,
+                  filter: `blur(${videoBlurPx(slotBSrc)}px)`,
+                  transform: "scale(1.03)",
+                }}
+                src={slotBSrc}
+              />
+            </>
+          )}
           <div className="absolute inset-0 bg-black/40" />
         </div>
 
         {/* Hero Content */}
         <div
-          className="absolute inset-0 z-10 flex items-end"
+          className="absolute inset-0 z-10"
           style={{
             filter: `blur(${heroBlur}px)`,
             opacity: heroOpacity,
             transform: `scaleY(${1 + mirageIntensity * 0.02})`,
           }}
         >
-          <div className="text-left px-8 md:px-16 lg:px-24 pb-24 md:pb-32">
-            <div
-              className={`transition-opacity duration-1000 ease-out ${
-                isVisible ? "opacity-100" : "opacity-0"
-              }`}
+          {/* Mobile only: 縦書き日本語コピー (右上) */}
+          <div
+            className={`lg:hidden absolute top-48 right-10 transition-opacity duration-1000 ease-out ${
+              isVisible ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <p
+              className="text-[22px] md:text-[26px] font-light text-white/90 tracking-[0.25em] leading-relaxed"
+              style={{
+                fontFamily: "'Noto Sans JP', sans-serif",
+                fontWeight: 300,
+                writingMode: "vertical-rl",
+              }}
             >
-              <h1
-                className="text-[32px] md:text-[52px] lg:text-[72px] font-bold text-white tracking-[0.08em] leading-[1.1] mb-4"
-                style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+              <span className="block">すべてを自社で。</span>
+              <span className="block">すべては信頼のために。</span>
+            </p>
+          </div>
+
+          {/* 英語タイトル: 左下に固定。日本語コピーは lg 以上のみ表示 */}
+          <div className="absolute inset-x-0 bottom-0 flex items-end">
+            <div className="text-left px-8 md:px-16 lg:px-24 pb-24 md:pb-32">
+              <div
+                className={`transition-opacity duration-1000 ease-out ${
+                  isVisible ? "opacity-100" : "opacity-0"
+                }`}
               >
-                <span className="block">All in-house.</span>
-                <span className="block">All for Precision.</span>
-              </h1>
-              <p
-                className="text-[15px] md:text-[20px] lg:text-[26px] font-light text-white/90 tracking-[0.25em] leading-relaxed"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
-              >
-                <span className="block lg:inline">すべてを自社で。</span>
-                <span className="block lg:inline">すべては信頼のために。</span>
-              </p>
+                <h1
+                  className="text-[32px] md:text-[52px] lg:text-[72px] font-bold text-white tracking-[0.08em] leading-[1.1] mb-4"
+                  style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+                >
+                  <span className="block">All in-house.</span>
+                  <span className="block">All for Precision.</span>
+                </h1>
+                <p
+                  className="hidden lg:block text-[15px] md:text-[20px] lg:text-[26px] font-light text-white/90 tracking-[0.25em] leading-relaxed"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+                >
+                  <span className="block lg:inline">すべてを自社で。</span>
+                  <span className="block lg:inline">すべては信頼のために。</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>

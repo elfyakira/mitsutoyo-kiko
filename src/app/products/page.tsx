@@ -15,7 +15,7 @@ function PageHeader() {
           alt="製品情報"
           fill
           className="object-cover"
-          style={{ objectPosition: "50% 87%" }}
+          style={{ objectPosition: "95% 87%" }}
           priority
         />
         <div className="absolute inset-0 bg-navy/50" />
