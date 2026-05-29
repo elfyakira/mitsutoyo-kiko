@@ -134,7 +134,7 @@ function FeaturesSection() {
       </div>
       <div className="relative z-10 max-w-container mx-auto px-6 lg:px-12">
         {/* Title */}
-        <div className="text-center mb-44 lg:mb-60">
+        <div className="text-center mb-80 lg:mb-60">
           <h2
             className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-white tracking-[0.25em] leading-[1.3]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
@@ -214,7 +214,7 @@ function PerformanceSection() {
           className="text-[28px] md:text-[36px] lg:text-[46px] font-bold text-navy tracking-[0.2em] leading-[1.4]"
           style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
         >
-          一貫体制が生む、ゆるぎない品質。
+          一貫体制が生む、<br className="md:hidden" />ゆるぎない品質。
         </h2>
 
         {/* Image - Left wide */}
@@ -233,7 +233,7 @@ function PerformanceSection() {
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
           >
-            一貫生産体制がもたらす「精度と安定」
+            一貫生産体制がもたらす<br className="md:hidden" />「精度と安定」
           </h3>
           <p className="text-text-secondary">
             設計から製造、仕上げまでのすべてを自社内で行うこと。それは、単なる効率化ではなく、「品質を守るための仕組み」です。各工程の担当者が常に情報を共有し、仕様変更や改善を即時に反映。試作から量産までの流れをスムーズにコントロールできます。
@@ -275,7 +275,7 @@ function Strength02Section() {
             className="text-[28px] md:text-[36px] lg:text-[46px] font-bold text-navy tracking-[0.2em] leading-[1.4]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
           >
-            課題に向き合い、最適解をともに探す。
+            課題に向き合い、<br className="md:hidden" />最適解をともに探す。
           </h2>
 
           {/* Image */}
@@ -312,7 +312,7 @@ function Strength02Section() {
             className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-6"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
           >
-            課題に向き合う姿勢から生まれた、<br />三豊機工オリジナルのダブルヘックス
+            課題に向き合う姿勢から生まれた<span className="hidden md:inline">、</span><br />三豊機工オリジナルのダブルヘックス
           </h3>
           <div className="text-text-secondary">
             <p>
@@ -403,7 +403,7 @@ function Strength02Section() {
                 className="text-[18px] md:text-[20px] lg:text-[22px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-4"
                 style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
               >
-                生産性を劇的に高める耐久・安定性
+                生産性を劇的に高める<br className="md:hidden" />耐久・安定性
               </h4>
               <div className="text-text-secondary text-[14px] lg:text-[15px]">
                 <p>
@@ -438,7 +438,7 @@ function Strength02Section() {
                 className="text-[18px] md:text-[20px] lg:text-[22px] font-bold text-navy tracking-[0.1em] leading-[1.5] mb-4"
                 style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
               >
-                三豊機工にしか作れないオンリーワンの金型技術
+                三豊機工にしか作れない<br className="md:hidden" />オンリーワンの金型技術
               </h4>
               <div className="text-text-secondary text-[14px] lg:text-[15px]">
                 <p>
@@ -457,29 +457,29 @@ function Strength02Section() {
               従来品との比較
             </h3>
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse text-[14px] lg:text-[16px] tracking-[0.1em]">
+              <table className="w-full border-collapse text-[15px] lg:text-[16px] tracking-[0.06em] md:tracking-[0.1em]">
                 <thead>
                   <tr>
-                    <th className="border border-navy/20 bg-white p-4 lg:p-6 w-1/4"></th>
-                    <th className="border border-navy/20 bg-navy text-white p-4 lg:p-6 w-[37.5%] font-bold text-[16px] lg:text-[18px]">ダブルヘックス</th>
-                    <th className="border border-navy/20 bg-white p-4 lg:p-6 w-[37.5%] font-bold text-navy text-[16px] lg:text-[18px]">従来金型</th>
+                    <th className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 w-1/4"></th>
+                    <th className="border border-navy/20 bg-navy text-white p-3 md:p-4 lg:p-6 w-[37.5%] font-bold text-[16px] lg:text-[18px]">ダブル<br className="md:hidden" />ヘックス</th>
+                    <th className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 w-[37.5%] font-bold text-navy text-[16px] lg:text-[18px]">従来金型</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 font-bold text-navy">耐久性</td>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-primary">応力分散で長寿命化</td>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-secondary">角部が割れやすい</td>
+                    <td className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 font-bold text-navy text-center"><span className="inline-block [writing-mode:vertical-rl] md:[writing-mode:horizontal-tb]">耐久性</span></td>
+                    <td className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 text-text-primary">応力分散で長寿命化</td>
+                    <td className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 text-text-secondary">角部が割れやすい</td>
                   </tr>
                   <tr>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 font-bold text-navy">稼働率</td>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-primary">連続稼働が可能</td>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-secondary">機械停止が多い</td>
+                    <td className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 font-bold text-navy text-center"><span className="inline-block [writing-mode:vertical-rl] md:[writing-mode:horizontal-tb]">稼働率</span></td>
+                    <td className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 text-text-primary">連続稼働が可能</td>
+                    <td className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 text-text-secondary">機械停止が多い</td>
                   </tr>
                   <tr>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 font-bold text-navy">コスト</td>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-primary">トータルコスト低減</td>
-                    <td className="border border-navy/20 bg-white p-4 lg:p-6 text-text-secondary">段取り・交換頻繁</td>
+                    <td className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 font-bold text-navy text-center"><span className="inline-block [writing-mode:vertical-rl] md:[writing-mode:horizontal-tb]">コスト</span></td>
+                    <td className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 text-text-primary">トータルコスト低減</td>
+                    <td className="border border-navy/20 bg-white p-3 md:p-4 lg:p-6 text-text-secondary">段取り・交換頻繁</td>
                   </tr>
                 </tbody>
               </table>
@@ -503,7 +503,7 @@ function Strength03Section() {
           className="text-[28px] md:text-[36px] lg:text-[46px] font-bold text-navy tracking-[0.2em] leading-[1.4]"
           style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
         >
-          一つひとつに、誠実に。
+          一つひとつに、<br className="md:hidden" />誠実に。
         </h2>
 
         {/* Japanese Text */}
@@ -707,7 +707,7 @@ function CompanyInfoSection() {
               <p className="mt-1">E-mail: office@mitsutoyo.co.jp</p>
               <p className="mt-1">URL: https://www.mitsutoyo.co.jp</p>
               <p className="mt-1">敷地面積 1,364㎡</p>
-              <p className="mt-1">建物 鉄筋コンクリート4階建　床面積 755㎡</p>
+              <p className="mt-1">建物 鉄筋コンクリート4階建<span className="hidden md:inline">　</span><br className="md:hidden" />床面積 755㎡</p>
             </div>
           </div>
 

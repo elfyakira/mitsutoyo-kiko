@@ -145,8 +145,8 @@ function FactoryOverview() {
               <div className="border border-gray-200 border-t-0 p-6 md:p-8">
                 <p className="text-[14px] lg:text-[16px] text-text-primary font-bold mb-3 tracking-[0.1em]">社員寮</p>
                 <ul className="space-y-2 text-[13px] lg:text-[15px] text-text-secondary leading-[2] tracking-[0.05em]">
-                  <li>・鹿児島県南九州市川辺町清水花園 木造2階建 476.98㎡（12室）</li>
-                  <li>・鹿児島県南九州市川辺町神殿楠久保 木造1階建 228.00㎡（6室）</li>
+                  <li>・鹿児島県南九州市川辺町清水花園<span className="hidden md:inline"> </span><br className="md:hidden" /><span className="md:ml-0 ml-3">木造2階建 476.98㎡（12室）</span></li>
+                  <li>・鹿児島県南九州市川辺町神殿楠久保<span className="hidden md:inline"> </span><br className="md:hidden" /><span className="md:ml-0 ml-3">木造1階建 228.00㎡（6室）</span></li>
                 </ul>
               </div>
             </div>

@@ -104,8 +104,8 @@ export default function ProductCatalog() {
 
         <div className="flex flex-col lg:flex-row gap-0 lg:gap-8 min-h-[600px]">
           {/* ===== Left Sidebar Menu ===== */}
-          <nav className="w-full lg:w-[280px] xl:w-[320px] shrink-0 border-r-0 lg:border-r border-gray-200">
-            <ul className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible gap-0">
+          <nav className="w-full lg:w-[280px] xl:w-[320px] shrink-0 border-t border-l border-r lg:border-t-0 lg:border-l-0 lg:border-r border-gray-200">
+            <ul className="grid grid-cols-2 lg:flex lg:flex-col gap-0">
               {productCategories.map((cat, index) => {
                 const isActive =
                   selection.category.slug === cat.slug;
@@ -115,7 +115,7 @@ export default function ProductCatalog() {
                 return (
                   <li
                     key={cat.slug}
-                    className="relative"
+                    className="relative border-b border-gray-200 lg:border-b-gray-100 [&:nth-child(odd)]:border-r [&:nth-child(odd)]:border-gray-200 lg:[&:nth-child(odd)]:border-r-0"
                     onMouseEnter={() => handleMenuEnter(index)}
                     onMouseLeave={handleMenuLeave}
                   >
@@ -123,9 +123,9 @@ export default function ProductCatalog() {
                     <button
                       onClick={() => handleCategoryClick(cat)}
                       className={`
-                        w-full text-left px-5 py-4 text-[13px] lg:text-[14px] tracking-[0.1em]
-                        transition-all duration-200 border-b border-gray-100
-                        whitespace-nowrap lg:whitespace-normal
+                        w-full h-full text-left px-4 lg:px-5 py-3 lg:py-4 text-[13px] lg:text-[14px] tracking-[0.1em]
+                        transition-all duration-200
+                        lg:whitespace-normal
                         flex items-center justify-between gap-2
                         ${
                           isActive
@@ -134,10 +134,16 @@ export default function ProductCatalog() {
                         }
                       `}
                     >
-                      <div className="flex flex-col">
-                        <span>{cat.name}</span>
+                      <div className="flex flex-col items-start w-full">
+                        <span className="block">
+                          {cat.name === "ダブルヘックス割型シリーズ" ? (
+                            <>ダブルヘックス<br className="lg:hidden" />割型シリーズ</>
+                          ) : (
+                            cat.name
+                          )}
+                        </span>
                         <span
-                          className={`text-[10px] lg:text-[11px] tracking-[0.04em] mt-0.5 ${
+                          className={`block w-full text-[10px] lg:text-[11px] tracking-[0.04em] mt-1 lg:mt-0.5 ${
                             isActive ? "text-white/60" : "text-gray-400"
                           }`}
                           style={{ fontFamily: "'Inter', sans-serif" }}
@@ -203,34 +209,6 @@ export default function ProductCatalog() {
                       </div>
                     )}
 
-                    {/* Submenu inline on mobile when active */}
-                    {hasSubs && isActive && (
-                      <div className="lg:hidden bg-gray-50 border-b border-gray-100">
-                        {cat.subCategories.map((sub) => {
-                          const isSubActive =
-                            selection.type === "sub" &&
-                            selection.category.slug === cat.slug &&
-                            selection.sub.slug === sub.slug;
-                          return (
-                            <button
-                              key={sub.slug}
-                              onClick={() => handleSubClick(cat, sub)}
-                              className={`
-                                w-full text-left px-8 py-3 text-[12px] tracking-[0.08em]
-                                transition-colors duration-150 border-b border-gray-100 last:border-b-0
-                                ${
-                                  isSubActive
-                                    ? "bg-navy/10 text-navy font-medium"
-                                    : "text-gray-500 hover:text-navy"
-                                }
-                              `}
-                            >
-                              {sub.name}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
                   </li>
                 );
               })}
@@ -241,7 +219,7 @@ export default function ProductCatalog() {
           <div className="flex-1 pt-6 lg:pt-0">
             {/* Title + Sub-category buttons */}
             <div className="mb-6 lg:mb-8 pb-4 border-b border-gray-200 flex flex-col gap-4">
-              <div className="flex items-baseline gap-3">
+              <div className="flex flex-col lg:flex-row lg:items-baseline gap-1 lg:gap-3">
                 <h3
                   className="text-[18px] lg:text-[22px] font-medium text-navy tracking-[0.12em] shrink-0"
                   style={{ fontFamily: "'Noto Sans JP', sans-serif" }}

@@ -372,7 +372,7 @@ function MessageSection() {
           className="text-[28px] md:text-[40px] lg:text-[50px] font-light text-navy tracking-[0.25em] leading-[1.3]"
           style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
         >
-          人の手が、精度を生む。
+          人の手が、<br className="md:hidden" />精度を生む。
         </h2>
         <p
           className="text-[14px] md:text-[18px] lg:text-[22px] font-bold text-navy/40 tracking-[0.08em] leading-[1.3] mt-3"
@@ -485,7 +485,11 @@ function RequirementsSection() {
         {/* Job Cards - 2 columns with aligned rows */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 lg:gap-x-12 max-w-6xl mx-auto" style={{ gridTemplateRows: "repeat(11, auto)" }}>
           {jobs.map((job, jobIndex) => (
-            <div key={`card-${jobIndex}`} className="border border-navy/15" style={{ display: "grid", gridTemplateRows: "subgrid", gridRow: "span " + (job.items.length + 1) }}>
+            <div
+              key={`card-${jobIndex}`}
+              className={`border border-navy/15 ${jobIndex === 1 ? "order-3 lg:order-none" : ""}`}
+              style={{ display: "grid", gridTemplateRows: "subgrid", gridRow: "span " + (job.items.length + 1) }}
+            >
               {/* Job Title Header */}
               <div className="bg-navy px-6 lg:px-8 py-5">
                 <h3
@@ -513,7 +517,10 @@ function RequirementsSection() {
             </div>
           ))}
           {jobs.map((_, jobIndex) => (
-            <div key={`apply-${jobIndex}`} className="pt-6 flex justify-center">
+            <div
+              key={`apply-${jobIndex}`}
+              className={`pt-6 flex justify-center ${jobIndex === 0 ? "order-2 lg:order-none pb-10 lg:pb-0" : "order-4 lg:order-none"}`}
+            >
               <button
                 type="button"
                 className="inline-flex items-center justify-center gap-2 bg-navy text-white px-10 py-4 text-[14px] lg:text-[16px] font-bold tracking-[0.15em] transition-colors hover:bg-navy/90"
