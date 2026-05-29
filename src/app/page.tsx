@@ -437,9 +437,9 @@ function RecruitSection() {
         </div>
       </div>
 
-      {/* Right 2/3 - Two image columns */}
-      <div className="lg:w-2/3 flex flex-col sm:flex-row">
-        <div className="sm:w-1/2 relative min-h-[350px] lg:min-h-[700px] overflow-hidden">
+      {/* Right 2/3 - Two image columns (side-by-side on all sizes) */}
+      <div className="lg:w-2/3 flex flex-row">
+        <div className="w-1/2 relative min-h-[200px] sm:min-h-[350px] lg:min-h-[700px] overflow-hidden">
           <Image
             src="/images/products-section.jpg"
             alt="製品"
@@ -448,7 +448,7 @@ function RecruitSection() {
             style={{ objectPosition: "center 0%", transform: "scale(1.1) translateY(8%)" }}
           />
         </div>
-        <div className="sm:w-1/2 relative min-h-[350px] lg:min-h-[700px]">
+        <div className="w-1/2 relative min-h-[200px] sm:min-h-[350px] lg:min-h-[700px]">
           <Image
             src="/images/facilities-section.png"
             alt="設備"
