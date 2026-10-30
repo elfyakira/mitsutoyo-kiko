@@ -10,24 +10,8 @@ import { FadeInUp } from "@/components/animations";
 // ============================================================
 
 // お問い合わせ種別
-const CONTACT_TYPES = [
-  { id: "service1" as const, label: "サービス1の\nご相談" },
-  { id: "service2" as const, label: "サービス2の\nご相談" },
-  { id: "recruit" as const, label: "採用に関する\nお問い合わせ" },
-  { id: "other" as const, label: "その他の\nお問い合わせ" },
-];
-
-function renderLabel(label: string) {
-  const parts = label.split("\n");
-  return parts.map((part, i) => (
-    <span key={i}>
-      {i > 0 && <br />}
-      {part}
-    </span>
-  ));
-}
-
-type ContactType = (typeof CONTACT_TYPES)[number]["id"];
+// ※ Googleフォーム側の選択肢と文字列を完全一致させること
+const CONTACT_TYPES = ["お問い合わせ", "採用応募"];
 
 // ============================================================
 // コンポーネント
@@ -49,7 +33,6 @@ function PageHeader() {
 }
 
 function ContactForm() {
-  const [selectedType, setSelectedType] = useState<ContactType>("service1");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -70,12 +53,10 @@ function ContactForm() {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = "メールアドレスの形式が正しくありません";
     }
-    if (selectedType !== "recruit") {
-      if (!message?.trim()) {
-        newErrors.message = "お問い合わせ内容を入力してください";
-      } else if (message.length < 10) {
-        newErrors.message = "10文字以上でご入力ください";
-      }
+    if (!message?.trim()) {
+      newErrors.message = "お問い合わせ内容を入力してください";
+    } else if (message.length < 10) {
+      newErrors.message = "10文字以上でご入力ください";
     }
     if (!agree) newErrors.agree = "プライバシーポリシーへの同意が必要です";
 
@@ -93,10 +74,42 @@ function ContactForm() {
     }
 
     setIsSubmitting(true);
-    // ここにフォーム送信処理を実装してください
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    setErrors({});
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contactType: formData.get("contactType"),
+          name: formData.get("name"),
+          phone: formData.get("phone"),
+          email: formData.get("email"),
+          address: formData.get("address"),
+          message: formData.get("message"),
+          contactMethod: formData.get("contactMethod"),
+        }),
+      });
+      const data = await res.json();
+
+      if (!data.success) {
+        const serverErrors: Record<string, string> = {};
+        for (const err of data.errors ?? []) {
+          serverErrors[err.field] = err.message;
+        }
+        setErrors(serverErrors);
+        return;
+      }
+
+      setIsSubmitted(true);
+    } catch {
+      setErrors({
+        general:
+          "送信中にエラーが発生しました。しばらく経ってから再度お試しください。",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -128,28 +141,43 @@ function ContactForm() {
           お気軽にお問い合わせください。
         </p>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-8 lg:mb-10">
-          {CONTACT_TYPES.map((type) => (
-            <button
-              key={type.id}
-              onClick={() => setSelectedType(type.id)}
-              className={`p-4 lg:p-5 rounded border text-sm lg:text-[15px] text-center transition-colors ${
-                selectedType === type.id
-                  ? "bg-navy text-white border-navy"
-                  : "bg-white text-text-primary border-gray-200 hover:border-navy"
-              }`}
-            >
-              {renderLabel(type.label)}
-            </button>
-          ))}
-        </div>
-
         <div className="bg-bg-light p-6 lg:p-12 rounded-lg">
           <form onSubmit={handleSubmit} className="space-y-6">
+            {errors.general && (
+              <p className="px-4 py-3 bg-red-50 border border-red-200 rounded text-sm text-red-600">
+                {errors.general}
+              </p>
+            )}
+
+            <div>
+              <label className="flex items-center gap-2 mb-3">
+                <span className="text-sm font-semibold text-text-primary">
+                  お問い合わせ種別
+                </span>
+                <span className="text-xs text-white bg-red-600 px-1.5 py-0.5 rounded">
+                  必須
+                </span>
+              </label>
+              <div className="flex flex-col lg:flex-row gap-4">
+                {CONTACT_TYPES.map((type) => (
+                  <label key={type} className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="contactType"
+                      value={type}
+                      defaultChecked={type === CONTACT_TYPES[0]}
+                      className="w-4 h-4 text-navy"
+                    />
+                    <span className="text-[15px] text-text-primary">{type}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
             <div>
               <label className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-semibold text-text-primary">
-                  {selectedType === "recruit" ? "お名前" : "お名前 / 会社名"}
+                  お名前 / 会社名
                 </span>
                 <span className="text-xs text-white bg-red-600 px-1.5 py-0.5 rounded">
                   必須
@@ -158,11 +186,7 @@ function ContactForm() {
               <input
                 type="text"
                 name="name"
-                placeholder={
-                  selectedType === "recruit"
-                    ? "例）山田 太郎"
-                    : "例）株式会社サンプル 山田太郎"
-                }
+                placeholder="例）株式会社サンプル 山田太郎"
                 className={`w-full h-12 px-4 border rounded text-base ${
                   errors.name ? "border-red-600" : "border-gray-200"
                 } focus:border-navy focus:outline-none transition-colors`}
@@ -217,70 +241,36 @@ function ContactForm() {
               )}
             </div>
 
-            {selectedType !== "recruit" && (
-              <div>
-                <label className="flex items-center gap-2 mb-2">
-                  <span className="text-sm font-semibold text-text-primary">
-                    ご住所
-                  </span>
-                  <span className="text-xs text-text-secondary bg-gray-200 px-1.5 py-0.5 rounded">
-                    任意
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="例）東京都渋谷区..."
-                  className="w-full h-12 px-4 border border-gray-200 rounded text-base focus:border-navy focus:outline-none transition-colors"
-                />
-              </div>
-            )}
-
-            {selectedType === "recruit" && (
-              <div>
-                <label className="flex items-center gap-2 mb-2">
-                  <span className="text-sm font-semibold text-text-primary">
-                    希望職種
-                  </span>
-                  <span className="text-xs text-white bg-red-600 px-1.5 py-0.5 rounded">
-                    必須
-                  </span>
-                </label>
-                <select
-                  name="jobType"
-                  className="w-full h-12 px-4 border border-gray-200 rounded text-base focus:border-navy focus:outline-none transition-colors"
-                >
-                  <option value="general">一般職</option>
-                  <option value="other">その他</option>
-                </select>
-              </div>
-            )}
+            <div>
+              <label className="flex items-center gap-2 mb-2">
+                <span className="text-sm font-semibold text-text-primary">
+                  ご住所
+                </span>
+                <span className="text-xs text-text-secondary bg-gray-200 px-1.5 py-0.5 rounded">
+                  任意
+                </span>
+              </label>
+              <input
+                type="text"
+                name="address"
+                placeholder="例）東京都渋谷区..."
+                className="w-full h-12 px-4 border border-gray-200 rounded text-base focus:border-navy focus:outline-none transition-colors"
+              />
+            </div>
 
             <div>
               <label className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-semibold text-text-primary">
-                  {selectedType === "recruit"
-                    ? "簡単な自己PR"
-                    : "お問い合わせ内容"}
+                  お問い合わせ内容
                 </span>
-                {selectedType === "recruit" ? (
-                  <span className="text-xs text-text-secondary bg-gray-200 px-1.5 py-0.5 rounded">
-                    任意
-                  </span>
-                ) : (
-                  <span className="text-xs text-white bg-red-600 px-1.5 py-0.5 rounded">
-                    必須
-                  </span>
-                )}
+                <span className="text-xs text-white bg-red-600 px-1.5 py-0.5 rounded">
+                  必須
+                </span>
               </label>
               <textarea
                 name="message"
                 rows={5}
-                placeholder={
-                  selectedType === "recruit"
-                    ? "100文字程度でOKです"
-                    : "ご相談内容、ご質問などをご記入ください"
-                }
+                placeholder="ご相談内容、ご質問などをご記入ください（採用応募の場合は、希望職種や簡単な自己PRをご記入ください）"
                 className={`w-full px-4 py-3 border rounded text-base resize-y ${
                   errors.message ? "border-red-600" : "border-gray-200"
                 } focus:border-navy focus:outline-none transition-colors`}
@@ -290,29 +280,27 @@ function ContactForm() {
               )}
             </div>
 
-            {selectedType !== "recruit" && (
-              <div>
-                <label className="block text-sm font-semibold text-text-primary mb-3">
-                  ご希望の連絡方法
-                </label>
-                <div className="flex flex-col lg:flex-row gap-4">
-                  {["電話", "メール", "どちらでも可"].map((method) => (
-                    <label key={method} className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="contactMethod"
-                        value={method}
-                        defaultChecked={method === "どちらでも可"}
-                        className="w-4 h-4 text-navy"
-                      />
-                      <span className="text-[15px] text-text-primary">
-                        {method}
-                      </span>
-                    </label>
-                  ))}
-                </div>
+            <div>
+              <label className="block text-sm font-semibold text-text-primary mb-3">
+                ご希望の連絡方法
+              </label>
+              <div className="flex flex-col lg:flex-row gap-4">
+                {["電話", "メール", "どちらでも可"].map((method) => (
+                  <label key={method} className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="contactMethod"
+                      value={method}
+                      defaultChecked={method === "どちらでも可"}
+                      className="w-4 h-4 text-navy"
+                    />
+                    <span className="text-[15px] text-text-primary">
+                      {method}
+                    </span>
+                  </label>
+                ))}
               </div>
-            )}
+            </div>
 
             <div className="pt-4">
               <label className="flex items-start gap-2">

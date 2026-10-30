@@ -42,6 +42,6 @@
 - [ ] Vercel プロジェクトに `mitsutoyo.co.jp` / `www.mitsutoyo.co.jp` を追加し、設定値を確定
 - [ ] メールソフトのサーバー名が `mitsutoyo.co.jp`（素のドメイン）でないことを確認
 - [ ] B の場合: エクサ様向け依頼書を作成
-- [ ] お問い合わせフォームを Google フォーム（formResponse）に接続 ※現状は送信処理が未実装（`src/app/contact/page.tsx`）
+- [x] お問い合わせフォームを Google フォーム（formResponse）に接続（2026-10-30）: 通知は GAS `docs/gas/contact-notify.gs`（hkawai@ のスプレッドシートから info@ へ送信）／`/privacy` 新設
 - [ ] 旧 URL（`/?page=xxx`）から新ページへのリダイレクト
 - [ ] TTL を下げてから切り替え → 表示・SSL・メール送受信テスト

@@ -11,6 +11,7 @@ const navLinks = [
 
 const navLinks2 = [
   { label: "お問い合わせ", href: "/contact" },
+  { label: "プライバシーポリシー", href: "/privacy" },
 ];
 
 export default function Footer() {

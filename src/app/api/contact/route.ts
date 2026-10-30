@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { googleForm } from '@/lib/site';
+
+// Googleフォーム側の選択肢と文字列を完全一致させること
+const CONTACT_TYPES = ['お問い合わせ', '採用応募'];
+const CONTACT_METHODS = ['電話', 'メール', 'どちらでも可'];
 
 interface ContactFormData {
+  contactType: string;
   name: string;
+  phone: string;
   email: string;
-  company?: string;
-  phone?: string;
+  address?: string;
   message: string;
+  contactMethod?: string;
 }
 
 interface ValidationError {
@@ -19,16 +26,27 @@ function validateEmail(email: string): boolean {
 }
 
 function validatePhone(phone: string): boolean {
-  if (!phone) return true;
-  const re = /^[\d\-+()]+$/;
+  const re = /^[\d\-+() ]+$/;
   return re.test(phone);
 }
 
 function validateFormData(data: ContactFormData): ValidationError[] {
   const errors: ValidationError[] = [];
 
+  if (!CONTACT_TYPES.includes(data.contactType)) {
+    errors.push({ field: 'contactType', message: 'お問い合わせ種別を選択してください' });
+  }
+
   if (!data.name || !data.name.trim()) {
     errors.push({ field: 'name', message: 'お名前を入力してください' });
+  } else if (data.name.length > 100) {
+    errors.push({ field: 'name', message: 'お名前は100文字以内で入力してください' });
+  }
+
+  if (!data.phone || !data.phone.trim()) {
+    errors.push({ field: 'phone', message: '電話番号を入力してください' });
+  } else if (!validatePhone(data.phone)) {
+    errors.push({ field: 'phone', message: '電話番号の形式が正しくありません' });
   }
 
   if (!data.email || !data.email.trim()) {
@@ -37,14 +55,16 @@ function validateFormData(data: ContactFormData): ValidationError[] {
     errors.push({ field: 'email', message: 'メールアドレスの形式が正しくありません' });
   }
 
-  if (data.phone && !validatePhone(data.phone)) {
-    errors.push({ field: 'phone', message: '電話番号の形式が正しくありません' });
+  if (!data.message || !data.message.trim()) {
+    errors.push({ field: 'message', message: 'お問い合わせ内容を入力してください' });
+  } else if (data.message.trim().length < 10) {
+    errors.push({ field: 'message', message: '10文字以上でご入力ください' });
+  } else if (data.message.length > 5000) {
+    errors.push({ field: 'message', message: '5000文字以内でご入力ください' });
   }
 
-  if (!data.message || !data.message.trim()) {
-    errors.push({ field: 'message', message: 'ご相談内容を入力してください' });
-  } else if (data.message.trim().length < 10) {
-    errors.push({ field: 'message', message: 'ご相談内容は10文字以上で入力してください' });
+  if (data.contactMethod && !CONTACT_METHODS.includes(data.contactMethod)) {
+    errors.push({ field: 'contactMethod', message: 'ご希望の連絡方法を選択してください' });
   }
 
   return errors;
@@ -63,32 +83,30 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // ここで実際のメール送信や外部サービスへの連携を行う
-    // 例: SendGrid, Resend, AWS SES, Slack通知など
-    //
-    // await sendEmail({
-    //   to: process.env.CONTACT_EMAIL,
-    //   subject: `【お問い合わせ】${body.company || body.name}様より`,
-    //   text: `
-    //     お名前: ${body.name}
-    //     メール: ${body.email}
-    //     会社名: ${body.company || 'なし'}
-    //     電話番号: ${body.phone || 'なし'}
-    //
-    //     お問い合わせ内容:
-    //     ${body.message}
-    //   `,
-    // });
+    // Googleフォーム（formResponse）へサーバーサイドから送信
+    const { entries } = googleForm;
+    const params = new URLSearchParams();
+    params.append(entries.contactType, body.contactType);
+    params.append(entries.name, body.name.trim());
+    params.append(entries.phone, body.phone.trim());
+    params.append(entries.email, body.email.trim());
+    if (body.address?.trim()) {
+      params.append(entries.address, body.address.trim());
+    }
+    params.append(entries.message, body.message.trim());
+    if (body.contactMethod) {
+      params.append(entries.contactMethod, body.contactMethod);
+    }
 
-    // 開発環境ではコンソールに出力
-    console.log('Contact form submission:', {
-      timestamp: new Date().toISOString(),
-      name: body.name,
-      email: body.email,
-      company: body.company || 'なし',
-      phone: body.phone || 'なし',
-      message: body.message,
+    const response = await fetch(googleForm.formUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
     });
+
+    if (!response.ok) {
+      throw new Error(`Google Form submission failed: ${response.status}`);
+    }
 
     return NextResponse.json({
       success: true,
@@ -97,7 +115,15 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Contact form error:', error);
     return NextResponse.json(
-      { success: false, message: 'サーバーエラーが発生しました' },
+      {
+        success: false,
+        errors: [
+          {
+            field: 'general',
+            message: '送信中にエラーが発生しました。しばらく経ってから再度お試しください。',
+          },
+        ],
+      },
       { status: 500 }
     );
   }

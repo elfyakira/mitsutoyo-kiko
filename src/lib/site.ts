@@ -131,6 +131,18 @@ export interface SiteData {
     image: string;
     message: string[];
   };
+  googleForm: {
+    formUrl: string;
+    entries: {
+      contactType: string;
+      name: string;
+      phone: string;
+      email: string;
+      address: string;
+      message: string;
+      contactMethod: string;
+    };
+  };
 }
 
 // サイトデータをエクスポート
@@ -142,3 +154,4 @@ export const contact = site.contact;
 export const locations = site.locations;
 export const seo = site.seo;
 export const images = site.images;
+export const googleForm = site.googleForm;

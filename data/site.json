@@ -92,5 +92,17 @@
     "title": "代表取締役",
     "image": "",
     "message": []
+  },
+  "googleForm": {
+    "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSffcQ0MBcw5pIRAAdDFhEcr4vhkeGo5e0X026jCyjGRCIbOBg/formResponse",
+    "entries": {
+      "contactType": "entry.1110944310",
+      "name": "entry.807372826",
+      "phone": "entry.2005018506",
+      "email": "entry.1598336846",
+      "address": "entry.836667853",
+      "message": "entry.961775946",
+      "contactMethod": "entry.295915964"
+    }
   }
 }
