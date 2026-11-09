@@ -92,7 +92,7 @@ function MessageSection() {
             <div className="mt-12 text-text-primary">
               <p className="text-[13px] tracking-[0.15em]">三豊機工株式会社</p>
               <p className="text-[13px] tracking-[0.15em] mt-1">
-                代表取締役社長
+                代表取締役
                 <span className="text-[20px] lg:text-[24px] font-bold tracking-[0.2em] ml-4">
                   舟橋 佳孝
                 </span>

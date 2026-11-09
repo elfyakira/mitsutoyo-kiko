@@ -147,8 +147,8 @@ function HeroAboutSection() {
     if (totalScroll <= 0) return;
 
     const scrolled = -rect.top;
-    // Phase 1: crossfade (first 300vh of scroll)
-    const fadeZone = window.innerHeight * 3;
+    // Phase 1: crossfade (first 150vh of scroll)
+    const fadeZone = window.innerHeight * 1.5;
     const fade = Math.min(Math.max(scrolled / fadeZone, 0), 1);
     setFadeProgress(fade);
 
@@ -178,8 +178,8 @@ function HeroAboutSection() {
   const heroBrightness = 1 + mirageIntensity * 0.15;
   const heroSaturate = 1 + mirageIntensity * 0.3;
 
-  // Total height: 1 screen (initial) + 3 screens (crossfade) + content overflow (scroll)
-  const totalHeight = `calc(400vh + ${contentOverflow}px)`;
+  // Total height: 1 screen (initial) + 1.5 screens (crossfade) + content overflow (scroll)
+  const totalHeight = `calc(250vh + ${contentOverflow}px)`;
 
   return (
     <div ref={wrapperRef} className="relative" style={{ height: totalHeight }}>
