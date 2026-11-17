@@ -33,7 +33,7 @@
 // 設定（ここを書き換える）
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-var NOTIFY_TO = 'office@mitsutoyo.co.jp'; // ← 通知先メールアドレス（複数はカンマ区切り）
+var NOTIFY_TO = 'office@mitsutoyo.co.jp,soumub@mitsutoyo.co.jp'; // ← 通知先メールアドレス（複数はカンマ区切り）
 var SUBJECT_PREFIX = '【HPお問い合わせ】'; // ← 件名プレフィックス
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

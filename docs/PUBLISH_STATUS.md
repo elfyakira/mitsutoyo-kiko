@@ -69,7 +69,7 @@
   - 河合さんから viewform URL が届いたら: entry ID 抽出 → `data/site.json` の `googleForm` を丸ごと置き換え（旧値は残さない）→ 本番デプロイ → 本番からテスト送信（シート行追加・通知メール着信）
   - 確認後、旧フォーム（hkawai@）を「回答を受け付けない」に／旧 GAS トリガー削除／10/30 以降の旧回答をお客様へ渡すか決める
   - 通知先: コードは `office@`、本メモ上は `info@` と記載が食い違い → 現地で確定
-- [ ] フォーム通知先に office@mitsutoyo.co.jp を追加するか（GAS の `NOTIFY_TO`）
+- [x] フォーム通知先を確定（2026-11-17）: `NOTIFY_TO = 'office@mitsutoyo.co.jp,soumub@mitsutoyo.co.jp'`。お客様側 GAS に設定・テスト送信 OK、`docs/gas/contact-notify.gs` も同じ値に更新
 - [ ] プライバシーポリシー文面を先方に確認
 - [ ] 旧 URL（`/?page=xxx`）から新ページへのリダイレクト
 
