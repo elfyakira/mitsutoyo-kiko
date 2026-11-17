@@ -70,8 +70,9 @@
   - 確認後、旧フォーム（hkawai@）を「回答を受け付けない」に／旧 GAS トリガー削除／10/30 以降の旧回答をお客様へ渡すか決める
   - 通知先: コードは `office@`、本メモ上は `info@` と記載が食い違い → 現地で確定
 - [x] フォーム通知先を確定（2026-11-17）: `NOTIFY_TO = 'office@mitsutoyo.co.jp,soumub@mitsutoyo.co.jp'`。お客様側 GAS に設定・テスト送信 OK、`docs/gas/contact-notify.gs` も同じ値に更新
-- [ ] プライバシーポリシー文面を先方に確認
-- [ ] 旧 URL（`/?page=xxx`）から新ページへのリダイレクト
+- [ ] プライバシーポリシー文面を先方に確認 — 2026-11-17「確認して何かあれば連絡を」と伝達済み、先方からの連絡待ち
+- [ ] 旧 URL（`/?page=xxx`）から新ページへのリダイレクト（次回「旧URLのリダイレクトやって」で着手）
+  - 手順: `site:mitsutoyo.co.jp` 検索（＋あれば Search Console）で旧URL収集 → 対応表を河合さんに確認 → `next.config.ts` の `redirects()` に 301 で追加 → 本番で旧URLの転送を確認
 
 ## 補足メモ
 
